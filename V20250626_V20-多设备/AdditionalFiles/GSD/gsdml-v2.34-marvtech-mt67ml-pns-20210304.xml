@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ISO15745Profile xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile ..\xsd\GSDML-DeviceProfile-V2.34.xsd">
+  <ProfileHeader>
+    <ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+    <ProfileRevision>1.00</ProfileRevision>
+    <ProfileName>Device Profile for PROFINET Devices</ProfileName>
+    <ProfileSource>PROFIBUS Nutzerorganisation e. V. (PNO)</ProfileSource>
+    <ProfileClassID>Device</ProfileClassID>
+    <ISO15745Reference>
+      <ISO15745Part>4</ISO15745Part>
+      <ISO15745Edition>1</ISO15745Edition>
+      <ProfileTechnology>GSDML</ProfileTechnology>
+    </ISO15745Reference>
+  </ProfileHeader>
+  <ProfileBody>
+    <DeviceIdentity DeviceID="0x3000" VendorID="0x0521">
+      <InfoText TextId="MTddID_01"/>
+      <VendorName Value="MARVTECH"/>
+    </DeviceIdentity>
+    <DeviceFunction>
+      <Family MainFamily="I/O" ProductFamily="MARVTECH"/>
+    </DeviceFunction>
+    <ApplicationProcess>
+      <DeviceAccessPointList>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-di8pdo8p-2a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DI8PDO8P-2A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001001" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..2" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DI8DO8_Name_01"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000125"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DI8"/>
+			<ModuleItemRef FixedInSlots="2" ModuleItemTarget="MT_DO8"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DI8PDO8P" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DI8PDO8P" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DI8PDO8P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DI8PDO8P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+	    <DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-di8ndo8n-2a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DI8NDO8N-2A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001002" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..2" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DI8DO8_Name_02"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000132"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DI8"/>
+			<ModuleItemRef FixedInSlots="2" ModuleItemTarget="MT_DO8"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DI8NDO8N" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DI8NDO8N" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DI8NDO8N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_DI8NDO8N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-di8ndo8p-2a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DI8NDO8P-2A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001003" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..2" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DI8DO8_Name_03"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000133"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DI8"/>
+			<ModuleItemRef FixedInSlots="2" ModuleItemTarget="MT_DO8"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DI8NDO8P" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DI8NDO8P" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DI8NDO8P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DI8NDO8P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-di8pdo8n-2a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DI8PDO8N-2A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001004" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..2" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DI8DO8_Name_04"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000128"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DI8"/>
+			<ModuleItemRef FixedInSlots="2" ModuleItemTarget="MT_DO8"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DI8PDO8N" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DI8PDO8N" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DI8PDO8N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DI8PDO8N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-di16p" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DI16P" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001005" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..1" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DI16_Name_01"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000126"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DI16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DI16P" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DI16P" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DI16P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DI16P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-di16n" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DI16N" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001006" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..1" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DI16_Name_02"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000127"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DI16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DI16N" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DI16N" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DI16N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DI16N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-do16p-2a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DO16P-2A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001007" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..1" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DO16_Name_01"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000130"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DO16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DO16P" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DO16P" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DO16P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DO16P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-do16n-2a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DO16N-2A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001008" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..1" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DO16_Name_02"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000131"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DO16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DO16N" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DO16N" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DO16N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DO16N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-dio16p-2a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DIO16P-2A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x30001009" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..1" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DIO16_Name_01"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000124"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DIO16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DIO16P" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DIO16P" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DIO16P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DIO16P" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-dio16n-2a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DIO16N-2A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x3000100A" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..1" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DIO16_Name_02"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000129"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DIO16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DIO16N" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DIO16N" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DIO16N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DIO16N" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-dio16p-0.5a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DIO16P-0.5A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x3000100B" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..1" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DIO16_Name_03"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000121"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DIO16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DIO16P_1" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DIO16P_1" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DIO16P_1" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DIO16P_1" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+		<DeviceAccessPointItem CheckDeviceID_Allowed="true" DNS_CompatibleName="marvtech-mt67ml-pn-dio16n-0.5a" DeviceAccessSupported="true" FixedInSlots="0" ID="DAP-MT67ML-PN-DIO16N-0.5A" ImplementationType="MARVTECH" LLDP_NoD_Supported="true" MinDeviceInterval="8" ModuleIdentNumber="0x3000100C" MultipleWriteSupported="true" NameOfStationNotTransferable="true" NumberOfDeviceAccessAR="1" ObjectUUID_LocalIndex="1" PNIO_Version="V2.34" PhysicalSlots="0..1" PowerOnToCommReady="10000" PrmBeginPrmEndSequenceSupported="false" ResetToFactoryModes="2" SharedDeviceSupported="true" SharedInputSupported="false">
+          <ModuleInfo CategoryRef="MTCat_dap">
+            <Name TextId="MT_DAP_DIO16_Name_04"/>
+            <InfoText TextId="MTddID_02"/>
+            <VendorName Value="MARVTECH"/>
+            <OrderNumber Value="40000120"/>
+            <HardwareRelease Value="V1.0"/>
+            <SoftwareRelease Value="V5.1.0"/>
+          </ModuleInfo>
+          <CertificationInfo ApplicationClass="" ConformanceClass="C" NetloadClass="II"/>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="X1"/>
+            <SubslotItem SubslotNumber="32769" TextId="X1P1"/>
+            <SubslotItem SubslotNumber="32770" TextId="X1P2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef FixedInSlots="1" ModuleItemTarget="MT_DIO16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="SUB_MT67ML_PN_DIO16P_2" IM5_Supported="false" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00003010" Writeable_IM_Records="1 2 3">
+              <IOData/>
+              <ModuleInfo CategoryRef="MTCat_dap_submod">
+                <Name TextId="MTddID_03"/>
+                <InfoText TextId="MTddID_04"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem DCP_BoundarySupported="true" DCP_HelloSupported="true" DelayMeasurementSupported="true" ID="PN_IO_MT67ML_PN_DIO16P_2" NetworkComponentDiagnosisSupported="false" PTP_BoundarySupported="true" SubmoduleIdentNumber="0x00003011" SubslotNumber="32768" SupportedProtocols="SNMP;LLDP" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" TextId="PN-IO" >
+              <RT_Class3Properties ForwardingMode="Relative" MaxBridgeDelay="5500" MaxNumberIR_FrameData="256" MaxRetentionTime="20000" StartupMode="Advanced;Legacy"/>
+              <SynchronisationMode MaxLocalJitter="50" SupportedRole="SyncSlave" SupportedSyncProtocols="PTCP" T_PLL_MAX="1000"/>
+			  <ApplicationRelations NumberOfAR="2" StartupMode="Advanced;Legacy">
+                <TimingProperties ReductionRatio="1 2 4 8 16 32 64 128 256 512" SendClock="32 64 128"/>
+				<RT_Class3TimingProperties ReductionRatio="1 2 4 8 16" SendClock="8 16 32 64 128"/>
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port1_MT67ML_PN_DIO16P_2" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003012" SubslotNumber="32769" TextId="Port1">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem CheckMAUTypeDifferenceSupported="true" CheckMAUTypeSupported="true" ID="Port2_MT67ML_PN_DIO16P_2" IsDefaultRingport="true" LinkStateDiagnosisCapability="Up+Down" MAUTypes="16" MaxPortRxDelay="220" MaxPortTxDelay="116" PortDeactivationSupported="true" SubmoduleIdentNumber="0x00003013" SubslotNumber="32770" TextId="Port2">
+              <MAUTypeList>
+                <MAUTypeItem AdjustSupported="true" Value="16"/>
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef GraphicItemTarget="GraRef_MT67ML_PN" Type="DeviceSymbol"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+      </DeviceAccessPointList>
+      <ModuleList>
+        <ModuleItem ID="MT_DI8" ModuleIdentNumber="0x00000001">
+          <ModuleInfo CategoryRef="Input Module">
+            <Name TextId="MT_DI8"/>
+            <InfoText TextId="MT_DI8"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="MT_DI8" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00000001">
+              <IOData>
+                <Input>
+				  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_inputdata_">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0001Ch0" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0001Ch1" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0001Ch2" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0001Ch3" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0001Ch4" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0001Ch5" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0001Ch6" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0001Ch7" />
+                  </DataItem>
+                </Input>
+              </IOData>
+              <ModuleInfo>
+                <Name TextId="MT_DI8"/>
+                <InfoText TextId="MT_DI8"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="MT_DO8" ModuleIdentNumber="0x00000002">
+          <ModuleInfo CategoryRef="Output Module">
+            <Name TextId="MT_DO8"/>
+            <InfoText TextId="MT_DO8"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="MT_DO8" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00000001">
+              <IOData>
+                <Output>
+				  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_outputdata">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0002Ch0" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0002Ch1" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0002Ch2" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0002Ch3" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0002Ch4" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0002Ch5" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0002Ch6" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0002Ch7" />
+                  </DataItem>
+                </Output>
+              </IOData>
+              <ModuleInfo>
+                <Name TextId="MT_DO8"/>
+                <InfoText TextId="MT_DO8"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		<ModuleItem ID="MT_DI16" ModuleIdentNumber="0x00000003">
+          <ModuleInfo CategoryRef="Input Module">
+            <Name TextId="MT_DI16"/>
+            <InfoText TextId="MT_DI16"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="MT_DI16" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00000001">
+              <IOData>
+                <Input>
+				  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_inputdata_">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0001Ch0" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0001Ch1" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0001Ch2" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0001Ch3" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0001Ch4" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0001Ch5" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0001Ch6" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0001Ch7" />
+                  </DataItem>
+                  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_inputdata_">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0001Ch8" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0001Ch9" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0001Ch10" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0001Ch11" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0001Ch12" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0001Ch13" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0001Ch14" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0001Ch15" />
+                  </DataItem>
+                </Input>
+              </IOData>
+              <ModuleInfo>
+                <Name TextId="MT_DI16"/>
+                <InfoText TextId="MT_DI16"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="MT_DO16" ModuleIdentNumber="0x00000004">
+          <ModuleInfo CategoryRef="Output Module">
+            <Name TextId="MT_DO16"/>
+            <InfoText TextId="MT_DO16"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="MT_DO16" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00000001">
+              <IOData>
+                <Output>
+				  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_outputdata">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0002Ch0" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0002Ch1" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0002Ch2" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0002Ch3" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0002Ch4" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0002Ch5" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0002Ch6" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0002Ch7" />
+                  </DataItem>
+                  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_outputdata">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0002Ch8" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0002Ch9" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0002Ch10" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0002Ch11" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0002Ch12" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0002Ch13" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0002Ch14" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0002Ch15" />
+                  </DataItem>
+                </Output>
+              </IOData>
+              <ModuleInfo>
+                <Name TextId="MT_DO16"/>
+                <InfoText TextId="MT_DO16"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		<ModuleItem ID="MT_DIO16" ModuleIdentNumber="0x00000005">
+          <ModuleInfo CategoryRef="Input/Output Module">
+            <Name TextId="MT_DIO16"/>
+            <InfoText TextId="MT_DIO16"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="MT_DIO16" MayIssueProcessAlarm="false" SubmoduleIdentNumber="0x00000001" FixedInSubslots="1">
+              <IOData>
+                <Input>
+				  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_inputdata_">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0001Ch0" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0001Ch1" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0001Ch2" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0001Ch3" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0001Ch4" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0001Ch5" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0001Ch6" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0001Ch7" />
+                  </DataItem>
+                  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_inputdata_">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0001Ch8" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0001Ch9" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0001Ch10" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0001Ch11" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0001Ch12" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0001Ch13" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0001Ch14" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0001Ch15" />
+                  </DataItem>
+                </Input>
+				<Output>
+				  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_outputdata">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0002Ch0" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0002Ch1" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0002Ch2" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0002Ch3" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0002Ch4" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0002Ch5" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0002Ch6" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0002Ch7" />
+                  </DataItem>
+                  <DataItem DataType="Unsigned8" UseAsBits="true" TextId="MT_DataItem_outputdata">
+                    <BitDataItem BitOffset="0" TextId="MT67_DataID_0002Ch8" />
+                    <BitDataItem BitOffset="1" TextId="MT67_DataID_0002Ch9" />
+                    <BitDataItem BitOffset="2" TextId="MT67_DataID_0002Ch10" />
+                    <BitDataItem BitOffset="3" TextId="MT67_DataID_0002Ch11" />
+                    <BitDataItem BitOffset="4" TextId="MT67_DataID_0002Ch12" />
+                    <BitDataItem BitOffset="5" TextId="MT67_DataID_0002Ch13" />
+                    <BitDataItem BitOffset="6" TextId="MT67_DataID_0002Ch14" />
+                    <BitDataItem BitOffset="7" TextId="MT67_DataID_0002Ch15" />
+                  </DataItem>
+                </Output>
+              </IOData>
+              <ModuleInfo>
+                <Name TextId="MT_DIO16"/>
+                <InfoText TextId="MT_DIO16"/>
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+      </ModuleList>
+      <GraphicsList>
+		<GraphicItem GraphicFile="GSDML-0521-3000-MT67ML_PNS" ID="GraRef_MT67ML_PN"/>
+      </GraphicsList>
+      <CategoryList>
+		<CategoryItem ID="MTCat_dap" TextId="MTdd_dap" />
+		<CategoryItem ID="MTCat_dap_submod" TextId="MTddID_02" />
+        <CategoryItem ID="Input Module" TextId="Input Module_CategoryName"/>
+        <CategoryItem ID="Output Module" TextId="Output Module_CategoryName"/>
+		<CategoryItem ID="Input/Output Module" TextId="Input/Output Module_CategoryName"/>
+      </CategoryList>
+      <ExternalTextList>
+        <PrimaryLanguage>
+		  <Text TextId="PN-IO" Value="PN-IO"/>
+          <Text TextId="Port1" Value="Port 1"/>
+          <Text TextId="Port2" Value="Port 2"/>
+          <Text TextId="X1" Value="X1"/>
+          <Text TextId="X1P1" Value="X1 P1"/>
+          <Text TextId="X1P2" Value="X1 P2"/>
+          <Text TextId="DAP Module_CategoryName" Value="Device Access Point Modules"/>
+          <Text TextId="MT_DataItem_inputdata_" Value="Digital Inputs"/>
+          <Text TextId="MT_DataItem_outputdata" Value="Digital Outputs"/>
+		  
+          <Text TextId="MTddID_01" Value="PROFINET IO-Device"/>
+		  <Text TextId="MTddID_02" Value="PROFINET IO module in IP67"/>
+		  <Text TextId="MTddID_03" Value="DAP v3.5" />
+		  <Text TextId="MTddID_04" Value="PROFINET-RT device with 2 ports" />
+		  <Text TextId="MTdd_dap" Value="MT67ML-PNS" />
+		  
+          <Text TextId="MT_DI8" Value="1 Bytes Input Module"/>
+		  <Text TextId="MT_DI16" Value="2 Bytes Input Module"/>
+		  <Text TextId="MT_DI32" Value="4 Bytes Input Module"/>
+          <Text TextId="MT_DO8" Value="1 Bytes Output Module"/>
+		  <Text TextId="MT_DO16" Value="2 Bytes Output Module"/>
+          <Text TextId="MT_DO32" Value="4 Bytes Output Module"/>
+          <Text TextId="MT_DIO16" Value="2 Bytes Input/2 Bytes Output Module"/>
+		  
+		  <Text TextId="MT_DAP_DI8DO8_Name_01" Value="MT67ML-PN-DI8PDO8P-2A"/>
+		  <Text TextId="MT_DAP_DI8DO8_Name_02" Value="MT67ML-PN-DI8NDO8N-2A"/>
+		  <Text TextId="MT_DAP_DI8DO8_Name_03" Value="MT67ML-PN-DI8NDO8P-2A"/>
+		  <Text TextId="MT_DAP_DI8DO8_Name_04" Value="MT67ML-PN-DI8PDO8N-2A"/>
+		  
+		  <Text TextId="MT_DAP_DO16_Name_01" Value="MT67ML-PN-DO16P-2A"/>
+		  <Text TextId="MT_DAP_DO16_Name_02" Value="MT67ML-PN-DO16N-2A"/>
+		  <Text TextId="MT_DAP_DO16_Name_03" Value="MT67ML-PN-DO16P-0.5A"/>
+		  <Text TextId="MT_DAP_DO16_Name_04" Value="MT67ML-PN-DO16N-0.5A"/>
+		  
+		  <Text TextId="MT_DAP_DI16_Name_01" Value="MT67ML-PN-DI16P"/>
+		  <Text TextId="MT_DAP_DI16_Name_02" Value="MT67ML-PN-DI16N"/>
+		  
+		  <Text TextId="MT_DAP_DIO16_Name_01" Value="MT67ML-PN-DIO16P-2A"/>
+		  <Text TextId="MT_DAP_DIO16_Name_02" Value="MT67ML-PN-DIO16N-2A"/>
+		  <Text TextId="MT_DAP_DIO16_Name_03" Value="MT67ML-PN-DIO16P-0.5A"/>
+		  <Text TextId="MT_DAP_DIO16_Name_04" Value="MT67ML-PN-DIO16N-0.5A"/>
+		  
+		  <Text TextId="Input Module_CategoryName" Value="Input Modules"/>
+          <Text TextId="Output Module_CategoryName" Value="Output Modules"/>
+		  <Text TextId="Input/Output Module_CategoryName" Value="Input/Output Modules"/>
+		  
+		  <Text TextId="MT67_DataID_0001Ch0" Value="Input value Ch0" />
+		  <Text TextId="MT67_DataID_0001Ch1" Value="Input value Ch1" />
+		  <Text TextId="MT67_DataID_0001Ch2" Value="Input value Ch2" />
+		  <Text TextId="MT67_DataID_0001Ch3" Value="Input value Ch3" />
+		  <Text TextId="MT67_DataID_0001Ch4" Value="Input value Ch4" />
+		  <Text TextId="MT67_DataID_0001Ch5" Value="Input value Ch5" />
+		  <Text TextId="MT67_DataID_0001Ch6" Value="Input value Ch6" />
+		  <Text TextId="MT67_DataID_0001Ch7" Value="Input value Ch7" />
+		  <Text TextId="MT67_DataID_0001Ch8" Value="Input value Ch8" />
+		  <Text TextId="MT67_DataID_0001Ch9" Value="Input value Ch9" />
+		  <Text TextId="MT67_DataID_0001Ch10" Value="Input value Ch10" />
+		  <Text TextId="MT67_DataID_0001Ch11" Value="Input value Ch11" />
+		  <Text TextId="MT67_DataID_0001Ch12" Value="Input value Ch12" />
+		  <Text TextId="MT67_DataID_0001Ch13" Value="Input value Ch13" />
+		  <Text TextId="MT67_DataID_0001Ch14" Value="Input value Ch14" />
+		  <Text TextId="MT67_DataID_0001Ch15" Value="Input value Ch15" />
+		  
+		  <Text TextId="MT67_DataID_0002Ch0" Value="Output value Ch0" />
+		  <Text TextId="MT67_DataID_0002Ch1" Value="Output value Ch1" />
+		  <Text TextId="MT67_DataID_0002Ch2" Value="Output value Ch2" />
+		  <Text TextId="MT67_DataID_0002Ch3" Value="Output value Ch3" />
+		  <Text TextId="MT67_DataID_0002Ch4" Value="Output value Ch4" />
+		  <Text TextId="MT67_DataID_0002Ch5" Value="Output value Ch5" />
+		  <Text TextId="MT67_DataID_0002Ch6" Value="Output value Ch6" />
+		  <Text TextId="MT67_DataID_0002Ch7" Value="Output value Ch7" />
+		  <Text TextId="MT67_DataID_0002Ch8" Value="Output value Ch8" />
+		  <Text TextId="MT67_DataID_0002Ch9" Value="Output value Ch9" />
+		  <Text TextId="MT67_DataID_0002Ch10" Value="Output value Ch10" />
+		  <Text TextId="MT67_DataID_0002Ch11" Value="Output value Ch11" />
+		  <Text TextId="MT67_DataID_0002Ch12" Value="Output value Ch12" />
+		  <Text TextId="MT67_DataID_0002Ch13" Value="Output value Ch13" />
+		  <Text TextId="MT67_DataID_0002Ch14" Value="Output value Ch14" />
+		  <Text TextId="MT67_DataID_0002Ch15" Value="Output value Ch15" />
+        </PrimaryLanguage>
+        <Language xml:lang="de">
+		  <Text TextId="PN-IO" Value="PN-IO"/>
+          <Text TextId="Port1" Value="Port 1"/>
+          <Text TextId="Port2" Value="Port 2"/>
+          <Text TextId="X1" Value="X1"/>
+          <Text TextId="X1P1" Value="X1 P1"/>
+          <Text TextId="X1P2" Value="X1 P2"/>
+          <Text TextId="DAP Module_CategoryName" Value="Device Access Point Module"/>
+          <Text TextId="MT_DataItem_inputdata_" Value="Digital Eingänge"/>
+          <Text TextId="MT_DataItem_outputdata" Value="Digital Ausgänge"/>
+		  
+          <Text TextId="MTddID_01" Value="PROFINET IO-Device"/>
+		  <Text TextId="MTddID_02" Value="PROFINET IO module in IP67"/>
+		  <Text TextId="MTddID_03" Value="DAP v3.5" />
+		  <Text TextId="MTddID_04" Value="PROFINET-RT device with 2 ports" />
+		  <Text TextId="MTdd_dap" Value="MT67ML-PNS" />
+		  
+          <Text TextId="MT_DI8" Value="1 Bytes Eingänge Module"/>
+		  <Text TextId="MT_DI16" Value="2 Bytes Eingänge Module"/>
+		  <Text TextId="MT_DI32" Value="4 Bytes Eingänge Module"/>
+          <Text TextId="MT_DO8" Value="1 Bytes Ausgänge Module"/>
+		  <Text TextId="MT_DO16" Value="2 Bytes Ausgänge Module"/>
+          <Text TextId="MT_DO32" Value="4 Bytes Ausgänge Module"/>
+          <Text TextId="MT_DIO16" Value="2 Bytes Eingänge/2 Bytes Ausgänge Module"/>
+		  
+		  <Text TextId="MT_DAP_DI8DO8_Name_01" Value="MT67ML-PN-DI8PDO8P-2A"/>
+		  <Text TextId="MT_DAP_DI8DO8_Name_02" Value="MT67ML-PN-DI8NDO8N-2A"/>
+		  <Text TextId="MT_DAP_DI8DO8_Name_03" Value="MT67ML-PN-DI8NDO8P-2A"/>
+		  <Text TextId="MT_DAP_DI8DO8_Name_04" Value="MT67ML-PN-DI8PDO8N-2A"/>
+		  
+		  <Text TextId="MT_DAP_DO16_Name_01" Value="MT67ML-PN-DO16P-2A"/>
+		  <Text TextId="MT_DAP_DO16_Name_02" Value="MT67ML-PN-DO16N-2A"/>
+		  <Text TextId="MT_DAP_DO16_Name_03" Value="MT67ML-PN-DO16P-0.5A"/>
+		  <Text TextId="MT_DAP_DO16_Name_04" Value="MT67ML-PN-DO16N-0.5A"/>
+		  
+		  <Text TextId="MT_DAP_DI16_Name_01" Value="MT67ML-PN-DI16P"/>
+		  <Text TextId="MT_DAP_DI16_Name_02" Value="MT67ML-PN-DI16N"/>
+		  
+		  <Text TextId="MT_DAP_DIO16_Name_01" Value="MT67ML-PN-DIO16P-2A"/>
+		  <Text TextId="MT_DAP_DIO16_Name_02" Value="MT67ML-PN-DIO16N-2A"/>
+		  <Text TextId="MT_DAP_DIO16_Name_03" Value="MT67ML-PN-DIO16P-0.5A"/>
+		  <Text TextId="MT_DAP_DIO16_Name_04" Value="MT67ML-PN-DIO16N-0.5A"/>
+		  
+		  <Text TextId="Input Module_CategoryName" Value="Eingangs modules"/>
+          <Text TextId="Output Module_CategoryName" Value="Ausgangs modules"/>
+		  <Text TextId="Input/Output Module_CategoryName" Value="Eingangs/Ausgangs modules"/>
+		  
+		  <Text TextId="MT67_DataID_0001Ch0" Value="Eingangs value Ch0" />
+		  <Text TextId="MT67_DataID_0001Ch1" Value="Eingangs value Ch1" />
+		  <Text TextId="MT67_DataID_0001Ch2" Value="Eingangs value Ch2" />
+		  <Text TextId="MT67_DataID_0001Ch3" Value="Eingangs value Ch3" />
+		  <Text TextId="MT67_DataID_0001Ch4" Value="Eingangs value Ch4" />
+		  <Text TextId="MT67_DataID_0001Ch5" Value="Eingangs value Ch5" />
+		  <Text TextId="MT67_DataID_0001Ch6" Value="Eingangs value Ch6" />
+		  <Text TextId="MT67_DataID_0001Ch7" Value="Eingangs value Ch7" />
+		  <Text TextId="MT67_DataID_0001Ch8" Value="Eingangs value Ch8" />
+		  <Text TextId="MT67_DataID_0001Ch9" Value="Eingangs value Ch9" />
+		  <Text TextId="MT67_DataID_0001Ch10" Value="Eingangs value Ch10" />
+		  <Text TextId="MT67_DataID_0001Ch11" Value="Eingangs value Ch11" />
+		  <Text TextId="MT67_DataID_0001Ch12" Value="Eingangs value Ch12" />
+		  <Text TextId="MT67_DataID_0001Ch13" Value="Eingangs value Ch13" />
+		  <Text TextId="MT67_DataID_0001Ch14" Value="Eingangs value Ch14" />
+		  <Text TextId="MT67_DataID_0001Ch15" Value="Eingangs value Ch15" />
+		  
+		  <Text TextId="MT67_DataID_0002Ch0" Value="Ausgangs value Ch0" />
+		  <Text TextId="MT67_DataID_0002Ch1" Value="Ausgangs value Ch1" />
+		  <Text TextId="MT67_DataID_0002Ch2" Value="Ausgangs value Ch2" />
+		  <Text TextId="MT67_DataID_0002Ch3" Value="Ausgangs value Ch3" />
+		  <Text TextId="MT67_DataID_0002Ch4" Value="Ausgangs value Ch4" />
+		  <Text TextId="MT67_DataID_0002Ch5" Value="Ausgangs value Ch5" />
+		  <Text TextId="MT67_DataID_0002Ch6" Value="Ausgangs value Ch6" />
+		  <Text TextId="MT67_DataID_0002Ch7" Value="Ausgangs value Ch7" />
+		  <Text TextId="MT67_DataID_0002Ch8" Value="Ausgangs value Ch8" />
+		  <Text TextId="MT67_DataID_0002Ch9" Value="Ausgangs value Ch9" />
+		  <Text TextId="MT67_DataID_0002Ch10" Value="Ausgangs value Ch10" />
+		  <Text TextId="MT67_DataID_0002Ch11" Value="Ausgangs value Ch11" />
+		  <Text TextId="MT67_DataID_0002Ch12" Value="Ausgangs value Ch12" />
+		  <Text TextId="MT67_DataID_0002Ch13" Value="Ausgangs value Ch13" />
+		  <Text TextId="MT67_DataID_0002Ch14" Value="Ausgangs value Ch14" />
+		  <Text TextId="MT67_DataID_0002Ch15" Value="Ausgangs value Ch15" />
+        </Language>
+      </ExternalTextList>
+    </ApplicationProcess>
+  </ProfileBody>
+</ISO15745Profile>

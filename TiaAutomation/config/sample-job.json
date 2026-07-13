@@ -1,0 +1,117 @@
+{
+  "project": {
+    "code": "DM25120",
+    "station": "P1",
+    "versionDate": "20250708",
+    "nameFormat": "{code}.{station}.V{date}"
+  },
+  "templateProject": "..\\V20250626_V20-多设备\\V20250626_V20-多设备.ap20",
+  "stations": [
+    {
+      "id": "ST01",
+      "name": "上料工位",
+      "logicBlock": "工位逻辑_ST01",
+      "safetyConditions": ["安全门关闭", "急停复位", "机器人安全区允许"],
+      "devices": ["XF01_IO", "Servo01"]
+    }
+  ],
+  "devices": [
+    {
+      "name": "XF01_IO",
+      "deviceType": "MARVTECH_MT67_DI8DO8",
+      "profinetName": "xf01-io",
+      "ipAddress": "192.168.1.21",
+      "inputStart": 100,
+      "outputStart": 100
+    },
+    {
+      "name": "Servo01",
+      "deviceType": "SIEMENS_V90",
+      "profinetName": "servo01",
+      "ipAddress": "192.168.1.41",
+      "inputStart": 300,
+      "outputStart": 300
+    }
+  ],
+  "ioPoints": [
+    { "device": "XF01_IO", "channel": "DI0", "address": "I100.0", "tag": "CYL_A1_EXT_FB", "dataType": "Bool", "comment": "A1伸出到位" },
+    { "device": "XF01_IO", "channel": "DI1", "address": "I100.1", "tag": "CYL_A1_RET_FB", "dataType": "Bool", "comment": "A1退回到位" },
+    { "device": "XF01_IO", "channel": "DI2", "address": "I100.2", "tag": "MOTOR_01_FAULT", "dataType": "Bool", "comment": "输送电机1故障" },
+    { "device": "XF01_IO", "channel": "DO0", "address": "Q100.0", "tag": "CYL_A1_EXT_SOL", "dataType": "Bool", "comment": "A1伸出阀" },
+    { "device": "XF01_IO", "channel": "DO1", "address": "Q100.1", "tag": "CYL_A1_RET_SOL", "dataType": "Bool", "comment": "A1退回阀" },
+    { "device": "XF01_IO", "channel": "DO2", "address": "Q100.2", "tag": "MOTOR_01_RUN", "dataType": "Bool", "comment": "输送电机1运行" }
+  ],
+  "cylinders": [
+    {
+      "id": "A1",
+      "name": "推料气缸",
+      "station": "ST01",
+      "type": "DoubleSolenoid",
+      "extendFeedback": "CYL_A1_EXT_FB",
+      "retractFeedback": "CYL_A1_RET_FB",
+      "extendOutput": "CYL_A1_EXT_SOL",
+      "retractOutput": "CYL_A1_RET_SOL",
+      "extendDelayMs": 0,
+      "retractDelayMs": 0,
+      "shieldDelayMs": 500,
+      "alarmTimeMs": 3000,
+      "mode": { "auto": true, "step": true, "init": false, "shield": false }
+    }
+  ],
+  "servos": [
+    {
+      "name": "Servo01",
+      "station": "ST01",
+      "device": "Servo01",
+      "axisName": "上料X轴",
+      "telegram": "111",
+      "hardwareId": 260,
+      "telegramAddress": 300,
+      "logicBlock": "伺服逻辑_ST01"
+    }
+  ],
+  "motors": [
+    {
+      "name": "Motor01",
+      "station": "ST01",
+      "device": "XF01_IO",
+      "type": "普通电机",
+      "runOutput": "MOTOR_01_RUN",
+      "faultInput": "MOTOR_01_FAULT",
+      "logicBlock": "电机逻辑_ST01"
+    }
+  ],
+  "alarms": [
+    { "station": "ST01", "source": "A1", "sourceType": "Cylinder", "text": "上料工位推料气缸动作超时", "level": "Error" },
+    { "station": "ST01", "source": "Servo01", "sourceType": "Servo", "text": "上料X轴伺服报警", "level": "Error" },
+    { "station": "ST01", "source": "Motor01", "sourceType": "Motor", "text": "输送电机1故障", "level": "Error" }
+  ],
+  "stationCylinders": [
+    {
+      "stationId": "ST01",
+      "stationName": "上料工位",
+      "cylinderFb": "气缸块",
+      "instanceDb": "iDB_ST01_气缸",
+      "stationIDb": "DB_ST01_工位I",
+      "stationQDb": "DB_ST01_工位Q",
+      "param1Db": "DB_ST01_气缸参数1",
+      "param2Db": "DB_ST01_气缸参数2",
+      "alarmDb": "DB_ST01_报警",
+      "cylinders": [
+        {
+          "index": 1,
+          "name": "推料气缸",
+          "type": "DoubleSolenoid",
+          "extendIo": "CYL_A1_EXT_FB",
+          "retractIo": "CYL_A1_RET_FB",
+          "extendOut": "CYL_A1_EXT_SOL",
+          "retractOut": "CYL_A1_RET_SOL",
+          "alarmTimeMs": 3000,
+          "settleTimeMs": 200,
+          "shield": false,
+          "safe": true
+        }
+      ]
+    }
+  ]
+}

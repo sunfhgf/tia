@@ -1,0 +1,12 @@
+{
+  "name": "tia-automation",
+  "version": "0.1.0",
+  "description": "TIA Portal V20 自动化生成工具",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^36.0.0"
+  }
+}

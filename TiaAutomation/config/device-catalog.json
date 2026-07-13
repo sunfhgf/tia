@@ -1,0 +1,40 @@
+{
+  "devices": [
+    {
+      "type": "MARVTECH_MT67_DI8DO8",
+      "displayName": "MARVTECH MT67ML PN DI8/DO8",
+      "vendorName": "MARVTECH",
+      "vendorId": "0x0521",
+      "deviceId": "0x3000",
+      "gsdFileContains": "marvtech-mt67ml-pns",
+      "notes": "首版示例设备，用于远程 IO 与气缸点位规划。"
+    },
+    {
+      "type": "SIEMENS_G120C",
+      "displayName": "Siemens SINAMICS G120C",
+      "vendorName": "Siemens AG",
+      "vendorId": "0x002A",
+      "deviceId": "0x0510",
+      "gsdFileContains": "g120c",
+      "notes": "变频器设备，后续按标准参数扩展。"
+    },
+    {
+      "type": "SIEMENS_V90",
+      "displayName": "Siemens SINAMICS V90 PN",
+      "vendorName": "Siemens AG",
+      "vendorId": "0x002A",
+      "deviceId": "0x051A",
+      "gsdFileContains": "v90",
+      "notes": "伺服设备，后续按标准轴对象扩展。"
+    },
+    {
+      "type": "KUKA_KRC4",
+      "displayName": "KUKA KRC4 PROFINET",
+      "vendorName": "KUKA Roboter GmbH",
+      "vendorId": "0x019B",
+      "deviceId": "0x0300",
+      "gsdFileContains": "kuka-krc4",
+      "notes": "机器人接口，后续按机器人握手标准扩展。"
+    }
+  ]
+}

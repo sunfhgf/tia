@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "projectNaming": {
+    "defaultFormat": "{code}.{station}.V{date}",
+    "example": "DM25120.P1.V20250708"
+  },
+  "tagNaming": {
+    "cylinderExtendFeedback": "CYL_{id}_EXT_FB",
+    "cylinderRetractFeedback": "CYL_{id}_RET_FB",
+    "cylinderExtendOutput": "CYL_{id}_EXT_SOL",
+    "cylinderRetractOutput": "CYL_{id}_RET_SOL",
+    "motorRunOutput": "MOTOR_{id}_RUN",
+    "motorFaultInput": "MOTOR_{id}_FAULT"
+  },
+  "cylinder": {
+    "defaultAlarmTimeMs": 3000,
+    "defaultShieldDelayMs": 500,
+    "supportedTypes": ["SingleSolenoid", "DoubleSolenoid", "NoSensor", "Clamp", "Vacuum"],
+    "modes": ["auto", "step", "init", "shield"],
+    "notes": "屏蔽模式延时应小于报警时间；无传感器机构需要用动作延时辅助判断。"
+  },
+  "blocks": {
+    "stationLogicPattern": "工位逻辑_{station}",
+    "servoLogicPattern": "伺服逻辑_{station}",
+    "motorLogicPattern": "电机逻辑_{station}",
+    "alarmLogicPattern": "报警逻辑_{station}",
+    "ioMapName": "IO映射",
+    "systemDbPattern": "DB_System_{station}",
+    "globalDbName": "DB_Global"
+  },
+  "manualChecks": [
+    "安全互锁条件必须由工程师确认",
+    "伺服硬件标识和通讯报文地址必须按 TIA 实际分配确认",
+    "HMI 报警文本和 PLC 报警 DB 的最终格式后续细化"
+  ],
+  "notes": "根据 PLC手动配置说明.docx 整理出的首版规则。后续根据标准程序中的 FB/DB/UDT 名称继续细化。"
+}

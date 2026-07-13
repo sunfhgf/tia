@@ -1,0 +1,674 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' http://127.0.0.1:5005; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIA 自动化</title>
+  <style>
+    :root { --p: #0079c1; --pl: #e3f2fd; --bg: #f5f5f5; --card: #fff; --t: #222; --m: #888; --bd: #ddd; --ok: #4caf50; --err: #e53935; --warn: #ff9800; --r: 6px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--t); }
+    header { background: var(--p); color: #fff; padding: 0 20px; height: 46px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; }
+    header .logo { font-size: 15px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+    header nav { display: flex; gap: 2px; margin-left: 12px; }
+    header nav a { color: rgba(255,255,255,.75); text-decoration: none; padding: 5px 12px; border-radius: var(--r); font-size: 13px; cursor: pointer; }
+    header nav a:hover { background: rgba(255,255,255,.15); color: #fff; }
+    header nav a.active { background: rgba(255,255,255,.22); color: #fff; }
+    header .status { margin-left: auto; font-size: 11px; opacity: .7; }
+    .wrap { max-width: 1100px; margin: 20px auto; padding: 0 20px; }
+    .card { background: var(--card); border: 1px solid var(--bd); border-radius: var(--r); padding: 18px; margin-bottom: 14px; }
+    .card h2 { font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border: 1px solid var(--bd); border-radius: var(--r); background: var(--card); cursor: pointer; font-size: 13px; }
+    .btn:hover { border-color: var(--p); color: var(--p); }
+    .bp { background: var(--p); color: #fff; border-color: var(--p); }
+    .bp:hover { opacity: .85; }
+    .bd { color: var(--err); border-color: var(--err); }
+    .bd:hover { background: var(--err); color: #fff; }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--bd); }
+    th { color: var(--m); font-weight: 500; font-size: 12px; }
+    tr:hover td { background: var(--pl); }
+    .fg { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .fg label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--m); }
+    .fg input, .fg select { padding: 5px 8px; border: 1px solid var(--bd); border-radius: var(--r); font-size: 13px; }
+    .dz { border: 2px dashed var(--bd); border-radius: var(--r); padding: 28px; text-align: center; color: var(--m); cursor: pointer; transition: .15s; }
+    .dz:hover, .dz.over { border-color: var(--p); color: var(--p); background: var(--pl); }
+    .dz input { display: none; }
+    .badge { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+    .bok { background: #e8f5e9; color: var(--ok); }
+    .bwr { background: #fff3e0; color: var(--warn); }
+    .ber { background: #ffebee; color: var(--err); }
+    .log { background: #1e1e1e; color: #d4d4d4; font-family: 'Cascadia Code', Consolas, monospace; font-size: 12px; padding: 10px; border-radius: var(--r); max-height: 280px; overflow-y: auto; white-space: pre-wrap; }
+    .empty { text-align: center; padding: 40px 0; color: var(--m); }
+    .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--bd); margin-bottom: 14px; }
+    .tabs a { padding: 7px 14px; font-size: 13px; color: var(--m); text-decoration: none; cursor: pointer; border-bottom: 2px solid transparent; }
+    .tabs a:hover { color: var(--t); }
+    .tabs a.active { color: var(--p); border-bottom-color: var(--p); }
+    .hidden { display: none !important; }
+    .issue { padding: 6px 10px; margin: 4px 0; border-radius: var(--r); font-size: 12px; }
+    .issue-Error { background: #ffebee; color: var(--err); }
+    .issue-Warning { background: #fff3e0; color: var(--warn); }
+    .res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    .res-card { padding: 12px; border: 1px solid var(--bd); border-radius: var(--r); }
+    .res-card .num { font-size: 24px; font-weight: 700; }
+    .res-card .lab { font-size: 12px; color: var(--m); }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="logo" onclick="nav('projects')">TIA 自动化</span>
+    <nav id="mainNav"></nav>
+    <span class="status" id="hdrSt"></span>
+  </header>
+  <div class="wrap" id="app"></div>
+
+  <script>
+    const API_BASE = 'http://127.0.0.1:5005';
+    // C# JavaScriptSerializer 用 PascalCase；前端用 camelCase。两端互转。
+    function toCamel(obj) {
+      if (Array.isArray(obj)) return obj.map(toCamel);
+      if (obj === null || typeof obj !== 'object') return obj;
+      const out = {};
+      for (const k of Object.keys(obj)) {
+        const ck = k.charAt(0).toLowerCase() + k.slice(1);
+        out[ck] = toCamel(obj[k]);
+      }
+      return out;
+    }
+    function toPascal(obj) {
+      if (Array.isArray(obj)) return obj.map(toPascal);
+      if (obj === null || typeof obj !== 'object') return obj;
+      const out = {};
+      for (const k of Object.keys(obj)) {
+        const pk = k.charAt(0).toUpperCase() + k.slice(1);
+        out[pk] = toPascal(obj[k]);
+      }
+      return out;
+    }
+    const API = {
+      async fetch(path, opts = {}) {
+        const url = API_BASE + path;
+        const headers = { ...opts.headers };
+        let body = opts.body;
+        // JSON body：转 PascalCase 再发
+        if (body && typeof body === 'string' && (headers['Content-Type'] === 'application/json' || !headers['Content-Type'])) {
+          try { body = JSON.stringify(toPascal(JSON.parse(body))); } catch {}
+        }
+        if (opts.method && !body) { headers['Content-Length'] = '0'; delete headers['Content-Type']; }
+        else if (body && !headers['Content-Type']) { headers['Content-Type'] = 'application/json'; }
+        const res = await fetch(url, { ...opts, body, headers });
+        const text = await res.text();
+        try { return toCamel(JSON.parse(text)); } catch { return text; }
+      },
+      async health() { return this.fetch('/api/health'); },
+    };
+    let view = 'projects', pid = null;
+
+    function nav(v, id) { view = v; if (id !== undefined) pid = id; render(); }
+
+    function renderNav() {
+      const el = document.getElementById('mainNav');
+      if (!pid) { el.innerHTML = ''; return; }
+      const items = [
+        { k: 'config', l: '配置' },
+        { k: 'import', l: '导入' },
+        { k: 'generate', l: '生成' },
+        { k: 'history', l: '历史' },
+      ];
+      el.innerHTML = items.map(i =>
+        `<a class="${view===i.k?'active':''}" onclick="nav('${i.k}')">${i.l}</a>`
+      ).join('');
+    }
+
+    async function render() {
+      renderNav();
+      const el = document.getElementById('app');
+      const m = { projects: renderList, create: renderCreate, config: renderConfig, import: renderImport, generate: renderGenerate, history: renderHistory };
+      await (m[view] || renderList)(el);
+    }
+
+    // ── 项目列表 ──
+    async function renderList(el) {
+      const ps = await API.fetch('/api/projects');
+      if (!ps.length) {
+        el.innerHTML = `<div class="card"><div class="empty"><p>暂无项目</p><button class="btn bp" onclick="nav('create')">+ 新建项目</button></div></div>`;
+        return;
+      }
+      el.innerHTML = `<div class="card"><h2>项目列表 <button class="btn bp" style="margin-left:auto" onclick="nav('create')">+ 新建</button></h2>
+        <table><thead><tr><th>项目名称</th><th>工位</th><th>IO</th><th>伺服</th><th>电机</th><th>气缸</th><th>修改时间</th><th></th></tr></thead>
+        <tbody>${ps.map(p=>`<tr>
+          <td><a onclick="nav('config','${p.id}')" style="cursor:pointer;color:var(--p)">${esc(p.projectName)}</a></td>
+          <td>${p.stationCount}</td><td>${p.ioCount}</td><td>${p.servoCount}</td><td>${p.motorCount}</td><td>${p.cylinderCount}</td>
+          <td>${new Date(p.modifiedAt).toLocaleString()}</td>
+          <td><button class="btn bd" onclick="delProj('${p.id}')">删除</button></td>
+        </tr>`).join('')}</tbody></table></div>`;
+    }
+
+    async function renderCreate(el) {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      const versionDate = `${yyyy}${mm}${dd}`;
+      el.innerHTML = `
+      <div class="card"><h2>新建项目</h2>
+        <div class="fg">
+          <label>项目代号 <input id="nCode" placeholder="如 DM25120" oninput="updateProjectNamePreview()"></label>
+          <label>线体/工位 <input id="nStation" placeholder="如 P1" oninput="updateProjectNamePreview()"></label>
+          <label>版本日期 <input id="nDate" value="${versionDate}" placeholder="如 20250708" oninput="updateProjectNamePreview()"></label>
+          <label>项目名称 <input id="nPreview" value="" readonly placeholder="自动生成：DM25120.P1.V20250708"></label>
+          <label>PLC 名称 <input id="nPlcName" placeholder="如 PLC_1"></label>
+          <label>PLC IP <input id="nPlcIp" placeholder="如 192.168.1.10"></label>
+        </div>
+        <p style="color:var(--m);font-size:12px;margin-top:10px">项目名称固定按“项目代号.线体/工位.V版本日期”生成，例如 DM25120.P1.V20250708；创建时会自动复制标准工程并按该名称重命名 .ap20 文件。</p>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn bp" onclick="createProj()">创建并准备网络配置</button>
+          <button class="btn" onclick="nav('projects')">取消</button>
+        </div>
+        <div id="createMsg" style="margin-top:10px"></div>
+      </div>`;
+      updateProjectNamePreview();
+    }
+
+    function buildProjectName(code, station, date) {
+      if (!code || !station || !date) return '';
+      return `${code}.${station}.V${date}`.trim();
+    }
+
+    function updateProjectNamePreview() {
+      const code = document.getElementById('nCode')?.value.trim() || '';
+      const station = document.getElementById('nStation')?.value.trim() || '';
+      const versionDate = document.getElementById('nDate')?.value.trim() || '';
+      const preview = document.getElementById('nPreview');
+      if (preview) preview.value = buildProjectName(code, station, versionDate);
+    }
+
+    async function createProj() {
+      const msg = document.getElementById('createMsg');
+      const code = document.getElementById('nCode').value.trim();
+      const station = document.getElementById('nStation').value.trim();
+      const versionDate = document.getElementById('nDate').value.trim();
+      const projectName = buildProjectName(code, station, versionDate);
+      const plcName = document.getElementById('nPlcName').value.trim();
+      const plcIpAddress = document.getElementById('nPlcIp').value.trim();
+      if (!projectName) {
+        msg.innerHTML = '<p class="badge ber" style="padding:6px">请完整填写项目代号、线体/工位和版本日期。</p>';
+        return;
+      }
+
+      msg.innerHTML = '<p style="color:var(--m);font-size:12px">正在复制标准工程并准备网络配置...</p>';
+      const body = { projectName, project: { code, station, versionDate, plcName, plcIpAddress, nameFormat: '{code}.{station}.V{date}' } };
+      const r = await API.fetch('/api/projects', { method: 'POST', body: JSON.stringify(body) });
+      if (!r.id) {
+        msg.innerHTML = `<p class="badge ber" style="padding:6px">创建失败：${esc(r.error || '未知错误')}</p>`;
+        return;
+      }
+      if ((r.warnings || []).length) {
+        alert(r.warnings.join('\n'));
+      }
+      nav('config', r.id);
+    }
+    async function delProj(id) { if (!confirm('确定删除此项目？')) return; await API.fetch(`/api/projects/${id}`, { method: 'DELETE' }); render(); }
+
+    function networkPrepCard(j) {
+      if (!j.templateProject && !j.networkProjectDirectory) {
+        return `<div class="card"><h2>网络配置准备</h2><p style="color:var(--warn);font-size:12px">当前项目还没有复制出的 TIA 工程，请重新新建项目或手动填写模板工程路径。</p></div>`;
+      }
+      return `<div class="card"><h2>网络配置准备</h2>
+        <table><tbody>
+          <tr><th>PLC 名称</th><td>${esc(j.project?.plcName || '')}</td></tr>
+          <tr><th>PLC IP</th><td>${esc(j.project?.plcIpAddress || '')}</td></tr>
+          <tr><th>复制工程目录</th><td>${esc(j.networkProjectDirectory || '')}</td></tr>
+          <tr><th>项目文件</th><td>${esc(j.templateProject || '')}</td></tr>
+          <tr><th>准备报告</th><td>${esc(j.networkPreparationReport || '')}</td></tr>
+        </tbody></table>
+        <p style="color:var(--m);font-size:12px;margin-top:8px">下一步按网络配置要求补充设备、PROFINET 名称、IP 地址和 I/Q 起始地址；GSD 安装和硬件组态仍需在 TIA Portal 中确认。</p>
+      </div>`;
+    }
+    // ── 配置 ──
+    async function renderConfig(el) {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      if (!j) { el.innerHTML = '<div class="empty">项目不存在</div>'; return; }
+      const p = j.project || {};
+      const displayProjectName = buildProjectName(p.code || '', p.station || '', p.versionDate || '') || j.projectName || '';
+      el.innerHTML = `
+      <div class="card"><h2>项目信息</h2>
+        <div class="fg">
+          <label>项目名称 <input id="cN" value="${esc(displayProjectName)}" readonly></label>
+          <label>项目代号 <input id="cC" value="${esc(p.code||'')}" placeholder="如 DM25120"></label>
+          <label>线体/工位 <input id="cS" value="${esc(p.station||'')}" placeholder="如 P1"></label>
+          <label>版本日期 <input id="cD" value="${esc(p.versionDate||'')}" placeholder="如 20250708"></label>
+          <label>PLC 名称 <input id="cPlcName" value="${esc(p.plcName||'')}" placeholder="如 PLC_1"></label>
+          <label>PLC IP <input id="cPlcIp" value="${esc(p.plcIpAddress||'')}" placeholder="如 192.168.1.10"></label>
+          <label>模板工程(.ap20) <input id="cT" value="${esc(j.templateProject||'')}" placeholder="绝对路径"></label>
+        </div>
+        <div style="margin-top:10px"><button class="btn bp" onclick="saveCfg()">保存</button></div>
+      </div>
+      ${networkPrepCard(j)}
+      ${gsdPickerCard()}
+      <div class="card"><h2>设备 <button class="btn" style="margin-left:auto" onclick="addRow('devices')">+ 添加</button></h2>
+        <table><thead><tr><th>名称</th><th>类型/GSD</th><th>PROFINET名</th><th>IP</th><th>I起始</th><th>Q起始</th><th></th></tr></thead>
+        <tbody id="devTbl">${devRows(j.devices||[])}</tbody></table>
+      </div>
+      <div class="card"><h2>IO 点 <button class="btn" style="margin-left:auto" onclick="addRow('ioPoints')">+ 添加</button></h2>
+        <table><thead><tr><th>设备</th><th>通道</th><th>地址</th><th>标签</th><th>类型</th><th>注释</th><th></th></tr></thead>
+        <tbody id="ioTbl">${ioRows(j.ioPoints||[])}</tbody></table>
+      </div>
+      <div class="card"><h2>伺服 <button class="btn" style="margin-left:auto" onclick="addRow('servos')">+ 添加</button></h2>
+        <table><thead><tr><th>名称</th><th>工位</th><th>设备</th><th>轴名称</th><th>报文</th><th>HW ID</th><th>报文地址</th><th>逻辑块</th><th></th></tr></thead>
+        <tbody id="servoTbl">${servoRows(j.servos||[])}</tbody></table>
+      </div>
+      <div class="card"><h2>工位 <button class="btn" style="margin-left:auto" onclick="addRow('stations')">+ 添加</button></h2>
+        <table><thead><tr><th>工位号</th><th>名称</th><th>逻辑块</th><th>安全条件</th><th></th></tr></thead>
+        <tbody id="stTbl">${stRows(j.stations||[])}</tbody></table>
+      </div>`;
+      loadGsdDevices();
+    }
+
+    function gsdPickerCard() {
+      return `<div class="card"><h2>从已安装 GSD 添加设备</h2>
+        <div class="fg">
+          <label>搜索型号/厂商/订货号 <input id="gsdSearch" placeholder="如 SINAMICS、V90、SMC、Festo" onkeydown="if(event.key==='Enter') loadGsdDevices()"></label>
+          <label>已安装 GSD 型号 <select id="gsdSelect"></select></label>
+          <label>设备名称 <input id="gsdName" placeholder="如 Servo_1 / ET200_1"></label>
+          <label>PROFINET 名 <input id="gsdPn" placeholder="如 servo-1"></label>
+          <label>IP 地址 <input id="gsdIp" placeholder="如 192.168.1.21"></label>
+          <label>I/Q 起始 <input id="gsdAddr" placeholder="如 100/100"></label>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:10px"><button class="btn" onclick="loadGsdDevices()">扫描/搜索</button><button class="btn bp" onclick="addDeviceFromGsd()">添加到设备</button></div>
+        <p id="gsdInfo" style="color:var(--m);font-size:12px;margin-top:8px">正在读取 TIA V20 已安装 GSD...</p>
+      </div>`;
+    }
+
+    let gsdDevices = [];
+    async function loadGsdDevices() {
+      const sel = document.getElementById('gsdSelect');
+      if (!sel) return;
+      const search = document.getElementById('gsdSearch')?.value.trim() || '';
+      const info = document.getElementById('gsdInfo');
+      if (info) info.textContent = '正在扫描已安装 GSD...';
+      const r = await API.fetch(`/api/gsd/devices?search=${encodeURIComponent(search)}&limit=180`);
+      gsdDevices = r.devices || [];
+      sel.innerHTML = gsdDevices.map((d,i)=>`<option value="${i}">${esc(d.displayName)} · ${esc(d.deviceId||'')} · ${esc(d.fileName||'')}</option>`).join('');
+      if (info) info.textContent = `目录: ${r.gsdDir || ''}，GSD 文件 ${r.totalFiles || 0} 个，显示 ${r.returned || 0} 个。`;
+    }
+
+    async function addDeviceFromGsd() {
+      const idx = +(document.getElementById('gsdSelect')?.value || 0);
+      const g = gsdDevices[idx];
+      if (!g) { alert('请先选择一个 GSD 型号'); return; }
+      const j = await API.fetch(`/api/projects/${pid}`);
+      j.devices = j.devices || [];
+      const addr = (document.getElementById('gsdAddr').value || '').split('/');
+      const name = document.getElementById('gsdName').value.trim() || nextDeviceName(j, g.orderNumber || g.productFamily || 'DEV');
+      j.devices.push({
+        name,
+        deviceType: g.displayName,
+        profinetName: normalizeProfinetName(document.getElementById('gsdPn').value.trim() || name),
+        ipAddress: document.getElementById('gsdIp').value.trim(),
+        inputStart: addr[0] ? +addr[0] : 0,
+        outputStart: addr[1] ? +addr[1] : 0,
+        vendorName: g.vendorName,
+        vendorId: g.vendorId,
+        deviceId: g.deviceId,
+        gsdFileName: g.fileName,
+        gsdFilePath: g.filePath,
+        accessPointId: g.accessPointId,
+        orderNumber: g.orderNumber,
+        moduleIdentNumber: g.moduleIdentNumber
+      });
+      await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
+      renderConfig(document.getElementById('app'));
+    }
+
+    function normalizeProfinetName(value) {
+      return String(value || '')
+        .trim()
+        .toLowerCase()
+        .split('.')
+        .map(part => part.replace(/[^a-z0-9-]+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, ''))
+        .filter(Boolean)
+        .join('.');
+    }
+    function nextDeviceName(j, seed) {
+      const prefix = String(seed || 'DEV').replace(/[^A-Za-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 18) || 'DEV';
+      let n = 1;
+      const names = new Set((j.devices || []).map(d => d.name));
+      while (names.has(`${prefix}_${n}`)) n++;
+      return `${prefix}_${n}`;
+    }
+
+    function devRows(d) { return (d||[]).map((x,i)=>`<tr>
+      <td><input data-i="${i}" data-f="name" value="${esc(x.name||'')}" style="width:80px"></td>
+      <td><input data-i="${i}" data-f="deviceType" value="${esc(x.deviceType||'')}" title="${esc(x.gsdFileName||'')}" style="width:190px"></td>
+      <td><input data-i="${i}" data-f="profinetName" value="${esc(x.profinetName||'')}" style="width:90px"></td>
+      <td><input data-i="${i}" data-f="ipAddress" value="${esc(x.ipAddress||'')}" style="width:105px"></td>
+      <td><input data-i="${i}" data-f="inputStart" value="${x.inputStart||''}" style="width:60px" type="number"></td>
+      <td><input data-i="${i}" data-f="outputStart" value="${x.outputStart||''}" style="width:60px" type="number"></td>
+      <td><button class="btn bd" onclick="rmRow('devices',${i})">x</button></td></tr>`).join(''); }
+
+    function ioRows(d) { return (d||[]).map((x,i)=>`<tr>
+      <td><input data-i="${i}" data-f="device" value="${esc(x.device||'')}" style="width:90px"></td>
+      <td><input data-i="${i}" data-f="channel" value="${esc(x.channel||'')}" style="width:70px"></td>
+      <td><input data-i="${i}" data-f="address" value="${esc(x.address||'')}" placeholder="%I0.0" style="width:70px"></td>
+      <td><input data-i="${i}" data-f="tag" value="${esc(x.tag||'')}" style="width:130px"></td>
+      <td><input data-i="${i}" data-f="dataType" value="${esc(x.dataType||'Bool')}" style="width:65px"></td>
+      <td><input data-i="${i}" data-f="comment" value="${esc(x.comment||'')}" style="width:160px"></td>
+      <td><button class="btn bd" onclick="rmRow('ioPoints',${i})">x</button></td></tr>`).join(''); }
+
+    function servoRows(s) { return (s||[]).map((x,i)=>`<tr>
+      <td><input data-i="${i}" data-f="name" value="${esc(x.name||'')}" style="width:85px"></td>
+      <td><input data-i="${i}" data-f="station" value="${esc(x.station||'')}" style="width:55px"></td>
+      <td><input data-i="${i}" data-f="device" value="${esc(x.device||'')}" style="width:90px"></td>
+      <td><input data-i="${i}" data-f="axisName" value="${esc(x.axisName||'')}" style="width:90px"></td>
+      <td><input data-i="${i}" data-f="telegram" value="${esc(x.telegram||'')}" placeholder="111" style="width:65px"></td>
+      <td><input data-i="${i}" data-f="hardwareId" value="${x.hardwareId||''}" style="width:65px" type="number"></td>
+      <td><input data-i="${i}" data-f="telegramAddress" value="${x.telegramAddress||''}" style="width:75px" type="number"></td>
+      <td><input data-i="${i}" data-f="logicBlock" value="${esc(x.logicBlock||'')}" style="width:90px"></td>
+      <td><button class="btn bd" onclick="rmRow('servos',${i})">x</button></td></tr>`).join(''); }
+
+    function stRows(s) { return (s||[]).map((x,i)=>`<tr>
+      <td><input data-i="${i}" data-f="id" value="${esc(x.id||'')}" style="width:55px"></td>
+      <td><input data-i="${i}" data-f="name" value="${esc(x.name||'')}" style="width:90px"></td>
+      <td><input data-i="${i}" data-f="logicBlock" value="${esc(x.logicBlock||'')}" style="width:110px"></td>
+      <td><input data-i="${i}" data-f="safetyConditions" value="${esc((x.safetyConditions||[]).join(', '))}" style="width:190px"></td>
+      <td><button class="btn bd" onclick="rmRow('stations',${i})">x</button></td></tr>`).join(''); }
+
+    async function saveCfg() {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      const code = document.getElementById('cC').value.trim();
+      const station = document.getElementById('cS').value.trim();
+      const versionDate = document.getElementById('cD').value.trim();
+      const plcName = document.getElementById('cPlcName').value.trim();
+      const plcIpAddress = document.getElementById('cPlcIp').value.trim();
+      j.projectName = buildProjectName(code, station, versionDate) || document.getElementById('cN').value;
+      j.project = j.project || {};
+      j.project.code = code;
+      j.project.station = station;
+      j.project.versionDate = versionDate;
+      j.project.plcName = plcName;
+      j.project.plcIpAddress = plcIpAddress;
+      j.templateProject = document.getElementById('cT').value;
+      collectEdits(j, 'devTbl', 'devices');
+      collectEdits(j, 'ioTbl', 'ioPoints');
+      collectEdits(j, 'servoTbl', 'servos');
+      collectEdits(j, 'stTbl', 'stations');
+      await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
+      alert('已保存');
+    }
+
+    function collectEdits(j, tblId, field) {
+      if (!j[field]) j[field] = [];
+      document.querySelectorAll(`#${tblId} input`).forEach(inp => {
+        const idx = +inp.dataset.i, f = inp.dataset.f;
+        if (!j[field][idx]) j[field][idx] = {};
+        let v = inp.value;
+        if (['inputStart','outputStart','hardwareId','telegramAddress'].includes(f)) v = v ? +v : 0;
+        if (f==='profinetName') v = normalizeProfinetName(v);
+        if (f==='safetyConditions') v = v.split(',').map(s=>s.trim()).filter(Boolean);
+        j[field][idx][f] = v;
+      });
+    }
+
+    async function addRow(field) {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      j[field] = j[field] || [];
+      const defaults = {
+        devices: {name:'',deviceType:'',profinetName:'',ipAddress:'',inputStart:0,outputStart:0},
+        ioPoints: {device:'',channel:'',address:'',tag:'',dataType:'Bool',comment:''},
+        servos: {name:'',station:'',device:'',axisName:'',telegram:'',hardwareId:0,telegramAddress:0,logicBlock:''},
+        stations: {id:'',name:'',logicBlock:'',safetyConditions:[],devices:[]}
+      };
+      j[field].push(defaults[field] || {});
+      await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
+      renderConfig(document.getElementById('app'));
+    }
+
+    async function rmRow(field, idx) {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      j[field]?.splice(idx, 1);
+      await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
+      renderConfig(document.getElementById('app'));
+    }
+    // ── 导入 ──
+    async function renderImport(el) {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      const c = { io: j.ioPoints?.length||0, servo: j.servos?.length||0, motor: j.motors?.length||0, alarm: j.alarms?.length||0 };
+      const tabInfo = [
+        { k:'io', l:'IO点', n:c.io },
+        { k:'servo', l:'伺服', n:c.servo },
+        { k:'motor', l:'电机', n:c.motor },
+        { k:'alarm', l:'报警', n:c.alarm },
+      ];
+      el.innerHTML = `<div class="card"><h2>CSV 导入</h2>
+        <p style="color:var(--m);font-size:12px;margin-bottom:14px">拖拽 CSV 文件到下方区域，或点击选择文件。列名自动识别。</p>
+        <div class="tabs" id="impTabs">${tabInfo.map(t=>`<a class="${t.k==='io'?'active':''}" onclick="impTab('${t.k}')">${t.l} <span class="badge bok">${t.n}</span></a>`).join('')}</div>
+        <div id="impBody"></div></div>`;
+      impTab('io');
+    }
+
+    let impCat = 'io';
+    function impTab(cat) {
+      impCat = cat;
+      const labels = { io:'IO', servo:'伺服', motor:'电机', alarm:'报警' };
+      document.querySelectorAll('#impTabs a').forEach(a => {
+        a.classList.toggle('active', a.textContent.includes(labels[cat]));
+      });
+      document.getElementById('impBody').innerHTML = `
+        <div class="dz" id="dz" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="onDrop(event)" onclick="document.getElementById('fi').click()">
+          <p>拖拽 ${labels[cat]}.csv 到此处，或点击选择文件</p>
+          <input type="file" id="fi" accept=".csv" onchange="onFile(event)">
+        </div>
+        <div id="impPrev" style="margin-top:10px"></div>`;
+    }
+
+    function onDrop(e) { e.preventDefault(); e.currentTarget.classList.remove('over'); if (e.dataTransfer.files.length) upCsv(e.dataTransfer.files[0]); }
+    function onFile(e) { if (e.target.files.length) upCsv(e.target.files[0]); }
+
+    async function upCsv(file) {
+      const text = await file.text();
+      const lines = text.split('\n').filter(l => l.trim());
+      const preview = lines.slice(0, 5).join('\n');
+      document.getElementById('impPrev').innerHTML = `
+        <pre style="background:#f5f5f5;padding:8px;border-radius:4px;font-size:12px;max-height:140px;overflow:auto">${esc(preview)}${lines.length>5?'\n...':''}</pre>
+        <p style="margin:6px 0">${lines.length-1} 行数据</p>
+        <button class="btn bp" onclick="doImport()">确认导入</button>`;
+      window._csv = text;
+    }
+
+    async function doImport() {
+      const r = await API.fetch(`/api/projects/${pid}/import/${impCat}`, { method: 'POST', body: window._csv, headers: { 'Content-Type': 'text/csv' } });
+      if (r.success) {
+        document.getElementById('impPrev').innerHTML += `<p class="badge bok" style="font-size:13px;padding:5px 10px;margin-top:6px">已导入 ${r.imported} 行</p>`;
+        setTimeout(() => renderImport(document.getElementById('app')), 1200);
+      } else {
+        document.getElementById('impPrev').innerHTML += `<p class="badge ber" style="font-size:13px;padding:5px 10px;margin-top:6px">错误：${esc(r.error||'未知')}</p>`;
+      }
+    }
+
+    // ── 生成 ──
+    async function renderGenerate(el) {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      const h = await API.health();
+      const hasName = !!(j.projectName || j.project?.code);
+      const hasTpl = !!j.templateProject;
+      const canGen = hasName;
+      el.innerHTML = `
+      <div class="card"><h2>生成 TIA 程序</h2>
+        <div class="res-grid" style="margin-bottom:14px">
+          <div class="res-card"><div class="num">${j.ioPoints?.length||0}</div><div class="lab">IO 点</div></div>
+          <div class="res-card"><div class="num">${j.stations?.length||0}</div><div class="lab">工位</div></div>
+          <div class="res-card"><div class="num">${j.servos?.length||0}</div><div class="lab">伺服</div></div>
+          <div class="res-card"><div class="num">${j.motors?.length||0}</div><div class="lab">电机</div></div>
+          <div class="res-card"><div class="num">${j.alarms?.length||0}</div><div class="lab">报警</div></div>
+        </div>
+        <div style="margin:12px 0">
+          <label style="font-size:12px;color:var(--m)">标签表名 <input id="genTag" value="TIA_AUTO_IO" style="margin-left:6px;padding:4px 8px;border:1px solid var(--bd);border-radius:4px"></label>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn bp" onclick="runPlan()" ${canGen?'':'disabled'}>校验计划</button>
+          <button class="btn bp" onclick="runApply()" ${canGen&&hasTpl?'':'disabled'}>执行生成</button>
+        </div>
+        ${!canGen ? '<p style="color:var(--warn);font-size:12px;margin-top:6px">请先配置项目名称</p>' : ''}
+        ${!hasTpl && canGen ? '<p style="color:var(--warn);font-size:12px;margin-top:4px">请先在配置页设置或生成项目工程路径</p>' : ''}
+        ${!h.opennessAvailable ? '<p style="color:var(--err);font-size:12px;margin-top:4px">未检测到 Siemens.Engineering.dll；只有复制工程可用，配置写入会跳过</p>' : ''}
+      </div>
+      <div class="card hidden" id="planCard"><h2>校验结果</h2><div id="planBody"></div></div>
+      <div class="card hidden" id="logCard"><h2>日志</h2><div class="log" id="logArea"></div></div>
+      <div class="card hidden" id="resCard"><h2>生成结果</h2><div id="resBody"></div></div>`;
+    }
+
+    async function runPlan() {
+      document.getElementById('planCard').classList.remove('hidden');
+      document.getElementById('planBody').innerHTML = '<p style="color:var(--m)">正在校验...</p>';
+      const r = await API.fetch(`/api/projects/${pid}/plan`, { method: 'POST' });
+      if (r.error) { document.getElementById('planBody').innerHTML = `<p class="badge ber" style="padding:6px">${esc(r.error)}</p>`; return; }
+      const errors = (r.issues||[]).filter(i => i.severity === 'Error');
+      const warnings = (r.issues||[]).filter(i => i.severity === 'Warning');
+      let html = '';
+      if (errors.length === 0 && warnings.length === 0) {
+        html = '<p class="badge bok" style="padding:6px">校验通过，无错误和警告</p>';
+      } else {
+        html = `<p style="margin-bottom:8px"><span class="badge ber">${errors.length} 错误</span> <span class="badge bwr">${warnings.length} 警告</span> ${r.canApply ? '<span class="badge bok">可生成</span>' : '<span class="badge ber">不可生成</span>'}</p>`;
+        html += (r.issues||[]).map(i => `<div class="issue issue-${i.severity}"><strong>${i.severity==='Error'?'错误':'警告'}</strong> [${i.code}] ${esc(i.message)}</div>`).join('');
+      }
+      document.getElementById('planBody').innerHTML = html;
+    }
+
+    async function runApply() {
+      if (!confirm('确定执行生成？将复制当前项目工程；如果已配置 IO/DB/FC 内容，会继续尝试写入。')) return;
+      const logCard = document.getElementById('logCard');
+      const logArea = document.getElementById('logArea');
+      const resCard = document.getElementById('resCard');
+      logCard.classList.remove('hidden');
+      resCard.classList.add('hidden');
+      logArea.textContent = '正在生成...\n';
+
+      const tagTable = document.getElementById('genTag').value || 'TIA_AUTO_IO';
+      const j = await API.fetch(`/api/projects/${pid}`);
+      const body = { templateProject: j.templateProject, tagTableName: tagTable };
+
+      const t0 = Date.now();
+      const r = await API.fetch(`/api/projects/${pid}/apply`, { method: 'POST', body: JSON.stringify(body) });
+      const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
+
+      if (r.error) {
+        logArea.textContent += `\n错误: ${r.error}\n`;
+        if (r.issues) logArea.textContent += r.issues.map(i => `[${i.severity}] ${i.code}: ${i.message}`).join('\n') + '\n';
+        return;
+      }
+
+      logArea.textContent += `完成，耗时 ${elapsed}s\n`;
+      logArea.textContent += `工程: ${r.projectPath}\n`;
+      logArea.textContent += `${r.diagnostic || ''}\n\n`;
+
+      // PLC 硬件
+      if (r.plcHardware) {
+        logArea.textContent += `── PLC 名称/IP ──\n`;
+        logArea.textContent += `  成功: ${r.plcHardware.success}  名称: ${r.plcHardware.plcName || '-'}  IP: ${r.plcHardware.ipAddress || '-'}\n`;
+        (r.plcHardware.changedObjects||[]).forEach(x => logArea.textContent += `  + ${x}\n`);
+        (r.plcHardware.warnings||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
+        (r.plcHardware.attempts||[]).slice(0, 40).forEach(x => logArea.textContent += `  · ${x}\n`);
+      }
+      // 硬件设备
+      if (r.devices) {
+        logArea.textContent += `── 硬件设备 ──\n`;
+        logArea.textContent += `  成功: ${r.devices.success}  新增: ${(r.devices.createdDevices||[]).length}  跳过: ${(r.devices.skippedDevices||[]).length}  错误: ${(r.devices.errors||[]).length}\n`;
+        (r.devices.createdDevices||[]).forEach(x => logArea.textContent += `  + ${x.name}  ${x.catalogTypeName || ''}\n`);
+        (r.devices.skippedDevices||[]).forEach(x => logArea.textContent += `  = ${x}\n`);
+        (r.devices.changedObjects||[]).forEach(x => logArea.textContent += `  * ${x}\n`);
+        (r.devices.errors||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
+        (r.devices.catalogCandidates||[]).slice(0, 8).forEach(x => logArea.textContent += `  ? ${x}\n`);
+        (r.devices.attempts||[]).slice(0, 30).forEach(x => logArea.textContent += `  · ${x}\n`);
+      }
+      // 标签
+      if (r.tags) {
+        logArea.textContent += `── PLC 标签 ──\n`;
+        logArea.textContent += `  成功: ${r.tags.success}  新建: ${(r.tags.createdTags||[]).length}  诊断: ${r.tags.diagnostic}\n`;
+      }
+      // DB
+      if (r.db) {
+        logArea.textContent += `── 工位 DB ──\n`;
+        logArea.textContent += `  成功: ${r.db.success}  新建: ${(r.db.createdBlocks||[]).length}  警告: ${(r.db.warnings||[]).length}\n`;
+        (r.db.createdBlocks||[]).forEach(b => logArea.textContent += `  + ${b.name} (${b.type} / ${b.typeOf})\n`);
+      }
+      // FC
+      [['mappingFc', 'IO映射'], ['servoFc', '伺服'], ['motorFc', '电机'], ['alarmFc', '报警']].forEach(([k, label]) => {
+        if (r[k]) logArea.textContent += `── ${label} FC ──  成功: ${r[k].success}  生成: ${(r[k].generatedFcs||[]).length}\n`;
+      });
+
+      // 结果卡片
+      resCard.classList.remove('hidden');
+      const rb = document.getElementById('resBody');
+      rb.innerHTML = `
+        <div class="res-grid">
+          <div class="res-card"><div class="num" style="color:${r.success?'var(--ok)':'var(--err)'}">${r.success?'成功':'失败'}</div><div class="lab">项目文件</div></div>
+          <div class="res-card"><div class="num" style="color:${r.plcHardware?.success?'var(--ok)':'var(--t)'}">${r.plcHardware ? (r.plcHardware.success ? '成功' : '未改') : '-'}</div><div class="lab">PLC 名称/IP</div></div>
+          <div class="res-card"><div class="num" style="color:${r.devices?.success?'var(--ok)':'var(--t)'}">${r.devices ? ((r.devices.createdDevices?.length||0) + '/' + (r.devices.errors?.length||0)) : '-'}</div><div class="lab">硬件设备 新增/错误</div></div>
+          <div class="res-card"><div class="num">${(r.mappingFc?.generatedFcs?.length||0)+(r.servoFc?.generatedFcs?.length||0)+(r.motorFc?.generatedFcs?.length||0)+(r.alarmFc?.generatedFcs?.length||0)}</div><div class="lab">生成 FC</div></div>
+          <div class="res-card"><div class="num">${elapsed}s</div><div class="lab">耗时</div></div>
+        </div>
+        ${(r.db?.warnings||[]).length ? '<h3 style="margin-top:12px;color:var(--warn)">DB 警告</h3>' + r.db.warnings.map(w=>`<div class="issue issue-Warning">${esc(w)}</div>`).join('') : ''}
+        ${(r.mappingFc?.warnings||[]).length ? '<h3 style="margin-top:12px;color:var(--warn)">IO映射 FC 警告</h3>' + r.mappingFc.warnings.map(w=>`<div class="issue issue-Warning">${esc(w)}</div>`).join('') : ''}
+        <p style="margin-top:12px;color:var(--m);font-size:12px">输出目录: ${esc(r.projectPath||'')}</p>`;
+    }
+
+    // ── 历史 ──
+    async function renderHistory(el) {
+      const runs = await API.fetch(`/api/projects/${pid}/runs`);
+      if (!runs || !runs.length) {
+        el.innerHTML = '<div class="card"><div class="empty">暂无生成记录</div></div>';
+        return;
+      }
+      el.innerHTML = `<div class="card"><h2>生成历史</h2>
+        <table><thead><tr><th>时间</th><th>状态</th><th>标签</th><th>DB</th><th>FC</th></tr></thead>
+        <tbody>${runs.map(r => {
+          const res = r.result || {};
+          const ok = !!res.success || !!res.tags?.success;
+          const tagOk = !!res.tags?.success;
+          const dbCount = res.db?.createdBlocks?.length || 0;
+          const fcCount = (res.mappingFc?.generatedFcs?.length||0) + (res.servoFc?.generatedFcs?.length||0) + (res.motorFc?.generatedFcs?.length||0) + (res.alarmFc?.generatedFcs?.length||0);
+          return `<tr>
+            <td>${r.dir}</td>
+            <td><span class="badge ${ok?'bok':'ber'}">${ok?'成功':'失败'}</span></td>
+            <td>${tagOk ? '已写入' : (res.copiedOnly ? '仅复制' : '-')}</td>
+            <td>${dbCount} 个</td>
+            <td>${fcCount} 个</td>
+          </tr>`;
+        }).join('')}</tbody></table></div>`;
+    }
+
+    // ── 工具 ──
+    function esc(s) { if (s==null) return ''; const d = document.createElement('div'); d.textContent = String(s); return d.innerHTML; }
+
+    // ── 启动 ──
+    (async () => {
+      try {
+        const h = await API.health();
+        document.getElementById('hdrSt').textContent = `v${h.version} · ${h.opennessAvailable ? 'Openness 就绪' : 'Openness 未就绪'}`;
+      } catch {
+        document.getElementById('hdrSt').textContent = '未连接';
+      }
+      render();
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

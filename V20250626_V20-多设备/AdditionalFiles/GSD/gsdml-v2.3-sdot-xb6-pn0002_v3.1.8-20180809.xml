@@ -1,0 +1,2217 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ISO15745Profile xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile ..\xsd\GSDML-DeviceProfile-V2.3.xsd">
+  <ProfileHeader>
+    <ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+    <ProfileRevision>1.00</ProfileRevision>
+    <ProfileName>Device Profile for PROFINET Devices</ProfileName>
+    <ProfileSource>PROFIBUS Nutzerorganisation e. V. (PNO)</ProfileSource>
+    <ProfileClassID>Device</ProfileClassID>
+    <ISO15745Reference>
+      <ISO15745Part>4</ISO15745Part>
+      <ISO15745Edition>1</ISO15745Edition>
+      <ProfileTechnology>GSDML</ProfileTechnology>
+    </ISO15745Reference>
+  </ProfileHeader>
+  <ProfileBody>
+    <DeviceIdentity VendorID="0x0471" DeviceID="0x1234">
+      <InfoText TextId="XB6_PN0002"/>
+      <VendorName Value="Sdot"/>
+    </DeviceIdentity>
+      <DeviceFunction>
+        <Family MainFamily="I/O" ProductFamily="X-Bus"/>
+      </DeviceFunction>
+    <ApplicationProcess>
+      <DeviceAccessPointList>
+        <DeviceAccessPointItem ID="DAP 1" PhysicalSlots="0..32" ModuleIdentNumber="0x00000001" MinDeviceInterval="8" ImplementationType="PNIO" DNS_CompatibleName="PNIO" FixedInSlots="0" ExtendedAddressAssignmentSupported="false" ObjectUUID_LocalIndex="1" MultipleWriteSupported="false" PowerOnToCommReady="210" DeviceAccessSupported="true" RequiredSchemaVersion="V2.3" PNIO_Version="V2.2" NameOfStationNotTransferable = "true" SharedDeviceSupported="true">
+          <ModuleInfo>
+            <Name TextId="DAP_NAME"/>
+            <InfoText TextId="DAP_MODULE_INFO"/>
+            <VendorName Value="SDOT" />
+            <OrderNumber Value="1234567" />
+            <HardwareRelease Value="1" />
+            <SoftwareRelease Value="V10.00.00"/>
+          </ModuleInfo>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="TOK_Subslot_8000" />
+            <SubslotItem SubslotNumber="32769" TextId="TOK_Subslot_8001" />
+            <SubslotItem SubslotNumber="32770" TextId="TOK_Subslot_8002" />
+          </SubslotList>
+          <IOConfigData MaxInputLength="340" MaxOutputLength="340" />
+            <UseableModules>			
+			<!--X-Bus????-->
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_3200A" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_3200N" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_3200B" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_1600A" AllowedInSlots = "1..32"/>
+		    <ModuleItemRef ModuleItemTarget="ID_Mod_XB6_1600B" AllowedInSlots = "1..32"/>
+			
+		    <ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0032A" AllowedInSlots = "1..32"/>
+		    <ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0032AN" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0032B" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0032BN" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_VT16" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0016A" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0016B" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0800A" AllowedInSlots = "1..32"/>
+		    <ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0800B" AllowedInSlots = "1..32"/>
+			
+		    <ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0008A" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0008B" AllowedInSlots = "1..32"/>
+	
+		    <ModuleItemRef ModuleItemTarget="ID_Mod_XB6_1616A" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_1616B" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A40VI" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A80VI" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A08VI" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A08V1" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A04V1" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A08V" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A04V" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A08I" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A04I" AllowedInSlots = "1..32"/>
+
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A80V" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A40V" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A80I" AllowedInSlots = "1..32"/>
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A40I" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A80TM" AllowedInSlots = "1..32"/>			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A40TM" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_A40TDC" AllowedInSlots = "1..32"/>
+			
+			<ModuleItemRef ModuleItemTarget="ID_Mod_XB6_0012J" AllowedInSlots = "1..32"/>
+			
+          </UseableModules>
+           <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="DAP 2" SubmoduleIdentNumber="0x00000001" Writeable_IM_Records="1 2 3 4">
+              <IOData IOPS_Length="1" IOCS_Length="1" />
+              <RecordDataList>
+                <ParameterRecordDataItem Index="8192" Length="4">
+                  <Name TextId="TI_OFFSET"/>
+                  <Const Data="0x00,0x00,0x10,0x00"/>   <!-- const offset in ns input trigger T3 -->
+                </ParameterRecordDataItem>
+                <ParameterRecordDataItem Index="8193" Length="4">
+                  <Name TextId="TO_OFFSET"/>
+                  <Const Data="0x00,0x00,0x20,0x00"/>   <!-- const offset in ns output trigger T4 -->
+                </ParameterRecordDataItem>
+<!--          ????      
+				<ParameterRecordDataItem Index="3" Length="1" TransferSequence="0">
+                  <Name TextId="MT LED Setup" />
+                  <Const Data="0x00" ByteOffset="0" />
+                  <Ref ValueItemTarget="Function_for_MT_LED" DataType="BitArea" ByteOffset="0" BitOffset="0" BitLength="4" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of _MT-LED" />
+                </ParameterRecordDataItem>
+		
+				<ParameterRecordDataItem Index="1" Length="2" TransferSequence="0">
+                  <Name TextId="GSDML_REVERSION_PARAMETER"/>
+				  <Const Data="0x11,0x00"/>
+			      <Ref ByteOffset="0" DataType="Unsigned16" DefaultValue="4352" Changeable="0" Visible="0" TextId="HDC_GSDML_VERSION"/>
+                </ParameterRecordDataItem>
+-->		
+				 <ParameterRecordDataItem Index="1" Length="1" TransferSequence="0">
+                  <Name TextId="ABNOR_ACTION" />
+                  <Const Data="0x00" ByteOffset="0" />
+                  <Ref ValueItemTarget="Select_for_C_H" DataType="BitArea" ByteOffset="0" BitOffset="0" BitLength="4" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_Action" />
+                </ParameterRecordDataItem> 
+              </RecordDataList>
+              <ModuleInfo>
+                <Name TextId="PNIO_PN"/>
+                <InfoText TextId="PNIO_PN"/>
+              </ModuleInfo>
+              <IsochroneMode T_DC_Base="4" T_DC_Min="1" T_DC_Max="8" T_IO_Base="1000" T_IO_InputMin="40" T_IO_OutputMin="40" IsochroneModeRequired="false" />
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem ID="IDS_1I" SubslotNumber="32768" SubmoduleIdentNumber="0x000a" IsochroneModeSupported="true" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_3" IsochroneModeInRT_Classes="RT_CLASS_3" TextId="TOK_DAP_InterfaceModule" SupportedProtocols="LLDP;SNMP" SupportedMibs="MIB2" NetworkComponentDiagnosisSupported="true" DCP_BoundarySupported="false" PTP_BoundarySupported="true" DCP_HelloSupported="true">
+              <RT_Class3Properties MaxBridgeDelay="3860" MaxNumberIR_FrameData="128" ForwardingMode="Relative"/>
+              <SynchronisationMode SupportedRole="SyncSlave" MaxLocalJitter="10" T_PLL_MAX="1000" SupportedSyncProtocols="PTCP" />
+              <ApplicationRelations NumberOfAdditionalInputCR="0" NumberOfAdditionalMulticastProviderCR="0" NumberOfAdditionalOutputCR="0" NumberOfMulticastConsumerCR="0" NumberOfAR="2">
+                <TimingProperties SendClock="8 16 32" ReductionRatio="1 2 4 8 16 32 64 128 256 512" />
+                <RT_Class3TimingProperties SendClock="8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120 124 128" ReductionRatio="1" ReductionRatioPow2="2 4 8 16 32 64 128" />
+              </ApplicationRelations>
+              <MediaRedundancy SupportedRole="Client"/>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem ID="IDS_1P1" SubslotNumber="32769" SubmoduleIdentNumber="0x000b" MAUTypes="16" TextId="TOK_Port1" MaxPortRxDelay="173" MaxPortTxDelay="74" PortDeactivationSupported="false" LinkStateDiagnosisCapability="Up+Down" SupportsRingportConfig="true" IsDefaultRingport="true" />
+            <PortSubmoduleItem ID="IDS_1P2" SubslotNumber="32770" SubmoduleIdentNumber="0x000c" MAUTypes="16" TextId="TOK_Port2" MaxPortRxDelay="173" MaxPortTxDelay="74" PortDeactivationSupported="false" LinkStateDiagnosisCapability="Up+Down" SupportsRingportConfig="true" IsDefaultRingport="true" />
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="ID_Graph_V2.2"/>
+          </Graphics>
+        </DeviceAccessPointItem>
+      </DeviceAccessPointList>
+      
+      <ModuleList>
+				<!--XB6-3200A-->
+         <ModuleItem ID="ID_Mod_XB6_3200A" ModuleIdentNumber="0x00000626">
+          <ModuleInfo CategoryRef="X_BUS_DI">
+            <Name TextId="PNIO_TextId_Module_XB6_3200A"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_3200A"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-3200A" SubmoduleIdentNumber="0x00000626" FixedInSubslots="1" PROFIsafeSupported="false"> <!--IDS_SUBMODULE_DI8-->
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_3200_BYTE_LEN" DataType="OctetString" Length="4" UseAsBits="true" />
+                </Input>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+					  <Name TextId="XB6_3200A_Parameter" />
+					  <Const Data="0x26,0x06,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DI">
+                <Name TextId="PNIO_TextId_Module_XB6_3200A"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_3200A"/> 
+              </ModuleInfo> 		  
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        
+        <!--XB6-3200N-->
+        <ModuleItem ID="ID_Mod_XB6_3200N" ModuleIdentNumber="0x0000A626">
+          <ModuleInfo CategoryRef="X_BUS_DI">
+            <Name TextId="PNIO_TextId_Module_XB6_3200N"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_3200N"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-3200N" SubmoduleIdentNumber="0x0000A626" FixedInSubslots="1" PROFIsafeSupported="false"> <!--IDS_SUBMODULE_DI8-->
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_3200_BYTE_LEN" DataType="OctetString" Length="4" UseAsBits="true" />
+                </Input>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+					  <Name TextId="XB6_3200N_Parameter"/>
+					  <Const Data="0x26,0xA6,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DI">
+                <Name TextId="PNIO_TextId_Module_XB6_3200N"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_3200N"/> 
+              </ModuleInfo> 		  
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-3200B-->
+         <ModuleItem ID="ID_Mod_XB6_3200B" ModuleIdentNumber="0x00000627">
+          <ModuleInfo CategoryRef="X_BUS_DI">
+            <Name TextId="PNIO_TextId_Module_XB6_3200B"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_3200B"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-3200B" SubmoduleIdentNumber="0x00000627" FixedInSubslots="1" PROFIsafeSupported="false"> <!--IDS_SUBMODULE_DI8-->
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_3200_BYTE_LEN" DataType="OctetString" Length="4" UseAsBits="true"/>
+                </Input>
+              </IOData>	
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+					  <Name TextId="XB6_3200B_Parameter"/>
+					  <Const Data="0x27,0x06,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DI">
+                <Name TextId="PNIO_TextId_Module_XB6_3200B"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_3200B"/> 
+              </ModuleInfo> 			  
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+                
+		 		<!--XB6-1600A-->
+         <ModuleItem ID="ID_Mod_XB6_1600A" ModuleIdentNumber="0x00000628">
+          <ModuleInfo CategoryRef="X_BUS_DI">
+            <Name TextId="PNIO_TextId_Module_XB6_1600A"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_1600A"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-1600A" SubmoduleIdentNumber="0x00000628" FixedInSubslots="1" PROFIsafeSupported="false"> <!--IDS_SUBMODULE_DI8-->
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_1600_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true" />
+                </Input>
+              </IOData>		
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+					  <Name TextId="XB6_1600A_Parameter"/>
+					  <Const Data="0x28,0x06,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DI">
+                <Name TextId="PNIO_TextId_Module_XB6_1600A"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_1600A"/> 
+              </ModuleInfo> 			  
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+		 		<!--XB6-1600B-->
+         <ModuleItem ID="ID_Mod_XB6_1600B" ModuleIdentNumber="0x00000629">
+          <ModuleInfo CategoryRef="X_BUS_DI">
+            <Name TextId="PNIO_TextId_Module_XB6_1600B"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_1600B"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-1600B" SubmoduleIdentNumber="0x00000629" FixedInSubslots="1" PROFIsafeSupported="false"> <!--IDS_SUBMODULE_DI8-->
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_1600_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true" />
+                </Input>
+              </IOData>	
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+					  <Name TextId="XB6_1600B_Parameter"/>
+					  <Const Data="0x29,0x06,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DI">
+                <Name TextId="PNIO_TextId_Module_XB6_1600B"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_1600B"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+		 		<!--XB6-0800A-->
+         <ModuleItem ID="ID_Mod_XB6_0800A" ModuleIdentNumber="0x00000630">
+          <ModuleInfo CategoryRef="X_BUS_DI">
+            <Name TextId="PNIO_TextId_Module_XB6_0800A"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0800A"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0800A" SubmoduleIdentNumber="0x00000630" FixedInSubslots="1" PROFIsafeSupported="false"> <!--IDS_SUBMODULE_DI8-->
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_0800_BYTE_LEN" DataType="OctetString" Length="1" UseAsBits="true" />
+                </Input>
+              </IOData>	
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+					  <Name TextId="XB6_0800A_Parameter"/>
+					  <Const Data="0x30,0x06,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DI">
+                <Name TextId="PNIO_TextId_Module_XB6_0800A"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0800A"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-0800B-->
+         <ModuleItem ID="ID_Mod_XB6_0800B" ModuleIdentNumber="0x00000631">
+          <ModuleInfo CategoryRef="X_BUS_DI">
+            <Name TextId="PNIO_TextId_Module_XB6_0800B"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0800B"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0800B" SubmoduleIdentNumber="0x00000631" FixedInSubslots="1" PROFIsafeSupported="false"> <!--IDS_SUBMODULE_DI8-->
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_0800_BYTE_LEN" DataType="OctetString" Length="1" UseAsBits="true" />
+                </Input>
+              </IOData>	
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+					  <Name TextId="XB6_0800B_Parameter"/>
+					  <Const Data="0x31,0x06,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DI">
+                <Name TextId="PNIO_TextId_Module_XB6_0800B"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0800B"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-0032A-->
+				<ModuleItem ID="ID_Mod_XB6_0032A" ModuleIdentNumber="0x00000622">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_0032A"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0032A"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0032A" SubmoduleIdentNumber="0x00000622" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0032_BYTE_LEN" DataType="OctetString" Length="4" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_0032A_Parameter"/>
+					  <Const Data="0x22,0x06"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_0032A"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0032A"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        
+        <!--XB6-0032AN-->
+				<ModuleItem ID="ID_Mod_XB6_0032AN" ModuleIdentNumber="0x0000A622">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_0032AN"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0032AN"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0032AN" SubmoduleIdentNumber="0x0000A622" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0032_BYTE_LEN" DataType="OctetString" Length="4" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_0032AN_Parameter"/>
+					  <Const Data="0x22,0xA6"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_0032AN"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0032AN"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>        
+		
+				<!--XB6-VT16-->
+				<ModuleItem ID="ID_Mod_XB6_VT16" ModuleIdentNumber="0x00000700">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_VT16"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_VT16"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-VT16" SubmoduleIdentNumber="0x00000700" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_VT16_BYTE_LEN" DataType="OctetString" Length="4" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_VT16_Parameter"/>
+					  <Const Data="0x00,0x07"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_VT16"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_VT16"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+        <!--XB6-0012J-->
+        <ModuleItem ID="ID_Mod_XB6_0012J" ModuleIdentNumber="0x00000612">
+          <ModuleInfo CategoryRef="X_BUS_RIO">
+            <Name TextId="PNIO_TextId_Module_XB6_0012J"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0012J"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0012J" SubmoduleIdentNumber="0x00000612" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0012J_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true"/>
+                </Output>
+              </IOData>
+              <RecordDataList>
+                <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_0012J_Parameter"/>
+					  <Const Data="0x12,0x06"/>
+                </ParameterRecordDataItem> 
+              </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_RIO">
+                <Name TextId="PNIO_TextId_Module_XB6_0012J"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0012J"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-0032B-->
+				<ModuleItem ID="ID_Mod_XB6_0032B" ModuleIdentNumber="0x00000623">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_0032B"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0032B"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0032B" SubmoduleIdentNumber="0x00000623" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0032_BYTE_LEN" DataType="OctetString" Length="4" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_0032B_Parameter"/>
+					  <Const Data="0x23,0x06"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_0032B"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0032B"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-0032BN-->
+				<ModuleItem ID="ID_Mod_XB6_0032BN" ModuleIdentNumber="0x0000B623">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_0032BN"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0032BN"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0032BN" SubmoduleIdentNumber="0x0000B623" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0032_BYTE_LEN" DataType="OctetString" Length="4" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_0032BN_Parameter"/>
+					  <Const Data="0x23,0xB6"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_0032BN"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0032BN"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-0016A-->
+				<ModuleItem ID="ID_Mod_XB6_0016A" ModuleIdentNumber="0x00000624">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_0016A"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0016A"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0016A" SubmoduleIdentNumber="0x00000624" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0016_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+				  <Name TextId="XB6_0016A_Parameter"/>
+				  <Const Data="0x24,0x06"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_0016A"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0016A"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-0016B-->
+				<ModuleItem ID="ID_Mod_XB6_0016B" ModuleIdentNumber="0x00000625">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_0016B"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0016B"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0016B" SubmoduleIdentNumber="0x00000625" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0016_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_0016B_Parameter"/>
+					  <Const Data="0x25,0x06"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_0016B"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0016B"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-0008A-->
+				<ModuleItem ID="ID_Mod_XB6_0008A" ModuleIdentNumber="0x00000632">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_0008A"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0008A"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0008A" SubmoduleIdentNumber="0x00000632" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0008_BYTE_LEN" DataType="OctetString" Length="1" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_0008A_Parameter"/>
+					  <Const Data="0x32,0x06"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_0008A"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0008A"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-0008B-->
+				<ModuleItem ID="ID_Mod_XB6_0008B" ModuleIdentNumber="0x00000633">
+          <ModuleInfo CategoryRef="X_BUS_DO">
+            <Name TextId="PNIO_TextId_Module_XB6_0008B"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_0008B"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-0008B" SubmoduleIdentNumber="0x00000633" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output>
+                  <DataItem TextId="XB6_0008_BYTE_LEN" DataType="OctetString" Length="1" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+					  <Name TextId="XB6_0008B_Parameter"/>
+					  <Const Data="0x33,0x06"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DO">
+                <Name TextId="PNIO_TextId_Module_XB6_0008B"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_0008B"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-1616A-->
+				<ModuleItem ID="ID_Mod_XB6_1616A" ModuleIdentNumber="0x00000620">
+          <ModuleInfo CategoryRef="X_BUS_DIO">
+            <Name TextId="PNIO_TextId_Module_XB6_1616A"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_1616A"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-1616A" SubmoduleIdentNumber="0x00000620" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_1616_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true"/>
+                </Input>
+				<Output>
+                  <DataItem TextId="XB6_1616_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true"/>
+                </Output>
+              </IOData>			  
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+					  <Name TextId="XB6_1616A_Parameter"/>
+					  <Const Data="0x20,0x06,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DIO">
+                <Name TextId="PNIO_TextId_Module_XB6_1616A"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_1616A"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-1616B-->
+				<ModuleItem ID="ID_Mod_XB6_1616B" ModuleIdentNumber="0x00000621">
+          <ModuleInfo CategoryRef="X_BUS_DIO">
+            <Name TextId="PNIO_TextId_Module_XB6_1616B"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_1616B"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-1616B" SubmoduleIdentNumber="0x00000621" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="XB6_1616_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true"/>
+                </Input>
+				<Output>
+                  <DataItem TextId="XB6_1616_BYTE_LEN" DataType="OctetString" Length="2" UseAsBits="true"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+				  <Name TextId="XB6_1616B_Parameter"/>
+				  <Const Data="0x21,0x06,0x01,0x00,0x00,0x00,0x00"/>
+					   <Ref ValueItemTarget="Select_for_Filter_Range" DataType="Unsigned32" ByteOffset="3" BitOffset="0" BitLength="4" DefaultValue="3" AllowedValues="0 125 150 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20" Changeable="true" Visible="true" TextId="TOK_Function_of_Filter_Range" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_DIO">
+                <Name TextId="PNIO_TextId_Module_XB6_1616B"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_1616B"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A80VI-->
+				<ModuleItem ID="ID_Mod_XB6_A80VI" ModuleIdentNumber="0x00000640">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A80VI"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A80VI"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A80VI" SubmoduleIdentNumber="0x00000640" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Input>
+                  <DataItem TextId="I-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 4" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 5" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 6" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 7" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Input>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="47" TransferSequence="1">
+				  <Name TextId="XB6_A80VI_Parameter"/>
+				  <Const Data="0x40,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00,0x09,0x00,0x00,0x00,0x00"/>
+				  <Ref ValueItemTarget="Select_for_V_I" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_VI_Setting" />
+				  <Ref ByteOffset="8" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL0_FILTER"/>
+				  <Ref ByteOffset="13" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL1_FILTER"/>
+				  <Ref ByteOffset="18" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL2_FILTER"/>
+				  <Ref ByteOffset="23" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL3_FILTER"/>
+				  <Ref ByteOffset="28" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL4_FILTER"/>
+				  <Ref ByteOffset="33" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL5_FILTER"/>
+				  <Ref ByteOffset="38" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL6_FILTER"/>
+				  <Ref ByteOffset="43" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL7_FILTER"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A80VI"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A80VI"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+				
+				<!--XB6-A40VI-->
+				<ModuleItem ID="ID_Mod_XB6_A40VI" ModuleIdentNumber="0x00000641">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A40VI"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40VI"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A40VI" SubmoduleIdentNumber="0x00000641" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Input>
+                  <DataItem TextId="I-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Input>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="27" TransferSequence="1">
+				  <Name TextId="XB6_A40VI_Parameter"/>
+				  <Const Data="0x41,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00"/>
+				  <Ref ValueItemTarget="Select_for_V_I" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_VI_Setting" />
+				  <Ref ByteOffset="8" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL0_FILTER"/>
+				  <Ref ByteOffset="13" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL1_FILTER"/>
+				  <Ref ByteOffset="18" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL2_FILTER"/>
+				  <Ref ByteOffset="23" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL3_FILTER"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A40VI"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40VI"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A80V-->
+				<ModuleItem ID="ID_Mod_XB6_A80V" ModuleIdentNumber="0x00000642">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A80V"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A80V"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A80V" SubmoduleIdentNumber="0x00000642" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Input>
+                  <DataItem TextId="I-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 4" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 5" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 6" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 7" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Input>
+              </IOData>
+                <RecordDataList>
+                  <ParameterRecordDataItem Index="1" Length="82" TransferSequence="1">
+                    <Name TextId="XB6_A80V_Parameter"/>
+                      <Const Data="0x42,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00,0x09,0x00,0x00,0x00,0x00,0x0a,0x00,0x00,0x00,0x00,0x0b,0x00,0x00,0x00,0x00,0x0c,0x00,0x00,0x00,0x00,0x0d,0x00,0x00,0x00,0x00,0x0e,0x00,0x00,0x00,0x00,0x0f,0x00,0x00,0x00,0x00,0x10,0x00,0x00,0x00,0x00"/>
+                        <Ref ValueItemTarget="Channel0_Range_Select" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel0_Range_Select" />
+                        <Ref ValueItemTarget="Channel1_Range_Select" DataType="Unsigned32" ByteOffset="8" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel1_Range_Select" />
+                        <Ref ValueItemTarget="Channel2_Range_Select" DataType="Unsigned32" ByteOffset="13" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel2_Range_Select" />
+                        <Ref ValueItemTarget="Channel3_Range_Select" DataType="Unsigned32" ByteOffset="18" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel3_Range_Select" />
+                        <Ref ValueItemTarget="Channel4_Range_Select" DataType="Unsigned32" ByteOffset="23" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel4_Range_Select" />
+                        <Ref ValueItemTarget="Channel5_Range_Select" DataType="Unsigned32" ByteOffset="28" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel5_Range_Select" />
+                        <Ref ValueItemTarget="Channel6_Range_Select" DataType="Unsigned32" ByteOffset="33" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel6_Range_Select" />
+                        <Ref ValueItemTarget="Channel7_Range_Select" DataType="Unsigned32" ByteOffset="38" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel7_Range_Select" />
+                        <Ref ByteOffset="43" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL0_FILTER"/>
+                        <Ref ByteOffset="48" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL1_FILTER"/>
+                        <Ref ByteOffset="53" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL2_FILTER"/>
+                        <Ref ByteOffset="58" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL3_FILTER"/>
+                        <Ref ByteOffset="63" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL4_FILTER"/>
+                        <Ref ByteOffset="68" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL5_FILTER"/>
+                        <Ref ByteOffset="73" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL6_FILTER"/>
+                        <Ref ByteOffset="78" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL7_FILTER"/>
+                    </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A80V"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A80V"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A40V-->
+				<ModuleItem ID="ID_Mod_XB6_A40V" ModuleIdentNumber="0x00000643">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A40V"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40V"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A40V" SubmoduleIdentNumber="0x00000643" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Input>
+                  <DataItem TextId="I-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Input>
+              </IOData>
+              <RecordDataList>
+	        <ParameterRecordDataItem Index="1" Length="42" TransferSequence="1">
+		  <Name TextId="XB6_A40V_Parameter"/>
+		    <Const Data="0x43,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00"/>
+		      <Ref ValueItemTarget="Channel0_Range_Select" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel0_Range_Select" />
+		      <Ref ValueItemTarget="Channel1_Range_Select" DataType="Unsigned32" ByteOffset="8" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel1_Range_Select" />
+		      <Ref ValueItemTarget="Channel2_Range_Select" DataType="Unsigned32" ByteOffset="13" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel2_Range_Select" />
+		      <Ref ValueItemTarget="Channel3_Range_Select" DataType="Unsigned32" ByteOffset="18" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel3_Range_Select" />
+		      <Ref ByteOffset="23" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL0_FILTER"/>
+		      <Ref ByteOffset="28" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL1_FILTER"/>
+		      <Ref ByteOffset="33" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL2_FILTER"/>
+		      <Ref ByteOffset="38" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL3_FILTER"/>
+	        </ParameterRecordDataItem> 
+              </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A40V"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40V"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+
+				<!--XB6-A80I-->
+				<ModuleItem ID="ID_Mod_XB6_A80I" ModuleIdentNumber="0x00000646">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A80I"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A80I"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A80I" SubmoduleIdentNumber="0x00000646" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Input>
+                  <DataItem TextId="I-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 4" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 5" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 6" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 7" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Input>
+              </IOData>
+	      <RecordDataList>
+	        <ParameterRecordDataItem Index="1" Length="82" TransferSequence="1">
+		  <Name TextId="XB6_A80I_Parameter"/>
+		    <Const Data="0x46,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00,0x09,0x00,0x00,0x00,0x00,0x0a,0x00,0x00,0x00,0x00,0x0b,0x00,0x00,0x00,0x00,0x0c,0x00,0x00,0x00,0x00,0x0d,0x00,0x00,0x00,0x00,0x0e,0x00,0x00,0x00,0x00,0x0f,0x00,0x00,0x00,0x00,0x10,0x00,0x00,0x00,0x00"/>
+		      <Ref ValueItemTarget="I_Channel0_Range_Select" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel0_Range_Select" />
+		      <Ref ValueItemTarget="I_Channel1_Range_Select" DataType="Unsigned32" ByteOffset="8" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel1_Range_Select" />
+		      <Ref ValueItemTarget="I_Channel2_Range_Select" DataType="Unsigned32" ByteOffset="13" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel2_Range_Select" />
+		      <Ref ValueItemTarget="I_Channel3_Range_Select" DataType="Unsigned32" ByteOffset="18" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel3_Range_Select" />
+		      <Ref ValueItemTarget="I_Channel4_Range_Select" DataType="Unsigned32" ByteOffset="23" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel4_Range_Select" />
+		      <Ref ValueItemTarget="I_Channel5_Range_Select" DataType="Unsigned32" ByteOffset="28" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel5_Range_Select" />
+		      <Ref ValueItemTarget="I_Channel6_Range_Select" DataType="Unsigned32" ByteOffset="33" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel6_Range_Select" />
+		      <Ref ValueItemTarget="I_Channel7_Range_Select" DataType="Unsigned32" ByteOffset="38" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel7_Range_Select" />
+		      <Ref ByteOffset="43" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL0_FILTER"/>
+		      <Ref ByteOffset="48" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL1_FILTER"/>
+		      <Ref ByteOffset="53" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL2_FILTER"/>
+		      <Ref ByteOffset="58" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL3_FILTER"/>
+		      <Ref ByteOffset="63" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL4_FILTER"/>
+		      <Ref ByteOffset="68" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL5_FILTER"/>
+		      <Ref ByteOffset="73" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL6_FILTER"/>
+		      <Ref ByteOffset="78" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL7_FILTER"/>
+	        </ParameterRecordDataItem> 
+	      </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A80I"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A80I"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A40I-->
+				<ModuleItem ID="ID_Mod_XB6_A40I" ModuleIdentNumber="0x00000647">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A40I"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40I"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A40I" SubmoduleIdentNumber="0x00000647" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Input>
+                  <DataItem TextId="I-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Input>
+              </IOData>
+	      <RecordDataList>
+	        <ParameterRecordDataItem Index="1" Length="42" TransferSequence="1">
+		  <Name TextId="XB6_A40I_Parameter"/>
+		    <Const Data="0x47,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00"/>
+		    <Ref ValueItemTarget="I_Channel0_Range_Select" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel0_Range_Select" />
+		    <Ref ValueItemTarget="I_Channel1_Range_Select" DataType="Unsigned32" ByteOffset="8" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel1_Range_Select" />
+		    <Ref ValueItemTarget="I_Channel2_Range_Select" DataType="Unsigned32" ByteOffset="13" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel2_Range_Select" />
+		    <Ref ValueItemTarget="I_Channel3_Range_Select" DataType="Unsigned32" ByteOffset="18" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel3_Range_Select" />
+		    <Ref ByteOffset="23" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL0_FILTER"/>
+		    <Ref ByteOffset="28" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL1_FILTER"/>
+		    <Ref ByteOffset="33" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL2_FILTER"/>
+		    <Ref ByteOffset="38" DataType="Unsigned32" DefaultValue="10" AllowedValues="1..1024" TextId="AI_CHANNEL3_FILTER"/>
+	        </ParameterRecordDataItem> 
+	      </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A40I"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40I"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+
+				<!--XB6-A80TM-->
+				<ModuleItem ID="ID_Mod_XB6_A80TM" ModuleIdentNumber="0x00000650">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A80TM"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A80TM"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A80TM" SubmoduleIdentNumber="0x00000650" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="I-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 4" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 5" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 6" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 7" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Input>
+                <Output>
+                  <DataItem TextId="Offset-channel 0" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 1" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 2" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 3" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 4" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 5" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 6" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 7" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				<ParameterRecordDataItem Index="1" Length="87" TransferSequence="1">
+				  <Name TextId="XB6_A80TM_Parameter"/>
+				  <Const Data="0x50,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00,0x09,0x00,0x00,0x00,0x00,0x0A,0x00,0x00,0x00,0x00,0x0B,0x00,0x00,0x00,0x00,0x0C,0x00,0x00,0x00,0x00,0x0D,0x00,0x00,0x00,0x00,0x0E,0x00,0x00,0x00,0x00,0x0F,0x00,0x00,0x00,0x00,0x10,0x00,0x00,0x00,0x00,0x11,0x00,0x00,0x00,0x00"/>
+				  <Ref ValueItemTarget="Select_for_Temperature_Sensor" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14" Changeable="true" Visible="true" TextId="TOK_Function_of_Temperature_Sensor_Setting" />
+				  <Ref ByteOffset="8" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL0_FILTER"/>
+				  <Ref ByteOffset="13" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL1_FILTER"/>
+				  <Ref ByteOffset="18" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL2_FILTER"/>
+				  <Ref ByteOffset="23" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL3_FILTER"/>
+				  <Ref ByteOffset="28" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL4_FILTER"/>
+				  <Ref ByteOffset="33" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL5_FILTER"/>
+				  <Ref ByteOffset="38" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL6_FILTER"/>
+				  <Ref ByteOffset="43" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL7_FILTER"/>
+				  <Ref ValueItemTarget="TM_CHANNEL0_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="48" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL0_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL1_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="53" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL1_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL2_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="58" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL2_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL3_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="63" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL3_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL4_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="68" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL4_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL5_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="73" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL5_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL6_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="78" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL6_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL7_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="83" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL7_ENABLE_DISENABLE" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A80TM"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A80TM"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A40TM-->
+				<ModuleItem ID="ID_Mod_XB6_A40TM" ModuleIdentNumber="0x00000651">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A40TM"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40TM"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A40TM" SubmoduleIdentNumber="0x00000651" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="I-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="I-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Input>
+                <Output>
+                  <DataItem TextId="Offset-channel 0" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 1" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 2" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                  <DataItem TextId="Offset-channel 3" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="47" TransferSequence="1">
+				  <Name TextId="XB6_A40TM_Parameter"/>
+				  <Const Data="0x51,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00,0x09,0x00,0x00,0x00,0x00"/>
+				  <Ref ValueItemTarget="Select_for_Temperature_Sensor" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14" Changeable="true" Visible="true" TextId="TOK_Function_of_Temperature_Sensor_Setting" />
+				  <Ref ByteOffset="8" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL0_FILTER"/>
+				  <Ref ByteOffset="13" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL1_FILTER"/>
+				  <Ref ByteOffset="18" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL2_FILTER"/>
+				  <Ref ByteOffset="23" DataType="Unsigned32" DefaultValue="1" AllowedValues="1..10" TextId="TM_CHANNEL3_FILTER"/>
+				  <Ref ValueItemTarget="TM_CHANNEL0_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="28" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL0_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL1_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="33" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL1_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL2_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="38" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL2_ENABLE_DISENABLE" />
+				  <Ref ValueItemTarget="TM_CHANNEL3_ENABLE_DISENABLE" DataType="Unsigned32" ByteOffset="43" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_TM_CHANNEL3_ENABLE_DISENABLE" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A40TM"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40TM"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+	<!--XB6-A40TDC-->
+	<ModuleItem ID="ID_Mod_XB6_A40TDC" ModuleIdentNumber="0x00000652">
+          <ModuleInfo CategoryRef="X_BUS_AI">
+            <Name TextId="PNIO_TextId_Module_XB6_A40TDC"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40TDC"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A40TDC" SubmoduleIdentNumber="0x00000652" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem TextId="at-sta" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="wr-sta" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="wr-Data" DataType="Float32" Length="4" UseAsBits="false"/>
+                  <DataItem TextId="pv0" DataType="Float32" Length="4" UseAsBits="false"/>
+		  <DataItem TextId="pv1" DataType="Float32" Length="4" UseAsBits="false"/>
+		  <DataItem TextId="pv2" DataType="Float32" Length="4" UseAsBits="false"/>
+		  <DataItem TextId="pv3" DataType="Float32" Length="4" UseAsBits="false"/>
+		  <DataItem TextId="out-sta" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+		  <DataItem TextId="ala-sta" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+		  <DataItem TextId="mod-sta" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                </Input>
+                <Output>
+                  <DataItem TextId="at-Ctrl" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="wr-Ctrl" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="wr-Data" DataType="Float32" Length="4" UseAsBits="false"/>
+                  <DataItem TextId="sv0" DataType="Float32" Length="4" UseAsBits="false"/>
+		  <DataItem TextId="sv1" DataType="Float32" Length="4" UseAsBits="false"/>
+		  <DataItem TextId="sv2" DataType="Float32" Length="4" UseAsBits="false"/>
+		  <DataItem TextId="sv3" DataType="Float32" Length="4" UseAsBits="false"/>
+		  <DataItem TextId="out-Ctrl" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+		  <DataItem TextId="ala-Ctrl" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+		  <DataItem TextId="mod-Ctrl" DataType="Unsigned8" Length="1" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="22" TransferSequence="1">
+				  <Name TextId="XB6_A40TDC_Parameter"/>
+				  <Const Data="0x52,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00"/>
+				  <Ref ValueItemTarget="in_mod0" DataType="Unsigned32" ByteOffset="3" DefaultValue="32" AllowedValues="0 16 17 18 19 20 21 22 23 32 33 64 65 66 67 68" Changeable="true" Visible="true" TextId="TOK_Function_of_Temperature_Sensor_Setting" />
+				  <Ref ValueItemTarget="in_mod1" DataType="Unsigned32" ByteOffset="8" DefaultValue="32" AllowedValues="0 16 17 18 19 20 21 22 23 32 33 64 65 66 67 68" Changeable="true" Visible="true" TextId="TOK_Function_of_Temperature_Sensor_Setting" />
+				  <Ref ValueItemTarget="in_mod2" DataType="Unsigned32" ByteOffset="13" DefaultValue="32" AllowedValues="0 16 17 18 19 20 21 22 23 32 33 64 65 66 67 68" Changeable="true" Visible="true" TextId="TOK_Function_of_Temperature_Sensor_Setting" />
+				  <Ref ValueItemTarget="in_mod3" DataType="Unsigned32" ByteOffset="18" DefaultValue="32" AllowedValues="0 16 17 18 19 20 21 22 23 32 33 64 65 66 67 68" Changeable="true" Visible="true" TextId="TOK_Function_of_Temperature_Sensor_Setting" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AI">
+                <Name TextId="PNIO_TextId_Module_XB6_A40TDC"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A40TDC"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A08VI-->
+				<ModuleItem ID="ID_Mod_XB6_A08VI" ModuleIdentNumber="0x00000660">
+          <ModuleInfo CategoryRef="X_BUS_AO">
+            <Name TextId="PNIO_TextId_Module_XB6_A08VI"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A08VI"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A08VI" SubmoduleIdentNumber="0x00000660" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Output>
+                  <DataItem TextId="O-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 4" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 5" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 6" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 7" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Output>
+              </IOData>             
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="7" TransferSequence="1">
+				  <Name TextId="XB6_A08VI_Parameter"/>
+				  <Const Data="0x60,0x06,0x01,0x00,0x00,0x00,0x00"/>
+				  <Ref ValueItemTarget="Select_for_V_I" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1" Changeable="true" Visible="true" TextId="TOK_Function_of_VI_Setting" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AO">
+                <Name TextId="PNIO_TextId_Module_XB6_A08VI"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A08VI"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A08V1-->
+				<ModuleItem ID="ID_Mod_XB6_A08V1" ModuleIdentNumber="0x00000680">
+          <ModuleInfo CategoryRef="X_BUS_AO">
+            <Name TextId="PNIO_TextId_Module_XB6_A08V1"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A08V1"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A08V1" SubmoduleIdentNumber="0x00000680" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Output>
+                  <DataItem TextId="O-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 4" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 5" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 6" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 7" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+				  <Name TextId="XB6_A08V1_Parameter"/>
+				  <Const Data="0x80,0x06"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AO">
+                <Name TextId="PNIO_TextId_Module_XB6_A08V1"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A08V1"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A04V1-->
+				<ModuleItem ID="ID_Mod_XB6_A04V1" ModuleIdentNumber="0x00000681">
+          <ModuleInfo CategoryRef="X_BUS_AO">
+            <Name TextId="PNIO_TextId_Module_XB6_A04V1"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A04V1"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A04V1" SubmoduleIdentNumber="0x00000681" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Output>
+                  <DataItem TextId="O-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+				  <Name TextId="XB6_A04V1_Parameter"/>
+				  <Const Data="0x81,0x06"/>
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AO">
+                <Name TextId="PNIO_TextId_Module_XB6_A04V1"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A04V1"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A08V-->
+				<ModuleItem ID="ID_Mod_XB6_A08V" ModuleIdentNumber="0x00000682">
+          <ModuleInfo CategoryRef="X_BUS_AO">
+            <Name TextId="PNIO_TextId_Module_XB6_A08V"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A08V"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A08V" SubmoduleIdentNumber="0x00000682" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Output>
+                  <DataItem TextId="O-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 4" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 5" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 6" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 7" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="42" TransferSequence="1">
+				  <Name TextId="XB6_A08V_Parameter"/>
+				  <Const Data="0x82,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00"/>
+				  <Ref ValueItemTarget="Channel0_Range_Select" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel0_Range_Select" />
+				  <Ref ValueItemTarget="Channel1_Range_Select" DataType="Unsigned32" ByteOffset="8" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel1_Range_Select" />
+				  <Ref ValueItemTarget="Channel2_Range_Select" DataType="Unsigned32" ByteOffset="13" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel2_Range_Select" />
+				  <Ref ValueItemTarget="Channel3_Range_Select" DataType="Unsigned32" ByteOffset="18" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel3_Range_Select" />
+				  <Ref ValueItemTarget="Channel4_Range_Select" DataType="Unsigned32" ByteOffset="23" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel4_Range_Select" />
+				  <Ref ValueItemTarget="Channel5_Range_Select" DataType="Unsigned32" ByteOffset="28" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel5_Range_Select" />
+				  <Ref ValueItemTarget="Channel6_Range_Select" DataType="Unsigned32" ByteOffset="33" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel6_Range_Select" />
+				  <Ref ValueItemTarget="Channel7_Range_Select" DataType="Unsigned32" ByteOffset="38" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel7_Range_Select" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AO">
+                <Name TextId="PNIO_TextId_Module_XB6_A08V"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A08V"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A04V-->
+				<ModuleItem ID="ID_Mod_XB6_A04V" ModuleIdentNumber="0x00000683">
+          <ModuleInfo CategoryRef="X_BUS_AO">
+            <Name TextId="PNIO_TextId_Module_XB6_A04V"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A04V"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A04V" SubmoduleIdentNumber="0x00000683" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Output>
+                  <DataItem TextId="O-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="22" TransferSequence="1">
+				  <Name TextId="XB6_A04V_Parameter"/>
+				  <Const Data="0x83,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00"/>
+				  <Ref ValueItemTarget="Channel0_Range_Select" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel0_Range_Select" />
+				  <Ref ValueItemTarget="Channel1_Range_Select" DataType="Unsigned32" ByteOffset="8" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel1_Range_Select" />
+				  <Ref ValueItemTarget="Channel2_Range_Select" DataType="Unsigned32" ByteOffset="13" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel2_Range_Select" />
+				  <Ref ValueItemTarget="Channel3_Range_Select" DataType="Unsigned32" ByteOffset="18" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel3_Range_Select" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AO">
+                <Name TextId="PNIO_TextId_Module_XB6_A04V"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A04V"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A08I-->
+				<ModuleItem ID="ID_Mod_XB6_A08I" ModuleIdentNumber="0x00000690">
+          <ModuleInfo CategoryRef="X_BUS_AO">
+            <Name TextId="PNIO_TextId_Module_XB6_A08I"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A08I"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A08I" SubmoduleIdentNumber="0x00000690" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Output>
+                  <DataItem TextId="O-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 4" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 5" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 6" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 7" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="42" TransferSequence="1">
+				  <Name TextId="XB6_A08I_Parameter"/>
+				  <Const Data="0x90,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00,0x05,0x00,0x00,0x00,0x00,0x06,0x00,0x00,0x00,0x00,0x07,0x00,0x00,0x00,0x00,0x08,0x00,0x00,0x00,0x00"/>
+		          <Ref ValueItemTarget="I_Channel0_Range_Select" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel0_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel1_Range_Select" DataType="Unsigned32" ByteOffset="8" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel1_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel2_Range_Select" DataType="Unsigned32" ByteOffset="13" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel2_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel3_Range_Select" DataType="Unsigned32" ByteOffset="18" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel3_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel4_Range_Select" DataType="Unsigned32" ByteOffset="23" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel4_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel5_Range_Select" DataType="Unsigned32" ByteOffset="28" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel5_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel6_Range_Select" DataType="Unsigned32" ByteOffset="33" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel6_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel7_Range_Select" DataType="Unsigned32" ByteOffset="38" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel7_Range_Select" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AO">
+                <Name TextId="PNIO_TextId_Module_XB6_A08I"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A08I"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+		
+				<!--XB6-A04I-->
+				<ModuleItem ID="ID_Mod_XB6_A04I" ModuleIdentNumber="0x00000691">
+          <ModuleInfo CategoryRef="X_BUS_AO">
+            <Name TextId="PNIO_TextId_Module_XB6_A04I"/>
+            <InfoText TextId="PNIO_InfoTextId_Module_XB6_A04I"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+		  <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="XB6-A04I" SubmoduleIdentNumber="0x00000691" FixedInSubslots="1" PROFIsafeSupported="false">
+              <IOData>
+                <Output>
+                  <DataItem TextId="O-channel 0" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 1" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 2" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                  <DataItem TextId="O-channel 3" DataType="Unsigned16" Length="2" UseAsBits="false"/>
+                </Output>
+              </IOData>
+				<RecordDataList>
+				 <ParameterRecordDataItem Index="1" Length="22" TransferSequence="1">
+				  <Name TextId="XB6_A04I_Parameter"/>
+				  <Const Data="0x91,0x06,0x01,0x00,0x00,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0x00"/>
+		          <Ref ValueItemTarget="I_Channel0_Range_Select" DataType="Unsigned32" ByteOffset="3" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel0_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel1_Range_Select" DataType="Unsigned32" ByteOffset="8" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel1_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel2_Range_Select" DataType="Unsigned32" ByteOffset="13" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel2_Range_Select" />
+		          <Ref ValueItemTarget="I_Channel3_Range_Select" DataType="Unsigned32" ByteOffset="18" DefaultValue="0" AllowedValues="0 1 2 3 4" Changeable="true" Visible="true" TextId="TOK_Function_of_Channel3_Range_Select" />
+				 </ParameterRecordDataItem> 
+                </RecordDataList>
+              <ModuleInfo CategoryRef="X_BUS_AO">
+                <Name TextId="PNIO_TextId_Module_XB6_A04I"/>
+                <InfoText TextId="PNIO_InfoTextId_Module_XB6_A04I"/> 
+              </ModuleInfo> 
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+			
+      </ModuleList>
+      <ValueList> 
+		 <ValueItem ID="Select_for_C_H">
+          <Help TextId="Help_Dta_Clear_Hold_Setting" />
+          <Assignments>
+            <Assign Content="0" TextId="Clear_ID" />
+            <Assign Content="1" TextId="Hold_ID" />
+          </Assignments>
+        </ValueItem>
+		
+		<ValueItem ID="Select_for_V_I">
+          <Help TextId="Help_Dta_Voltage_Current_Setting" />
+          <Assignments>
+            <Assign Content="0" TextId="Voltage_ID" />
+            <Assign Content="1" TextId="Current_ID" />
+          </Assignments>
+        </ValueItem>
+		
+		<ValueItem ID="Select_for_Temperature_Sensor">
+          <Help TextId="Help_Dta_Temperature_Sensor_Setting" />
+          <Assignments>
+            <Assign Content="0" TextId="PT100_ID" />
+            <Assign Content="1" TextId="PT200_ID" />
+            <Assign Content="2" TextId="PT500_ID" />
+            <Assign Content="3" TextId="PT1000_ID" />
+            <Assign Content="4" TextId="NI120_ID" />
+            <Assign Content="5" TextId="RESISTANCE_MEASUREMENT_ID" />
+            <Assign Content="6" TextId="THERMOCOUPLE_K_ID" />
+            <Assign Content="7" TextId="THERMOCOUPLE_J_ID" />
+            <Assign Content="8" TextId="THERMOCOUPLE_T_ID" />
+            <Assign Content="9" TextId="THERMOCOUPLE_E_ID" />
+            <Assign Content="10" TextId="THERMOCOUPLE_N_ID" />
+            <Assign Content="11" TextId="THERMOCOUPLE_S_ID" />
+            <Assign Content="12" TextId="THERMOCOUPLE_R_ID" />
+            <Assign Content="13" TextId="THERMOCOUPLE_B_ID" />
+            <Assign Content="14" TextId="THERMOCOUPLE_C_ID" />
+          </Assignments>
+        </ValueItem>
+		
+	<ValueItem ID="in_mod0">
+          <Help TextId="Help_Dta_Temperature_Sensor_Setting" />
+          <Assignments>
+            <Assign Content="0" TextId="NULL_ID" />
+            <Assign Content="16" TextId="K_ID" />
+            <Assign Content="17" TextId="J_ID" />
+            <Assign Content="18" TextId="T_ID" />
+            <Assign Content="19" TextId="E_ID" />
+            <Assign Content="20" TextId="N_ID" />
+            <Assign Content="21" TextId="R_ID" />
+            <Assign Content="22" TextId="S_ID" />
+            <Assign Content="23" TextId="B_ID" />
+            <Assign Content="32" TextId="Normal_PT100_ID" />
+            <Assign Content="33" TextId="Special_PT100_ID" />
+            <Assign Content="64" TextId="4_20mA_ID" />
+            <Assign Content="65" TextId="0_20mA_ID" />
+            <Assign Content="66" TextId="1_5V_ID" />
+            <Assign Content="67" TextId="0_5V_ID" />
+	    <Assign Content="68" TextId="0_10V_ID" />
+          </Assignments>
+	</ValueItem>
+	<ValueItem ID="in_mod1">
+          <Help TextId="Help_Dta_Temperature_Sensor_Setting" />
+          <Assignments>
+            <Assign Content="0" TextId="NULL_ID" />
+            <Assign Content="16" TextId="K_ID" />
+            <Assign Content="17" TextId="J_ID" />
+            <Assign Content="18" TextId="T_ID" />
+            <Assign Content="19" TextId="E_ID" />
+            <Assign Content="20" TextId="N_ID" />
+            <Assign Content="21" TextId="R_ID" />
+            <Assign Content="22" TextId="S_ID" />
+            <Assign Content="23" TextId="B_ID" />
+            <Assign Content="32" TextId="Normal_PT100_ID" />
+            <Assign Content="33" TextId="Special_PT100_ID" />
+            <Assign Content="64" TextId="4_20mA_ID" />
+            <Assign Content="65" TextId="0_20mA_ID" />
+            <Assign Content="66" TextId="1_5V_ID" />
+            <Assign Content="67" TextId="0_5V_ID" />
+	    <Assign Content="68" TextId="0_10V_ID" />
+          </Assignments>
+        </ValueItem>
+	<ValueItem ID="in_mod2">
+          <Help TextId="Help_Dta_Temperature_Sensor_Setting" />
+          <Assignments>
+            <Assign Content="0" TextId="NULL_ID" />
+            <Assign Content="16" TextId="K_ID" />
+            <Assign Content="17" TextId="J_ID" />
+            <Assign Content="18" TextId="T_ID" />
+            <Assign Content="19" TextId="E_ID" />
+            <Assign Content="20" TextId="N_ID" />
+            <Assign Content="21" TextId="R_ID" />
+            <Assign Content="22" TextId="S_ID" />
+            <Assign Content="23" TextId="B_ID" />
+            <Assign Content="32" TextId="Normal_PT100_ID" />
+            <Assign Content="33" TextId="Special_PT100_ID" />
+            <Assign Content="64" TextId="4_20mA_ID" />
+            <Assign Content="65" TextId="0_20mA_ID" />
+            <Assign Content="66" TextId="1_5V_ID" />
+            <Assign Content="67" TextId="0_5V_ID" />
+	    <Assign Content="68" TextId="0_10V_ID" />
+          </Assignments>
+        </ValueItem>
+	<ValueItem ID="in_mod3">
+          <Help TextId="Help_Dta_Temperature_Sensor_Setting" />
+          <Assignments>
+            <Assign Content="0" TextId="NULL_ID" />
+            <Assign Content="16" TextId="K_ID" />
+            <Assign Content="17" TextId="J_ID" />
+            <Assign Content="18" TextId="T_ID" />
+            <Assign Content="19" TextId="E_ID" />
+            <Assign Content="20" TextId="N_ID" />
+            <Assign Content="21" TextId="R_ID" />
+            <Assign Content="22" TextId="S_ID" />
+            <Assign Content="23" TextId="B_ID" />
+            <Assign Content="32" TextId="Normal_PT100_ID" />
+            <Assign Content="33" TextId="Special_PT100_ID" />
+            <Assign Content="64" TextId="4_20mA_ID" />
+            <Assign Content="65" TextId="0_20mA_ID" />
+            <Assign Content="66" TextId="1_5V_ID" />
+            <Assign Content="67" TextId="0_5V_ID" />
+	    <Assign Content="68" TextId="0_10V_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="TM_CHANNEL0_ENABLE_DISENABLE">
+          <Help TextId="Help_TM_CHANNEL0_ENABLE_DISENABLE" />
+          <Assignments>
+            <Assign Content="0" TextId="Disable_ID" />
+            <Assign Content="1" TextId="Enable_ID" />
+          </Assignments>
+        </ValueItem>	
+	    <ValueItem ID="TM_CHANNEL1_ENABLE_DISENABLE">
+          <Help TextId="Help_TM_CHANNEL1_ENABLE_DISENABLE" />
+          <Assignments>
+            <Assign Content="0" TextId="Disable_ID" />
+            <Assign Content="1" TextId="Enable_ID" />
+          </Assignments>
+        </ValueItem>	
+	    <ValueItem ID="TM_CHANNEL2_ENABLE_DISENABLE">
+          <Help TextId="Help_TM_CHANNEL2_ENABLE_DISENABLE" />
+          <Assignments>
+            <Assign Content="0" TextId="Disable_ID" />
+            <Assign Content="1" TextId="Enable_ID" />
+          </Assignments>
+        </ValueItem>	
+	    <ValueItem ID="TM_CHANNEL3_ENABLE_DISENABLE">
+          <Help TextId="Help_TM_CHANNEL3_ENABLE_DISENABLE" />
+          <Assignments>
+            <Assign Content="0" TextId="Disable_ID" />
+            <Assign Content="1" TextId="Enable_ID" />
+          </Assignments>
+        </ValueItem>	
+	    <ValueItem ID="TM_CHANNEL4_ENABLE_DISENABLE">
+          <Help TextId="Help_TM_CHANNEL4_ENABLE_DISENABLE" />
+          <Assignments>
+            <Assign Content="0" TextId="Disable_ID" />
+            <Assign Content="1" TextId="Enable_ID" />
+          </Assignments>
+        </ValueItem>	
+	    <ValueItem ID="TM_CHANNEL5_ENABLE_DISENABLE">
+          <Help TextId="Help_TM_CHANNEL5_ENABLE_DISENABLE" />
+          <Assignments>
+            <Assign Content="0" TextId="Disable_ID" />
+            <Assign Content="1" TextId="Enable_ID" />
+          </Assignments>
+        </ValueItem>	
+	    <ValueItem ID="TM_CHANNEL6_ENABLE_DISENABLE">
+          <Help TextId="Help_TM_CHANNEL6_ENABLE_DISENABLE" />
+          <Assignments>
+            <Assign Content="0" TextId="Disable_ID" />
+            <Assign Content="1" TextId="Enable_ID" />
+          </Assignments>
+        </ValueItem>	
+	    <ValueItem ID="TM_CHANNEL7_ENABLE_DISENABLE">
+          <Help TextId="Help_TM_CHANNEL7_ENABLE_DISENABLE" />
+          <Assignments>
+            <Assign Content="0" TextId="Disable_ID" />
+            <Assign Content="1" TextId="Enable_ID" />
+          </Assignments>
+        </ValueItem>	
+		
+        <!-- DI FIlter  -->
+        <ValueItem ID="Select_for_Filter_Range">
+          <Help TextId="Help_for_Filter_Range" />
+          <Assignments>
+            <Assign Content="0" TextId="NULL_ID" />
+            <Assign Content="125" TextId="125ms_ID" />
+            <Assign Content="150" TextId="150ms_ID" />
+            <Assign Content="1" TextId="1ms_ID" />
+            <Assign Content="2" TextId="2ms_ID" />
+            <Assign Content="3" TextId="3ms_ID" />
+            <Assign Content="4" TextId="4ms_ID" />
+            <Assign Content="5" TextId="5ms_ID" />
+            <Assign Content="6" TextId="6ms_ID" />
+            <Assign Content="7" TextId="7ms_ID" />
+            <Assign Content="8" TextId="8ms_ID" />
+            <Assign Content="9" TextId="9ms_ID" />
+            <Assign Content="10" TextId="10ms_ID" />
+            <Assign Content="11" TextId="11ms_ID" />
+            <Assign Content="12" TextId="12ms_ID" />
+            <Assign Content="13" TextId="13ms_ID" />
+            <Assign Content="14" TextId="14ms_ID" />
+            <Assign Content="15" TextId="15ms_ID" />
+            <Assign Content="16" TextId="16ms_ID" />
+            <Assign Content="17" TextId="17ms_ID" />
+            <Assign Content="18" TextId="18ms_ID" />
+            <Assign Content="19" TextId="19ms_ID" />
+            <Assign Content="20" TextId="20ms_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <!-- V -->
+        <ValueItem ID="Channel0_Range_Select" >
+          <Help TextId="Help_Channel0_Range_Select" />
+          <Assignments>
+            <Assign Content="0" TextId="_10_10_32768_32767_ID" />
+            <Assign Content="1" TextId="0_10_0_32767_ID" />
+            <Assign Content="2" TextId="_10_10_27648_27648_ID" />
+            <Assign Content="3" TextId="0_10_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="Channel1_Range_Select" >
+          <Help TextId="Help_Channel1_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="_10_10_32768_32767_ID" />
+            <Assign Content="1" TextId="0_10_0_32767_ID" />
+            <Assign Content="2" TextId="_10_10_27648_27648_ID" />
+            <Assign Content="3" TextId="0_10_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="Channel2_Range_Select">
+          <Help TextId="Help_Channel2_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="_10_10_32768_32767_ID" />
+            <Assign Content="1" TextId="0_10_0_32767_ID" />
+            <Assign Content="2" TextId="_10_10_27648_27648_ID" />
+            <Assign Content="3" TextId="0_10_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="Channel3_Range_Select">
+          <Help TextId="Help_Channel3_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="_10_10_32768_32767_ID" />
+            <Assign Content="1" TextId="0_10_0_32767_ID" />
+            <Assign Content="2" TextId="_10_10_27648_27648_ID" />
+            <Assign Content="3" TextId="0_10_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="Channel4_Range_Select">
+          <Help TextId="Help_Channel4_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="_10_10_32768_32767_ID" />
+            <Assign Content="1" TextId="0_10_0_32767_ID" />
+            <Assign Content="2" TextId="_10_10_27648_27648_ID" />
+            <Assign Content="3" TextId="0_10_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="Channel5_Range_Select">
+          <Help TextId="Help_Channel5_Range_Select" />
+          <Assignments>
+            <Assign Content="0" TextId="_10_10_32768_32767_ID" />
+            <Assign Content="1" TextId="0_10_0_32767_ID" />
+            <Assign Content="2" TextId="_10_10_27648_27648_ID" />
+            <Assign Content="3" TextId="0_10_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="Channel6_Range_Select">
+          <Help TextId="Help_Channel6_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="_10_10_32768_32767_ID" />
+            <Assign Content="1" TextId="0_10_0_32767_ID" />
+            <Assign Content="2" TextId="_10_10_27648_27648_ID" />
+            <Assign Content="3" TextId="0_10_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="Channel7_Range_Select">
+          <Help TextId="Help_Channel7_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="_10_10_32768_32767_ID" />
+            <Assign Content="1" TextId="0_10_0_32767_ID" />
+            <Assign Content="2" TextId="_10_10_27648_27648_ID" />
+            <Assign Content="3" TextId="0_10_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+		<!-- I -->
+        <ValueItem ID="I_Channel0_Range_Select" >
+          <Help TextId="Help_Channel0_Range_Select" />
+          <Assignments>
+            <Assign Content="0" TextId="4_20_0_65535_ID" />
+            <Assign Content="1" TextId="0_20_0_65535_ID" />
+            <Assign Content="2" TextId="4_20_0_27648_ID" />
+            <Assign Content="3" TextId="0_20_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="I_Channel1_Range_Select" >
+          <Help TextId="Help_Channel1_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="4_20_0_65535_ID" />
+            <Assign Content="1" TextId="0_20_0_65535_ID" />
+            <Assign Content="2" TextId="4_20_0_27648_ID" />
+            <Assign Content="3" TextId="0_20_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="I_Channel2_Range_Select">
+          <Help TextId="Help_Channel2_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="4_20_0_65535_ID" />
+            <Assign Content="1" TextId="0_20_0_65535_ID" />
+            <Assign Content="2" TextId="4_20_0_27648_ID" />
+            <Assign Content="3" TextId="0_20_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="I_Channel3_Range_Select">
+          <Help TextId="Help_Channel3_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="4_20_0_65535_ID" />
+            <Assign Content="1" TextId="0_20_0_65535_ID" />
+            <Assign Content="2" TextId="4_20_0_27648_ID" />
+            <Assign Content="3" TextId="0_20_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="I_Channel4_Range_Select">
+          <Help TextId="Help_Channel4_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="4_20_0_65535_ID" />
+            <Assign Content="1" TextId="0_20_0_65535_ID" />
+            <Assign Content="2" TextId="4_20_0_27648_ID" />
+            <Assign Content="3" TextId="0_20_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="I_Channel5_Range_Select">
+          <Help TextId="Help_Channel5_Range_Select" />
+          <Assignments>
+            <Assign Content="0" TextId="4_20_0_65535_ID" />
+            <Assign Content="1" TextId="0_20_0_65535_ID" />
+            <Assign Content="2" TextId="4_20_0_27648_ID" />
+            <Assign Content="3" TextId="0_20_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="I_Channel6_Range_Select">
+          <Help TextId="Help_Channel6_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="4_20_0_65535_ID" />
+            <Assign Content="1" TextId="0_20_0_65535_ID" />
+            <Assign Content="2" TextId="4_20_0_27648_ID" />
+            <Assign Content="3" TextId="0_20_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+        <ValueItem ID="I_Channel7_Range_Select">
+          <Help TextId="Help_Channel7_Range_Select"/>
+          <Assignments>
+            <Assign Content="0" TextId="4_20_0_65535_ID" />
+            <Assign Content="1" TextId="0_20_0_65535_ID" />
+            <Assign Content="2" TextId="4_20_0_27648_ID" />
+            <Assign Content="3" TextId="0_20_0_27648_ID" />
+            <Assign Content="4" TextId="Reserve_ID" />
+          </Assignments>
+        </ValueItem>
+		
+      </ValueList>
+	  
+      <GraphicsList>
+        <GraphicItem ID="ID_Graph_V2.2" GraphicFile="GSDML_SDOT_LOGO"/>
+      </GraphicsList>
+	  
+      <CategoryList>
+        <CategoryItem ID="X_BUS_DI" TextId="DI"/>		
+        <CategoryItem ID="X_BUS_DO" TextId="DO"/>
+        <CategoryItem ID="X_BUS_DIO" TextId="DIO"/>
+        <CategoryItem ID="X_BUS_AI" TextId="AI"/>		
+        <CategoryItem ID="X_BUS_AO" TextId="AO"/>
+        <CategoryItem ID="X_BUS_AIO" TextId="AIO"/>		
+        <CategoryItem ID="X_BUS_FIO" TextId="FIO"/>
+        <CategoryItem ID="X_BUS_CIO" TextId="CIO"/>
+        <CategoryItem ID="X_BUS_RIO" TextId="RIO"/>
+      </CategoryList>
+
+      <ExternalTextList>
+        <PrimaryLanguage>
+          <!--without translation-->
+          <Text TextId="DAP_NAME" Value="XB6-PN0002" />
+          <Text TextId="TOK_Subslot_8000" Value="X1" />
+          <Text TextId="TOK_Subslot_8001" Value="X1 P1" />
+          <Text TextId="TOK_Subslot_8002" Value="X1 P2" />
+          <Text TextId="TOK_DAP_InterfaceModule" Value="PN-IO" />
+          <Text TextId="TOK_Port1" Value="Port 1 - RJ45" />
+          <Text TextId="TOK_Port2" Value="Port 2 - RJ45" />
+          
+          <Text TextId="TI_OFFSET" Value="TI_OFFSET"/>
+          <Text TextId="TO_OFFSET" Value="TO_OFFSET"/>
+          
+          <!--DAPs-->
+          <Text TextId="XB6_PN0002" Value="XB6-PN0002"/>
+          <Text TextId="DAP_MODULE_INFO" Value="Device Access Point,A DAP represents the bus interface and thus determines the essential features of the IO device"/>
+          
+          <Text TextId="TOK_Function_of_Action" Value="Data Clear or Hold Settings"/>
+          <Text TextId="Help_Dta_Clear_Hold_Setting" Value="Data Clear or Hold Settings"/>
+          
+          <Text TextId="TOK_Function_of_Filter_Range" Value="DIgital Input Filter"/>
+          <Text TextId="Help_for_Filter_Range" Value="DIgital Input Filter"/>
+          
+          <Text TextId="TOK_Function_of_VI_Setting" Value="Voltage or Current Input"/>
+          <Text TextId="Help_Dta_Voltage_Current_Setting" Value="Voltage or Current Input"/>
+          
+          <Text TextId="TOK_Function_of_Temperature_Sensor_Setting" Value="Temperature Sensor Select"/>
+          <Text TextId="Help_Dta_Temperature_Sensor_Setting" Value="Temperature Sensor Select"/>
+          
+          <Text TextId="Help_Channel0_Range_Select" Value="Channel 0 Range Select"/>
+          <Text TextId="TOK_Function_of_Channel0_Range_Select" Value="Channel 0 Range Select"/>
+          <Text TextId="Help_Channel1_Range_Select" Value="Channel 1 Range Select"/>
+          <Text TextId="TOK_Function_of_Channel1_Range_Select" Value="Channel 1 Range Select"/>
+          <Text TextId="Help_Channel2_Range_Select" Value="Channel 2 Range Select"/>
+          <Text TextId="TOK_Function_of_Channel2_Range_Select" Value="Channel 2 Range Select"/>
+          <Text TextId="Help_Channel3_Range_Select" Value="Channel 3 Range Select"/>
+          <Text TextId="TOK_Function_of_Channel3_Range_Select" Value="Channel 3 Range Select"/>
+          <Text TextId="Help_Channel4_Range_Select" Value="Channel 4 Range Select"/>
+          <Text TextId="TOK_Function_of_Channel4_Range_Select" Value="Channel 4 Range Select"/>
+          <Text TextId="Help_Channel5_Range_Select" Value="Channel 5 Range Select"/>
+          <Text TextId="TOK_Function_of_Channel5_Range_Select" Value="Channel 5 Range Select"/>
+          <Text TextId="Help_Channel6_Range_Select" Value="Channel 6 Range Select"/>
+          <Text TextId="TOK_Function_of_Channel6_Range_Select" Value="Channel 6 Range Select"/>
+          <Text TextId="Help_Channel7_Range_Select" Value="Channel 7 Range Select"/>
+          <Text TextId="TOK_Function_of_Channel7_Range_Select" Value="Channel 7 Range Select"/>
+          
+          <Text TextId="Clear_ID" Value="Clear"/>
+          <Text TextId="Hold_ID" Value="Hold"/>
+          <Text TextId="ABNOR_ACTION" Value="Setting for Clear/Hold"/>
+          
+          <Text TextId="Voltage_ID" Value="Voltage"/>
+          <Text TextId="Current_ID" Value="Current"/>
+          <Text TextId="Select_Voltage_Current" Value="Select Voltage/Current for Input"/>
+          
+	  <Text TextId="Enable_ID" Value="Enable"/>
+          <Text TextId="Disable_ID" Value="Disable"/>
+		  
+          <Text TextId="PT100_ID" Value="PT100"/>
+          <Text TextId="PT200_ID" Value="PT200"/>
+          <Text TextId="PT500_ID" Value="PT500"/>
+          <Text TextId="PT1000_ID" Value="PT1000"/>
+          <Text TextId="NI120_ID" Value="NI120"/>
+          <Text TextId="RESISTANCE_MEASUREMENT_ID" Value="RESISTANCE_MEASUREMENT"/>
+          <Text TextId="THERMOCOUPLE_K_ID" Value="THERMOCOUPLE_K"/>
+          <Text TextId="THERMOCOUPLE_J_ID" Value="THERMOCOUPLE_J"/>
+          <Text TextId="THERMOCOUPLE_T_ID" Value="THERMOCOUPLE_T"/>
+          <Text TextId="THERMOCOUPLE_E_ID" Value="THERMOCOUPLE_E"/>
+          <Text TextId="THERMOCOUPLE_N_ID" Value="THERMOCOUPLE_N"/>
+          <Text TextId="THERMOCOUPLE_S_ID" Value="THERMOCOUPLE_S"/>
+          <Text TextId="THERMOCOUPLE_R_ID" Value="THERMOCOUPLE_R"/>
+          <Text TextId="THERMOCOUPLE_B_ID" Value="THERMOCOUPLE_B"/>
+          <Text TextId="THERMOCOUPLE_C_ID" Value="THERMOCOUPLE_C"/>
+          
+	  <Text TextId="Help_TM_CHANNEL0_ENABLE_DISENABLE" Value="Channel 0 Enable"/>
+	  <Text TextId="Help_TM_CHANNEL1_ENABLE_DISENABLE" Value="Channel 1 Enable"/>
+	  <Text TextId="Help_TM_CHANNEL2_ENABLE_DISENABLE" Value="Channel 2 Enable"/>
+	  <Text TextId="Help_TM_CHANNEL3_ENABLE_DISENABLE" Value="Channel 3 Enable"/>
+	  <Text TextId="Help_TM_CHANNEL4_ENABLE_DISENABLE" Value="Channel 4 Enable"/>
+	  <Text TextId="Help_TM_CHANNEL5_ENABLE_DISENABLE" Value="Channel 5 Enable"/>
+	  <Text TextId="Help_TM_CHANNEL6_ENABLE_DISENABLE" Value="Channel 6 Enable"/>
+	  <Text TextId="Help_TM_CHANNEL7_ENABLE_DISENABLE" Value="Channel 7 Enable"/>
+		  
+	  <Text TextId="TOK_Function_of_TM_CHANNEL0_ENABLE_DISENABLE" Value="Channel 0 Enable"/>
+	  <Text TextId="TOK_Function_of_TM_CHANNEL1_ENABLE_DISENABLE" Value="Channel 1 Enable"/>
+	  <Text TextId="TOK_Function_of_TM_CHANNEL2_ENABLE_DISENABLE" Value="Channel 2 Enable"/>
+	  <Text TextId="TOK_Function_of_TM_CHANNEL3_ENABLE_DISENABLE" Value="Channel 3 Enable"/>
+	  <Text TextId="TOK_Function_of_TM_CHANNEL4_ENABLE_DISENABLE" Value="Channel 4 Enable"/>
+	  <Text TextId="TOK_Function_of_TM_CHANNEL5_ENABLE_DISENABLE" Value="Channel 5 Enable"/>
+	  <Text TextId="TOK_Function_of_TM_CHANNEL6_ENABLE_DISENABLE" Value="Channel 6 Enable"/>
+	  <Text TextId="TOK_Function_of_TM_CHANNEL7_ENABLE_DISENABLE" Value="Channel 7 Enable"/>
+		  
+          <Text TextId="Reserve_ID" Value="Reserve"/>
+          <Text TextId="_10_10_32768_32767_ID" Value="-10V~10V  -32768~32767"/>
+          <Text TextId="0_10_0_32767_ID" Value="   0V~10V            0~32767"/>
+          <Text TextId="_10_10_27648_27648_ID" Value="-10V~10V   -27648~27648"/>
+          <Text TextId="0_10_0_27648_ID" Value="   0V~10V            0~27648"/>
+          
+          <Text TextId="0_20_0_65535_ID" Value="0mA~20mA 0~65535"/>
+          <Text TextId="4_20_0_65535_ID" Value="4mA~20mA 0~65535"/>
+          <Text TextId="0_20_0_27648_ID" Value="0mA~20mA 0~27648"/>
+          <Text TextId="4_20_0_27648_ID" Value="4mA~20mA 0~27648"/>
+		  
+          <Text TextId="NULL_ID" Value="NULL"/>
+          <Text TextId="125ms_ID" Value="0.25ms"/>
+          <Text TextId="150ms_ID" Value="0.50ms"/>
+          <Text TextId="1ms_ID" Value="1ms"/>
+          <Text TextId="2ms_ID" Value="2ms"/>
+          <Text TextId="3ms_ID" Value="3ms"/>
+          <Text TextId="4ms_ID" Value="4ms"/>
+          <Text TextId="5ms_ID" Value="5ms"/>
+          <Text TextId="6ms_ID" Value="6ms"/>
+          <Text TextId="7ms_ID" Value="7ms"/>
+          <Text TextId="8ms_ID" Value="8ms"/>
+          <Text TextId="9ms_ID" Value="9ms"/>
+          <Text TextId="10ms_ID" Value="10ms"/>
+          <Text TextId="11ms_ID" Value="11ms"/>
+          <Text TextId="12ms_ID" Value="12ms"/>
+          <Text TextId="13ms_ID" Value="13ms"/>
+          <Text TextId="14ms_ID" Value="14ms"/>
+          <Text TextId="15ms_ID" Value="15ms"/>
+          <Text TextId="16ms_ID" Value="16ms"/>
+          <Text TextId="17ms_ID" Value="17ms"/>
+          <Text TextId="18ms_ID" Value="18ms"/>
+          <Text TextId="19ms_ID" Value="19ms"/>
+          <Text TextId="20ms_ID" Value="20ms"/>
+		  
+          <Text TextId="K_ID" Value="K"/>
+          <Text TextId="J_ID" Value="J"/>
+          <Text TextId="T_ID" Value="T"/>
+          <Text TextId="E_ID" Value="E"/>
+          <Text TextId="N_ID" Value="N"/>
+          <Text TextId="R_ID" Value="R"/>
+          <Text TextId="S_ID" Value="S"/>
+          <Text TextId="B_ID" Value="B"/>
+          <Text TextId="Normal_PT100_ID" Value="Normal-PT100"/>
+          <Text TextId="Special_PT100_ID" Value="Special-PT100"/>
+          <Text TextId="4_20mA_ID" Value="4~20mA"/>
+          <Text TextId="0_20mA_ID" Value="0~20mA"/>
+          <Text TextId="1_5V_ID" Value="1~5V"/>
+          <Text TextId="0_5V_ID" Value="0~5V"/>
+          <Text TextId="0_10V_ID" Value="0~10V"/>
+          
+          <Text TextId="PNIO_PN" Value="Manufacturer ProfiNet Series"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_3200A" Value="XB6-3200A"/>
+          <Text TextId="PNIO_TextId_Module_XB6_3200N" Value="XB6-3200N"/>
+          <Text TextId="PNIO_TextId_Module_XB6_3200B" Value="XB6-3200B"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_1600A" Value="XB6-1600A"/>
+          <Text TextId="PNIO_TextId_Module_XB6_1600B" Value="XB6-1600B"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_0800A" Value="XB6-0800A"/>
+          <Text TextId="PNIO_TextId_Module_XB6_0800B" Value="XB6-0800B"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_0032A" Value="XB6-0032A"/>
+          <Text TextId="PNIO_TextId_Module_XB6_0032AN" Value="XB6-0032AN"/>
+          <Text TextId="PNIO_TextId_Module_XB6_0032B" Value="XB6-0032B(W)"/>
+          <Text TextId="PNIO_TextId_Module_XB6_0032BN" Value="XB6-0032BN(W)"/>
+          <Text TextId="PNIO_TextId_Module_XB6_VT16" Value="XB6-VT16"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_0016A" Value="XB6-0016A"/>
+          <Text TextId="PNIO_TextId_Module_XB6_0016B" Value="XB6-0016B(W)"/>
+		  
+          <Text TextId="PNIO_TextId_Module_XB6_0012J" Value="XB6-0012J"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_0008A" Value="XB6-0008A"/>
+          <Text TextId="PNIO_TextId_Module_XB6_0008B" Value="XB6-0008B(W)"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_1616A" Value="XB6-1616A"/>
+          <Text TextId="PNIO_TextId_Module_XB6_1616B" Value="XB6-1616B(W)"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_A40VI" Value="XB6-A40VI"/>
+          <Text TextId="PNIO_TextId_Module_XB6_A80VI" Value="XB6-A80VI"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_A08VI" Value="XB6-A08VI"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_A08V1" Value="XB6-A08V1"/>
+          <Text TextId="PNIO_TextId_Module_XB6_A04V1" Value="XB6-A04V1"/>
+	  
+          <Text TextId="PNIO_TextId_Module_XB6_A08V" Value="XB6-A08V"/>
+          <Text TextId="PNIO_TextId_Module_XB6_A04V" Value="XB6-A04V"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_A08I" Value="XB6-A08I"/>
+          <Text TextId="PNIO_TextId_Module_XB6_A04I" Value="XB6-A04I"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_A80V" Value="XB6-A80V"/>
+          <Text TextId="PNIO_TextId_Module_XB6_A40V" Value="XB6-A40V"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_A80I" Value="XB6-A80I"/>
+          <Text TextId="PNIO_TextId_Module_XB6_A40I" Value="XB6-A40I"/>
+          
+          <Text TextId="PNIO_TextId_Module_XB6_A80TM" Value="XB6-A80TM"/>
+          <Text TextId="PNIO_TextId_Module_XB6_A40TM" Value="XB6-A40TM"/>
+		  
+	  <Text TextId="PNIO_TextId_Module_XB6_A40TDC" Value="XB6-A40TDC"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_3200A" Value="PNIO XBus 32 Digital Input,NPN"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_3200N" Value="PNIO XBus 32 Digital Input,NPN and PNP"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_3200B" Value="PNIO XBus 32 Digital Input,PNP"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_1600A" Value="PNIO XBus 16 Digital Input,NPN"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_1600B" Value="PNIO XBus 16 Digital Input,PNP"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0800A" Value="PNIO XBus 8 Digital Input,NPN"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0800B" Value="PNIO XBus 8 Digital Input,PNP"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0032A" Value="PNIO XBus 32 Digital Output,NPN"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0032AN" Value="PNIO XBus 32 Digital Output,NPN"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0032B" Value="PNIO XBus 32 Digital Output,PNP"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0032BN" Value="PNIO XBus 32 Digital Output,PNP"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_VT16" Value="PNIO XBus 32 Digital Output,NPN"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0016A" Value="PNIO XBus 16 Digital Output,NPN"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0016B" Value="PNIO XBus 16 Digital Output,PNP"/>
+		  
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0012J" Value="PNIO XBus 12 Ch Relay Output"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0008A" Value="PNIO XBus 8 Digital Output,NPN"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_0008B" Value="PNIO XBus 8 Digital Output,PNP"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_1616A" Value="PNIO XBus 16 Digital Input,16 Digital Output ,NPN"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_1616B" Value="PNIO XBus 16 Digital Input,16 Digital Output ,PNP"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A40VI" Value="PNIO XBus 4 Ch Analog Input(0-10V/4-20mA)"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A80VI" Value="PNIO XBus 8 Ch Analog Input(0-10V/4-20mA)"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A08VI" Value="PNIO XBus 8 Ch Analog Output(0-10V/4-20mA)"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A80V" Value="PNIO XBus 8 Ch Analog Input(-10V~10V  0~65535/0~10V     0~65535)"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A40V" Value="PNIO XBus 4 Ch Analog Input(-10V~10V  0~65535/0~10V     0~65535)"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A08V1" Value="PNIO XBus 8 Ch Analog Output(0-10V)"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A04V1" Value="PNIO XBus 4 Ch Analog Output(0-10V)"/>
+	  
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A08V" Value="PNIO XBus 8 Ch Analog Output(-10V~10V  0~65535/0~10V     0~65535)"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A04V" Value="PNIO XBus 4 Ch Analog Output(-10V~10V  0~65535/0~10V     0~65535)"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A08I" Value="PNIO XBus 8 Ch Analog Output(4-20mA  0~65535/0~20mA  0~65535)"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A04I" Value="PNIO XBus 4 Ch Analog Output(4-20mA  0~65535/0~20mA  0~65535)"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A80I" Value="PNIO XBus 8 Ch Analog Input(4-20mA  0~65535/0~20mA  0~65535)"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A40I" Value="PNIO XBus 4 Ch Analog Input(4-20mA  0~65535/0~20mA  0~65535)"/>
+          
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A80TM" Value="PNIO XBus 8 Ch Temperature Collecting"/>
+          <Text TextId="PNIO_InfoTextId_Module_XB6_A40TM" Value="PNIO XBus 4 Ch Temperature Collecting"/>
+		  
+	  <Text TextId="PNIO_InfoTextId_Module_XB6_A40TDC" Value="PNIO XBus 4 Ch Thermostat"/>
+          
+          <Text TextId="XB6_3200_BYTE_LEN" Value="4 Byte Input"/>
+          <Text TextId="XB6_1600_BYTE_LEN" Value="2 Byte Input"/>
+          <Text TextId="XB6_0800_BYTE_LEN" Value="1 Byte Input"/>
+          <Text TextId="XB6_1616_BYTE_LEN" Value="2 Byte Input,2Byte Output"/>
+          <Text TextId="XB6_0032_BYTE_LEN" Value="4 Byte Output"/>
+          <Text TextId="XB6_VT16_BYTE_LEN" Value="4 Byte Output"/>
+          <Text TextId="XB6_0016_BYTE_LEN" Value="2 Byte Output"/>
+          <Text TextId="XB6_0012J_BYTE_LEN" Value="2 Byte Output"/>
+          <Text TextId="XB6_0008_BYTE_LEN" Value="1 Byte Output"/>
+
+	  <Text TextId="at-sta" Value="at-sta" />
+          <Text TextId="wr-sta" Value="wr-sta" />
+          <Text TextId="wr-Data" Value="wr-Data" />
+          <Text TextId="pv0" Value="pv0" />
+          <Text TextId="pv1" Value="pv1" />
+          <Text TextId="pv2" Value="pv2" />
+          <Text TextId="pv3" Value="pv3" />
+          <Text TextId="out-sta" Value="out-sta" />
+          <Text TextId="ala-sta" Value="ala-sta" />
+	  <Text TextId="mod-sta" Value="mod-sta" />
+		  
+	  <Text TextId="at-Ctrl" Value="at-Ctrl" />
+          <Text TextId="wr-Ctrl" Value="wr-Ctrl" />
+          <Text TextId="sv0" Value="pv0" />
+          <Text TextId="sv1" Value="pv1" />
+          <Text TextId="sv2" Value="pv2" />
+          <Text TextId="sv3" Value="pv3" />
+          <Text TextId="out-Ctrl" Value="out-Ctrl" />
+          <Text TextId="ala-Ctrl" Value="ala-Ctrl" />
+	  <Text TextId="mod-Ctrl" Value="mod-Ctrl" />
+
+          <Text TextId="I-channel 0" Value="I-channel 0" />
+          <Text TextId="I-channel 1" Value="I-channel 1" />
+          <Text TextId="I-channel 2" Value="I-channel 2" />
+          <Text TextId="I-channel 3" Value="I-channel 3" />
+          <Text TextId="I-channel 4" Value="I-channel 4" />
+          <Text TextId="I-channel 5" Value="I-channel 5" />
+          <Text TextId="I-channel 6" Value="I-channel 6" />
+          <Text TextId="I-channel 7" Value="I-channel 7" />
+          <Text TextId="I-channel 8" Value="I-channel 8" />
+		  
+          <Text TextId="O-channel 0" Value="O-channel 0" />
+          <Text TextId="O-channel 1" Value="O-channel 1" />
+          <Text TextId="O-channel 2" Value="O-channel 2" />
+          <Text TextId="O-channel 3" Value="O-channel 3" />
+          <Text TextId="O-channel 4" Value="O-channel 4" />
+          <Text TextId="O-channel 5" Value="O-channel 5" />
+          <Text TextId="O-channel 6" Value="O-channel 6" />
+          <Text TextId="O-channel 7" Value="O-channel 7" />
+          <Text TextId="O-channel 8" Value="O-channel 8" />
+		  
+          <Text TextId="Offset-channel 0" Value="Input Offset-channel 0" />
+          <Text TextId="Offset-channel 1" Value="Input Offset-channel 1" />
+          <Text TextId="Offset-channel 2" Value="Input Offset-channel 2" />
+          <Text TextId="Offset-channel 3" Value="Input Offset-channel 3" />
+          <Text TextId="Offset-channel 4" Value="Input Offset-channel 4" />
+          <Text TextId="Offset-channel 5" Value="Input Offset-channel 5" />
+          <Text TextId="Offset-channel 6" Value="Input Offset-channel 6" />
+          <Text TextId="Offset-channel 7" Value="Input Offset-channel 7" />
+		  
+          <Text TextId="XB6_3200A_Parameter" Value="XB6-3200A Parameter"/>
+          <Text TextId="XB6_3200N_Parameter" Value="XB6-3200N Parameter"/>
+          <Text TextId="XB6_3200B_Parameter" Value="XB6-3200B Parameter"/>
+          
+          <Text TextId="XB6_1600A_Parameter" Value="XB6-1600A Parameter"/>
+          <Text TextId="XB6_1600B_Parameter" Value="XB6-1600B Parameter"/>
+          
+          <Text TextId="XB6_0800A_Parameter" Value="XB6-0800A Parameter"/>
+          <Text TextId="XB6_0800B_Parameter" Value="XB6-0800B Parameter"/>
+          
+          <Text TextId="XB6_0032A_Parameter" Value="XB6-0032A Parameter"/>
+          <Text TextId="XB6_0032AN_Parameter" Value="XB6-0032AN Parameter"/>
+          <Text TextId="XB6_0032B_Parameter" Value="XB6-0032B(W) Parameter"/>
+          <Text TextId="XB6_0032BN_Parameter" Value="XB6-0032BN(W) Parameter"/>
+          
+          <Text TextId="XB6_VT16_Parameter" Value="XB6-VT16 Parameter"/>
+          
+          <Text TextId="XB6_0016A_Parameter" Value="XB6-0016A Parameter"/>
+          <Text TextId="XB6_0016B_Parameter" Value="XB6-0016B(W) Parameter"/>
+		  
+          <Text TextId="XB6_0012J_Parameter" Value="XB6-0012J Parameter"/>
+          
+          <Text TextId="XB6_0008A_Parameter" Value="XB6-0008A Parameter"/>
+          <Text TextId="XB6_0008B_Parameter" Value="XB6-0008B(W) Parameter"/>
+          
+          <Text TextId="XB6_1616A_Parameter" Value="XB6-1616A Parameter"/>
+          <Text TextId="XB6_1616B_Parameter" Value="XB6-1616B(W) Parameter"/>
+          
+          <Text TextId="XB6_A40VI_Parameter" Value="XB6-A40VI Parameter"/>
+          <Text TextId="XB6_A80VI_Parameter" Value="XB6-A80VI Parameter"/>
+          
+          <Text TextId="XB6_A08VI_Parameter" Value="XB6-A08VI Parameter"/>
+          
+          <Text TextId="XB6_A08V1_Parameter" Value="XB6-A08V1 Parameter"/>
+          <Text TextId="XB6_A04V1_Parameter" Value="XB6-A04V1 Parameter"/>
+	  
+          <Text TextId="XB6_A08V_Parameter" Value="XB6-A08V Parameter"/>
+          <Text TextId="XB6_A04V_Parameter" Value="XB6-A04V Parameter"/>
+          
+          <Text TextId="XB6_A08I_Parameter" Value="XB6-A08I Parameter"/>
+          <Text TextId="XB6_A04I_Parameter" Value="XB6-A04I Parameter"/>
+          
+          <Text TextId="XB6_A80V_Parameter" Value="XB6-A80V Parameter"/>
+          <Text TextId="XB6_A40V_Parameter" Value="XB6-A40V Parameter"/>
+          
+          <Text TextId="XB6_A80I_Parameter" Value="XB6-A80I Parameter"/>
+          <Text TextId="XB6_A40I_Parameter" Value="XB6-A40I Parameter"/>
+          
+          <Text TextId="XB6_A80TM_Parameter" Value="XB6-A80TM Parameter"/>
+          <Text TextId="XB6_A40TM_Parameter" Value="XB6-A40TM Parameter"/>
+
+	  <Text TextId="XB6_A40TDC_Parameter" Value="XB6-A40TDC Parameter"/>
+          
+          <Text TextId="DI" Value="Digital Input"/>
+          <Text TextId="DO" Value="Digital Output"/>
+          <Text TextId="DIO" Value="Digital I/O"/>
+          <Text TextId="AI" Value="Analog Input"/>
+          <Text TextId="AO" Value="Analog Output"/>
+          <Text TextId="AIO" Value="Analog I/O"/>
+          <Text TextId="FIO" Value="Function I/O"/>
+          <Text TextId="CIO" Value="Communication I/O"/>
+          <Text TextId="RIO" Value="Relay Output"/>
+          
+          <Text TextId="AI_CHANNEL0_FILTER" Value="Analog Input Channel0 Filter(1-1024)"/>
+          <Text TextId="AI_CHANNEL1_FILTER" Value="Analog Input Channel1 Filter(1-1024)"/>
+          <Text TextId="AI_CHANNEL2_FILTER" Value="Analog Input Channel2 Filter(1-1024)"/>
+          <Text TextId="AI_CHANNEL3_FILTER" Value="Analog Input Channel3 Filter(1-1024)"/>
+          <Text TextId="AI_CHANNEL4_FILTER" Value="Analog Input Channel4 Filter(1-1024)"/>
+          <Text TextId="AI_CHANNEL5_FILTER" Value="Analog Input Channel5 Filter(1-1024)"/>
+          <Text TextId="AI_CHANNEL6_FILTER" Value="Analog Input Channel6 Filter(1-1024)"/>
+          <Text TextId="AI_CHANNEL7_FILTER" Value="Analog Input Channel7 Filter(1-1024)"/>
+		  
+	  <Text TextId="TM_CHANNEL0_FILTER" Value="Channel0 Filter(1-10)"/>
+          <Text TextId="TM_CHANNEL1_FILTER" Value="Channel1 Filter(1-10)"/>
+          <Text TextId="TM_CHANNEL2_FILTER" Value="Channel2 Filter(1-10)"/>
+          <Text TextId="TM_CHANNEL3_FILTER" Value="Channel3 Filter(1-10)"/>
+          <Text TextId="TM_CHANNEL4_FILTER" Value="Channel4 Filter(1-10)"/>
+          <Text TextId="TM_CHANNEL5_FILTER" Value="Channel5 Filter(1-10)"/>
+          <Text TextId="TM_CHANNEL6_FILTER" Value="Channel6 Filter(1-10)"/>
+          <Text TextId="TM_CHANNEL7_FILTER" Value="Channel7 Filter(1-10)"/>
+
+        </PrimaryLanguage>
+      </ExternalTextList>
+    </ApplicationProcess>
+  </ProfileBody>
+</ISO15745Profile>

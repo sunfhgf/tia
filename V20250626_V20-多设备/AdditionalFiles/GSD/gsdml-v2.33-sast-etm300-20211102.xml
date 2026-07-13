@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- ============================================================================================ -->
+<!--   Xone GSD: this is a demo                                                                   -->
+<!-- ============================================================================================ -->
+<ISO15745Profile xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile ..\xsd\GSDML-DeviceProfile-v2.33.xsd">
+  <ProfileHeader>
+    <ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+    <ProfileRevision>1.00</ProfileRevision>
+    <ProfileName>Device Profile for PROFINET Devices</ProfileName>
+    <ProfileSource>PROFIBUS Nutzerorganisation e. V. (PNO)</ProfileSource>
+    <ProfileClassID>Device</ProfileClassID>
+    <ISO15745Reference>
+      <ISO15745Part>4</ISO15745Part>
+      <ISO15745Edition>1</ISO15745Edition>
+      <ProfileTechnology>GSDML</ProfileTechnology>
+    </ISO15745Reference>
+  </ProfileHeader>
+  <ProfileBody>
+    <DeviceIdentity VendorID="0x002A" DeviceID="0x5001">
+      <InfoText TextId="T_ID_DEV_DESCRIPTION" />
+      <VendorName Value="SAST" />
+    </DeviceIdentity>
+    <DeviceFunction>
+      <Family MainFamily="Gateway" ProductFamily="SAST" />
+    </DeviceFunction>
+    <ApplicationProcess>
+      <!-- ============================================================================================ -->
+      <!--   List of Device Access Points (DAP)                                                         -->
+      <!-- ============================================================================================ -->
+      <DeviceAccessPointList>
+        <DeviceAccessPointItem ID="ETM300" PhysicalSlots="0..16" ModuleIdentNumber="0x00000001" MinDeviceInterval="64" ImplementationType="Xone" FixedInSlots="0" ObjectUUID_LocalIndex="1" DeviceAccessSupported="true" NumberOfDeviceAccessAR="2" WebServer="http:///" MultipleWriteSupported="true" NameOfStationNotTransferable="true" ParameterizationSpeedupSupported="true" LLDP_NoD_Supported="true" CheckDeviceID_Allowed="true" ResetToFactoryModes="2 8" RequiredSchemaVersion="V2.25" PNIO_Version="V2.33" DNS_CompatibleName="ETM300">
+          <ModuleInfo>
+            <Name TextId="T_ID_DAP" />
+            <InfoText TextId="T_ID_DAP_DESCRIPTION" />
+            <VendorName Value="SAST" />
+            <OrderNumber Value="ETxxx" />
+          </ModuleInfo>
+          <CertificationInfo ConformanceClass="B" ApplicationClass="" NetloadClass="I" />
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="T_ID_SS_INTERFACE" />
+            <SubslotItem SubslotNumber="32769" TextId="T_ID_SS_PORT1" />
+            <SubslotItem SubslotNumber="32770" TextId="T_ID_SS_PORT2" />
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440" />
+          <UseableModules>
+						<ModuleItemRef ModuleItemTarget="IDM_1" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_2" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_3" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_4" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_5" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_6" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_7" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_8" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_9" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_10" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_11" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_12" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_13" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_14" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_15" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_16" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_18" AllowedInSlots="1..16"/>
+						<ModuleItemRef ModuleItemTarget="IDM_20" AllowedInSlots="1..16"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="ETM300" SubmoduleIdentNumber="0x00000001" Writeable_IM_Records="1 2 3" MayIssueProcessAlarm="false" IM5_Supported="true">
+              <IOData />
+              <ModuleInfo>
+                <Name TextId="T_ID_DAP" />
+                <InfoText TextId="T_ID_DAP_DESCRIPTION" />
+              </ModuleInfo>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem ID="Interface" SubslotNumber="32768" SubmoduleIdentNumber="0x00000002" SupportedRT_Classes="RT_CLASS_1" TextId="T_ID_INTERFACE" SupportedProtocols="SNMP;LLDP" PTP_BoundarySupported="true" DCP_BoundarySupported="true" DelayMeasurementSupported="true">
+              <ApplicationRelations StartupMode="Legacy;Advanced">
+                <TimingProperties SendClock="8 16 32 64 128" ReductionRatio="1 2 4 8 16 32 64 128 256 512" />
+              </ApplicationRelations>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem ID="Port 1" SubslotNumber="32769" SubmoduleIdentNumber="0x00000003" MAUTypes="16" TextId="T_ID_PORT1" MaxPortRxDelay="209" MaxPortTxDelay="129" PortDeactivationSupported="true" LinkStateDiagnosisCapability="Up+Down" SupportsRingportConfig="true" IsDefaultRingport="true" CheckMAUTypeSupported="true" CheckMAUTypeDifferenceSupported="true">
+              <MAUTypeList>
+                <MAUTypeItem Value="16" AdjustSupported="true" />
+              </MAUTypeList>
+            </PortSubmoduleItem>
+            <PortSubmoduleItem ID="Port 2" SubslotNumber="32770" SubmoduleIdentNumber="0x00000003" MAUTypes="16" TextId="T_ID_PORT2" MaxPortRxDelay="209" MaxPortTxDelay="129" PortDeactivationSupported="true" LinkStateDiagnosisCapability="Up+Down" SupportsRingportConfig="true" IsDefaultRingport="true" CheckMAUTypeSupported="true" CheckMAUTypeDifferenceSupported="true">
+              <MAUTypeList>
+                <MAUTypeItem Value="16" AdjustSupported="true" />
+              </MAUTypeList>
+            </PortSubmoduleItem>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="1" />
+          </Graphics>
+        </DeviceAccessPointItem>
+      </DeviceAccessPointList>
+      <!-- ============================================================================================ -->
+      <!--   List of modules                                                                            -->
+      <!-- ============================================================================================ -->
+      <ModuleList>
+		<ModuleItem ID="IDM_1" ModuleIdentNumber="0x00000002">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW1I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_1" SubmoduleIdentNumber="0x00000020" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..999" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW1I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_2" ModuleIdentNumber="0x00000003">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW2I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_2" SubmoduleIdentNumber="0x00000021" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..998" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW2I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_3" ModuleIdentNumber="0x00000004">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW4I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_3" SubmoduleIdentNumber="0x00000022" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..996" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW4I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_4" ModuleIdentNumber="0x00000005">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW8I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_4" SubmoduleIdentNumber="0x00000023" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..992" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW8I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_5" ModuleIdentNumber="0x00000006">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW1O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_5" SubmoduleIdentNumber="0x00000030" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..999" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW1O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_6" ModuleIdentNumber="0x00000007">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW2O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_6" SubmoduleIdentNumber="0x00000031" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..998" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW2O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_7" ModuleIdentNumber="0x00000008">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW4O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_7" SubmoduleIdentNumber="0x00000032" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..996" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW4O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_8" ModuleIdentNumber="0x00000009">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW8O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_8" SubmoduleIdentNumber="0x00000033" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..992" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW8O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_9" ModuleIdentNumber="0x0000000A">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW16I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_9" SubmoduleIdentNumber="0x00000040" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>									
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..984" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW16I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_10" ModuleIdentNumber="0x0000000B">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW32I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_10" SubmoduleIdentNumber="0x00000041" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>										
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..968" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW32I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_11" ModuleIdentNumber="0x0000000C">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW64I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_11" SubmoduleIdentNumber="0x00000042" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>								
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..936" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW64I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_12" ModuleIdentNumber="0x0000000D">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW128I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_12" SubmoduleIdentNumber="0x00000043" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETIN"/>										
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..872" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW128I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_13" ModuleIdentNumber="0x0000000E">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW16O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_13" SubmoduleIdentNumber="0x00000050" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..984" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW16O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_14" ModuleIdentNumber="0x0000000F">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW32O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_14" SubmoduleIdentNumber="0x00000051" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..968" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW32O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_15" ModuleIdentNumber="0x00000010">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW64O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_15" SubmoduleIdentNumber="0x00000052" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..936" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW64O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_16" ModuleIdentNumber="0x00000011">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_DW128O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_16" SubmoduleIdentNumber="0x00000053" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>
+							<DataItem DataType="Integer32" TextId="IDT_INFO_D_NETOUT"/>									
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..872" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW128O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_17" ModuleIdentNumber="0x00000012">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_BY1I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_17" SubmoduleIdentNumber="0x00000060" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer8" TextId="IDT_INFO_D_NETIN"/>
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..999" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW1I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>	
+		<ModuleItem ID="IDM_18" ModuleIdentNumber="0x00000013">
+			<ModuleInfo CategoryRef="CAT_REF_IN_MODULES">
+				<Name TextId="IDT_MODULE_NAME_W1I"/>
+				<InfoText TextId="T_ID_INPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_18" SubmoduleIdentNumber="0x00000061" MayIssueProcessAlarm="true">
+					<IOData>
+						<Input>
+							<DataItem DataType="Integer16" TextId="IDT_INFO_D_NETIN"/>
+						</Input>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..999" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_DW1I"/>
+						<InfoText TextId="T_ID_INPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>
+		<ModuleItem ID="IDM_19" ModuleIdentNumber="0x00000014">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_BY1O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_19" SubmoduleIdentNumber="0x00000062" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer8" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..999" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_BY1O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>	
+		<ModuleItem ID="IDM_20" ModuleIdentNumber="0x00000015">
+			<ModuleInfo CategoryRef="CAT_REF_OUT_MODULES">
+				<Name TextId="IDT_MODULE_NAME_W1O"/>
+				<InfoText TextId="T_ID_OUTPUT"/>
+			</ModuleInfo>
+			<VirtualSubmoduleList>
+				<VirtualSubmoduleItem ID="IDS_20" SubmoduleIdentNumber="0x00000063" MayIssueProcessAlarm="true">
+					<IOData>
+						<Output>
+							<DataItem DataType="Integer16" TextId="IDT_INFO_D_NETOUT"/>
+						</Output>
+					</IOData>
+					<RecordDataList>
+						<ParameterRecordDataItem Index="1" Length="2">
+							<Name TextId="IDT_RECORD_NAME_NET"/>
+							<Ref AllowedValues="0..999" DefaultValue="0" ByteOffset="0" Changeable="true" DataType="Integer16" TextId="IDT_REF_NET" Visible="true"/>
+						</ParameterRecordDataItem>
+					</RecordDataList>
+					<ModuleInfo>
+						<Name TextId="IDT_MODULE_NAME_W1O"/>
+						<InfoText TextId="T_ID_OUTPUT"/>
+					</ModuleInfo>
+				</VirtualSubmoduleItem>
+			</VirtualSubmoduleList>
+		</ModuleItem>				
+	</ModuleList>        
+      <GraphicsList>
+        <GraphicItem ID="1" GraphicFile="GSDML-010C-0010-ABCC40-PIR.bmp" />
+      </GraphicsList>
+      <!-- ============================================================================================ -->
+      <!--   List of categorys                                                                          -->
+      <!-- ============================================================================================ -->
+      <CategoryList>
+        <CategoryItem ID="CAT_REF_IN_MODULES" TextId="T_ID_CAT_REF_IN_MODULES" />
+        <CategoryItem ID="CAT_REF_OUT_MODULES" TextId="T_ID_CAT_REF_OUT_MODULES" />
+      </CategoryList>
+      <!-- ============================================================================================ -->
+      <!--   ExternalTextList                                                                           -->
+      <!-- ============================================================================================ -->
+      <ExternalTextList>
+        <PrimaryLanguage>
+          <Text TextId="T_ID_DEV_DESCRIPTION" Value="SAST" />
+          <!--Identification-->
+          <Text TextId="T_ID_DAP" Value="ETM300" />
+          <Text TextId="T_ID_DAP_DESCRIPTION" Value="Supports RT" />
+          <Text TextId="T_ID_SS_INTERFACE" Value="X1" />
+          <Text TextId="T_ID_SS_PORT1" Value="P1" />
+          <Text TextId="T_ID_SS_PORT2" Value="P2" />
+          <Text TextId="T_ID_INTERFACE" Value="Interface" />
+          <Text TextId="T_ID_PORT1" Value="Port 1" />
+          <Text TextId="T_ID_PORT2" Value="Port 2" />
+          <!--Vendor module category-->
+          <Text TextId="T_ID_CAT_REF_IN_MODULES" Value="Input(ETM300 to PLC)" />
+          <Text TextId="T_ID_CAT_REF_OUT_MODULES" Value="Output(PLC to ETM300)" />
+          <!-- Vendor module texts -->
+          <Text TextId="T_ID_INPUT" Value="Input Module" />
+          <Text TextId="T_ID_OUTPUT" Value="Output Module" />
+
+		<Text TextId="IDT_INFO_D_NETIN" Value="ETDATA IN channel"/>
+		<Text TextId="IDT_INFO_D_NETOUT" Value="ETDATA OUT channel"/>
+		<Text TextId="IDT_MODULE_NAME_DW1I" Value="001 DWord Input"/>
+		<Text TextId="IDT_MODULE_NAME_DW2I" Value="002 DWord Input"/>
+		<Text TextId="IDT_MODULE_NAME_DW4I" Value="004 DWord Input"/>
+		<Text TextId="IDT_MODULE_NAME_DW8I" Value="008 DWord Input"/>
+		<Text TextId="IDT_MODULE_NAME_DW16I" Value="016 DWord Input"/>
+		<Text TextId="IDT_MODULE_NAME_DW32I" Value="032 DWord Input"/>
+		<Text TextId="IDT_MODULE_NAME_DW64I" Value="064 DWord Input"/>
+		<Text TextId="IDT_MODULE_NAME_DW128I" Value="128 DWord Input"/>					
+		<Text TextId="IDT_MODULE_NAME_DW1O" Value="001 DWord Output"/>
+		<Text TextId="IDT_MODULE_NAME_DW2O" Value="002 DWord Output"/>
+		<Text TextId="IDT_MODULE_NAME_DW4O" Value="004 DWord Output"/>
+		<Text TextId="IDT_MODULE_NAME_DW8O" Value="008 DWord Output"/>
+		<Text TextId="IDT_MODULE_NAME_DW16O" Value="016 DWord Output"/>
+		<Text TextId="IDT_MODULE_NAME_DW32O" Value="032 DWord Output"/>
+		<Text TextId="IDT_MODULE_NAME_DW64O" Value="064 DWord Output"/>
+		<Text TextId="IDT_MODULE_NAME_DW128O" Value="128 DWord Output"/>
+		<Text TextId="IDT_MODULE_NAME_BY1I" Value="001 Byte Input"/>
+		<Text TextId="IDT_MODULE_NAME_W1I" Value="001 Word Input"/>
+		<Text TextId="IDT_MODULE_NAME_BY1O" Value="001 Byte Output"/>
+		<Text TextId="IDT_MODULE_NAME_W1O" Value="001 Word Output"/>					
+		<Text TextId="IDT_RECORD_NAME_NET" Value="ETDATA Channel Parameters"/>
+		<Text TextId="IDT_REF_NET" Value="ETDATA channel"/>
+
+        </PrimaryLanguage>
+      </ExternalTextList>
+    </ApplicationProcess>
+  </ProfileBody>
+</ISO15745Profile>

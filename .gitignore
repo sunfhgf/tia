@@ -1,0 +1,41 @@
+# Node / Electron
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# .NET build output
+bin/
+obj/
+*.user
+*.suo
+*.cache
+
+# Generated automation output
+output/
+TiaAutomation/output/
+TiaAutomation/**/bin/
+TiaAutomation/**/obj/
+
+# TIA generated/project-heavy artifacts
+*.ap20.lock
+*.zap20
+Logs/
+**/Logs/
+
+# Local tool state
+.claude/
+.agents/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+
+.git.broken-*/
+
+# Visual Studio local cache
+.vs/
+TiaAutomation/.vs/
+
+# Incomplete cloud placeholder files
+*.baiduyun.uploading.cfg
