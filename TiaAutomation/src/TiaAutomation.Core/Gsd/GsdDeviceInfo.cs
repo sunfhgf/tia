@@ -22,5 +22,28 @@ namespace TiaAutomation.Core.Gsd
         public string OrderNumber { get; set; }
         public string HardwareRelease { get; set; }
         public string SoftwareRelease { get; set; }
+        public List<GsdModuleInfo> Modules { get; set; } = new List<GsdModuleInfo>();
+    }
+
+    public class GsdModuleInfo
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string ModuleIdentNumber { get; set; }
+        public string OrderNumber { get; set; }
+        public string AllowedInSlots { get; set; }
+        public int InputLength { get; set; }
+        public int OutputLength { get; set; }
+        public List<GsdSubmoduleInfo> Submodules { get; set; } = new List<GsdSubmoduleInfo>();
+    }
+
+    public class GsdSubmoduleInfo
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string SubmoduleIdentNumber { get; set; }
+        public string AllowedInSubslots { get; set; }
+        public int InputLength { get; set; }
+        public int OutputLength { get; set; }
     }
 }

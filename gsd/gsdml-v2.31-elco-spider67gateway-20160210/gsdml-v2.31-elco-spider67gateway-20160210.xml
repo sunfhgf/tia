@@ -1,0 +1,2097 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ISO15745Profile xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile ..\xsd\GSDML-DeviceProfile-V2.31.xsd">
+	<ProfileHeader>
+		<ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+		<ProfileRevision>1.00</ProfileRevision>
+		<ProfileName>Device Profile for PROFINET Devices</ProfileName>
+		<ProfileSource>PROFIBUS Nutzerorganisation e. V. (PNO)</ProfileSource>
+		<ProfileClassID>Device</ProfileClassID>
+		<ISO15745Reference>
+			<ISO15745Part>4</ISO15745Part>
+			<ISO15745Edition>1</ISO15745Edition>
+			<ProfileTechnology>GSDML</ProfileTechnology>
+		</ISO15745Reference>
+	</ProfileHeader>
+	<ProfileBody>
+		<DeviceIdentity VendorID="0x0202" DeviceID="0x0113">
+			<InfoText TextId="TXT_SPIDER67GATEWAYMODULE_InfoText"/>
+			<VendorName Value="ELCO"/>
+		</DeviceIdentity>
+		<DeviceFunction>
+			<Family MainFamily="I/O" ProductFamily="Spider 67 Gateway"/>
+		</DeviceFunction>
+		<ApplicationProcess>
+			<DeviceAccessPointList>
+
+	            <!-- ============================================ -->
+	            <!--                  DAP2:           -->
+	            <!-- ============================================ -->
+				
+                    <DeviceAccessPointItem ID="ID_SPIDER67_DAP2" PhysicalSlots="0..64" ModuleIdentNumber="0x00000002" MinDeviceInterval="32" ImplementationType="ERTEC200" DNS_CompatibleName="ELCO-SPIDER67GATEWAYMODULE" ExtendedAddressAssignmentSupported="true" AddressAssignment="DCP" FixedInSlots="0" ObjectUUID_LocalIndex="1" SharedDeviceSupported="false" DeviceAccessSupported="true" RequiredSchemaVersion="V2.25" ParameterizationSpeedupSupported="true" NameOfStationNotTransferable="false" PowerOnToCommReady="1000" PNIO_Version="V2.2" CheckDeviceID_Allowed="true">
+					<ModuleInfo CategoryRef="ID_SPIDER67_Gateway">
+						<Name TextId="TXT_SPIDER67GATEWAY_DAP2"/>
+						<InfoText TextId="TXT_SPIDER67GATEWAY_DAP2_Info"/>
+						<VendorName Value="ELCO"/>
+						<OrderNumber Value="SPPN-GW-001"/>
+						<HardwareRelease Value="A1.0"/>
+						<SoftwareRelease Value="100"/>
+					</ModuleInfo>
+					<SubslotList>
+						<SubslotItem SubslotNumber="32768" TextId="TOK_Subslot_8000"/>
+						<SubslotItem SubslotNumber="32769" TextId="TOK_Subslot_8001"/>
+						<SubslotItem SubslotNumber="32770" TextId="TOK_Subslot_8002"/>
+					</SubslotList>
+					<IOConfigData MaxInputLength="256" MaxOutputLength="256"/>
+					<UseableModules>
+					    <ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0800D-001 8DI"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0008D-001 8DO"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-08UP-001 8universal"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0006D-001 6DO 2A"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0404D-001 4DI4DO Fixed"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0400A-001 4AI*14Bit I"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0400A-002 4AI*14Bit V"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0004A-001 4AO*14Bit I"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0004A-002 4AO*14Bit V"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-008UPA-002 4AIO Universal"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0800D-011 8DI M8"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0008D-011 8DO M8"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0404D-011 M8 4DI4DO Fixed"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-08UP-011 M8 8universal"/>		
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0300A-001 3AI*14Bit I"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0300A-002 3AI*14Bit V"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0003A-001 3AO*14Bit I"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0003A-002 3AO*14Bit V"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0008D-Mxxx"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0016D-Mxxx"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0024D-Mxxx"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0032D-Mxxx"/>						
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0400A-005 RTD"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0400A-006 TC"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0800D-003 NPN8DI"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0404D-003 NPN4DI4DO Fixed"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0404D-013 NPN4DI4DO M8 Fixed"/>	
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0800D-013 NPN8DI M8"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0800D-Mxxx"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-08UP-Mxxx"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-08UN-003 NPN8UP M12"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-08UN-013 NPN8UP M8"/>		
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0008D-003 NPN8DO M12"/>
+						<ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0008D-013 NPN8DO M8"/>			
+                        <ModuleItemRef AllowedInSlots="1..64" ModuleItemTarget="SPDB-0404D-Mxxx"/>						
+					</UseableModules>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="ID_SPIDER67GATEWAY_DAP2" SubmoduleIdentNumber="0x0001">
+							<IOData/>
+                             <RecordDataList>                                                                       
+                              <ParameterRecordDataItem Index="124" Length="5" TransferSequence="0">
+                                <Name TextId="Spider_67_Gateway_Parameter"/>                  
+                                <!-- monitor VOUT Voltage -->
+                                <Const Data="0x00" ByteOffset="0"/>
+                                <!-- spider67 module number of each channel -->
+                                <Const Data="0x00" ByteOffset="1"/>                             
+                                <Const Data="0x00" ByteOffset="2"/>
+								<Const Data="0x00" ByteOffset="3"/>
+								<Ref ValueItemTarget="Off line action" DataType="Bit" ByteOffset="0" BitOffset="0" DefaultValue="1" AllowedValues="0..1" Changeable="true" Visible="true" TextId="TXT_Par_OffLineAction"/>
+								<!--<Const Data="0x00" ByteOffset="4"/>  -->
+                                <!-- Parameters -->                                
+                                <Ref ValueItemTarget="Monitor UO" DataType="Bit" ByteOffset="0" BitOffset="1" DefaultValue="0" AllowedValues="0..1" Changeable="true" Visible="true" TextId="TXT_Par_MonitorUO"/>                   
+                                <Ref DataType="Unsigned8" ByteOffset="1" DefaultValue="0" AllowedValues="0..63" Changeable="true" Visible="true" TextId="TXT_Par_PortN0umber"/>                   
+                                <Ref DataType="Unsigned8" ByteOffset="2" DefaultValue="0" AllowedValues="0..63" Changeable="true" Visible="true" TextId="TXT_Par_PortN1umber"/>
+                                <Ref DataType="Unsigned8" ByteOffset="3" DefaultValue="0" AllowedValues="0..63" Changeable="true" Visible="true" TextId="TXT_Par_PortN2umber"/>
+                                <Ref DataType="Unsigned8" ByteOffset="4" DefaultValue="0" AllowedValues="0..63" Changeable="true" Visible="true" TextId="TXT_Par_PortN3umbert"/>                   
+                               </ParameterRecordDataItem>
+                             </RecordDataList>							
+                             <ModuleInfo>
+							    <Name TextId="TXT_Module_SPIDER67GATEWAY_MODULE"/>
+                                <InfoText TextId="TXT_Module_SPIDER67GATEWAY_MODULE_Info"/>
+                            </ModuleInfo>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+					<SystemDefinedSubmoduleList>
+						<InterfaceSubmoduleItem ID="IDS_1I" SubslotNumber="32768" SubmoduleIdentNumber="0x0002" SupportedRT_Class="Class2" SupportedRT_Classes="RT_CLASS_1;RT_CLASS_2" TextId="TOK_DAP_InterfaceModule" IsochroneModeSupported="true" SupportedProtocols="SNMP;LLDP" SupportedMibs="MIB2" NetworkComponentDiagnosisSupported="true"> 							
+								<SynchronisationMode SupportedRole="SyncSlave"/>  
+								<ApplicationRelations NumberOfAR="1" NumberOfAdditionalInputCR="0" NumberOfAdditionalMulticastProviderCR="0" NumberOfAdditionalOutputCR="0" NumberOfMulticastConsumerCR="0" PullModuleAlarmSupported="true">														
+							</ApplicationRelations>
+						</InterfaceSubmoduleItem>
+						<PortSubmoduleItem ID="IDS_1P1" SubslotNumber="32769" SubmoduleIdentNumber="0x0003" MAUType="100BASETXFD" TextId="TOK_Port1" PortDeactivationSupported="true" LinkStateDiagnosisCapability="Up+Down" SupportsRingportConfig="false" IsDefaultRingport="false"/>
+						<PortSubmoduleItem ID="IDS_1P2" SubslotNumber="32770" SubmoduleIdentNumber="0x0003" MAUType="100BASETXFD" TextId="TOK_Port2" PortDeactivationSupported="true" LinkStateDiagnosisCapability="Up+Down" SupportsRingportConfig="false" IsDefaultRingport="false"/>
+					</SystemDefinedSubmoduleList>
+					<Graphics>
+						<GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="ID_Graph_1"/>
+					</Graphics>
+				</DeviceAccessPointItem>
+				
+	          
+		</DeviceAccessPointList>
+	        <!-- ============================================ -->
+	        <!--            List of modules                   -->
+	        <!-- ============================================ -->
+
+		
+		<ModuleList>  
+		    <ModuleItem ID="SPDB-0800D-001 8DI" ModuleIdentNumber="0x00000021">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_8InCH"/>
+						<InfoText TextId="TOK_TextId_Module_8InCH_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_1" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Input Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_8InCH_DataItem" Length="1" UseAsBits="true"/>
+					              </Input>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod1 Type"/>
+								    <Const Data="0x21"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_8InCH_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_8InCH_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+			</ModuleItem>	
+
+		    <ModuleItem ID="SPDB-0008D-001 8DO" ModuleIdentNumber="0x00000022">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_8OutCH"/>
+						<InfoText TextId="TOK_TextId_Module_8OutCH_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_2" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					             <Output Consistency="All items consistency">
+							          <DataItem DataType="OctetString" TextId="TOK_8Output_DataItem" Length="1" UseAsBits="true"/>
+					             </Output>
+				            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod2 Type"/>
+								    <Const Data="0x22"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_8OutCH"/>
+								   <InfoText TextId="TOK_TextId_Module_8OutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>
+
+		    <ModuleItem ID="SPDB-08UP-001 8universal" ModuleIdentNumber="0x00000023">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_8InOutCH"/>
+						<InfoText TextId="TOK_TextId_Module_8InOutCH_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_3" SubmoduleIdentNumber="0x0001" API="0">
+				          <IOData>
+					          <Input Consistency="All items consistency">
+							      <DataItem DataType="OctetString" TextId="TOK_8InOut_SubMod_DataItem" Length="1" UseAsBits="true"/>
+					          </Input>
+					          <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8InOut_SubMod_DataItem" Length="1" UseAsBits="true"/>
+					          </Output>
+				          </IOData>
+                            <RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="3" TransferSequence="0">
+								    <Name TextId="TXT_Mod3 Type"/>
+								    <Const Data="0x23,0xff,0xff"/>		
+                                    <Ref ValueItemTarget="Con0 2Pin" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Con0 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con0 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con1 2Pin" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Con1 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con1 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con2 2Pin" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Con2 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con2 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con3 2Pin" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con3 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Con3 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con3 4Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>            							
+							<ModuleInfo>
+							     <Name TextId="TOK_TextId_Module_8InOutCH"/>
+								 <InfoText TextId="TOK_TextId_Module_8InOutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>						
+					</VirtualSubmoduleList>				
+			</ModuleItem>
+			
+		    <ModuleItem ID="SPDB-0006D-001 6DO 2A" ModuleIdentNumber="0x00000024">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_6OutCH_2A"/>
+						<InfoText TextId="TOK_TextId_Module_6OutCH_2A_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_4" SubmoduleIdentNumber="0x0001" API="0">	
+				           <IOData>					
+						       <Output Consistency="All items consistency">
+							      <DataItem DataType="OctetString" TextId="TOK_6Output_DataItem" Length="1" UseAsBits="true"/>
+						      </Output>
+				            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod4 Type"/>
+								    <Const Data="0x24"/>                                                        
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_6OutCH"/>
+								   <InfoText TextId="TOK_TextId_Module_6OutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>
+	
+			</ModuleItem>	
+
+		    <ModuleItem ID="SPDB-0404D-001 4DI4DO Fixed" ModuleIdentNumber="0x00000025">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4InOutFixed"/>
+						<InfoText TextId="TOK_TextId_Module_4OutCHFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_5" SubmoduleIdentNumber="0x0001" API="0">	
+				            <IOData>					
+						        <Input Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4Input_DataItem" Length="1" UseAsBits="true"/>
+						        </Input>							
+						        <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4Output_DataItem" Length="1" UseAsBits="true"/>
+						        </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod5 Type"/>
+								    <Const Data="0x25"/> 							
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_4InOutCH"/>
+								   <InfoText TextId="TOK_TextId_Module_4InOutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>
+					
+			</ModuleItem>				
+
+		    <ModuleItem ID="SPDB-0400A-001 4AI*14Bit I" ModuleIdentNumber="0x00000026">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4AnalogCurrentInFixed"/>
+						<InfoText TextId="TOK_TextId_Module_4AnalogCurrentInFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_6" SubmoduleIdentNumber="0x0001" API="0">	 
+				          <IOData>
+						      <Input Consistency="All items consistency">
+							      <DataItem DataType="OctetString" TextId="TOK_4AnalogCurrentInput_DataItem" Length="8" UseAsBits="true"/>
+						       </Input>	
+				          </IOData>					
+                            <RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="4" TransferSequence="0">
+								    <Name TextId="TXT_Mod6 Type"/>
+								    <Const Data="0x26,0xff,0xff,0x00"/>		
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con3 2Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_4AnalogCurrentInCH"/>
+								   <InfoText TextId="TOK_TextId_Module_4AnalogCurrentInCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>
+					
+			</ModuleItem>		
+
+		    <ModuleItem ID="SPDB-0400A-002 4AI*14Bit V" ModuleIdentNumber="0x00000027">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4AnalogVoltageInFixed"/>
+						<InfoText TextId="TOK_TextId_Module_4AnalogVoltageInFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_7" SubmoduleIdentNumber="0x0001" API="0">		
+				           <IOData>
+						      <Input Consistency="All items consistency">
+							      <DataItem DataType="OctetString" TextId="TOK_4AnalogVoltageInput_DataItem" Length="8" UseAsBits="true"/>
+						      </Input>	
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="4" TransferSequence="0">
+								    <Name TextId="TXT_Mod7 Type"/>
+								    <Const Data="0x27,0xff,0xff,0x00"/>		
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con3 2Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_4AnalogVoltageInCH"/>
+								   <InfoText TextId="TOK_TextId_Module_4AnalogVoltageInCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>						
+					</VirtualSubmoduleList>				
+			</ModuleItem>
+
+		    <ModuleItem ID="SPDB-0004A-001 4AO*14Bit I" ModuleIdentNumber="0x00000028">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4AnalogCurrentOutFixed"/>
+						<InfoText TextId="TOK_TextId_Module_4AnalogCurrentOutFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_8" SubmoduleIdentNumber="0x0001" API="0">
+				           <IOData>
+						         <Output Consistency="All items consistency">
+							          <DataItem DataType="OctetString" TextId="TOK_4AnalogCurrentOutput_DataItem" Length="8" UseAsBits="true"/>
+						         </Output>	
+				            </IOData>	
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="4" TransferSequence="0">
+								    <Name TextId="TXT_Mod8 Type"/>
+								    <Const Data="0x28,0xff,0xff,0x00"/>		
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con3 2Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>    
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_4AnalogCurrentOutCH"/>
+								   <InfoText TextId="TOK_TextId_Module_4AnalogCurrentOutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>						
+					</VirtualSubmoduleList>
+				
+			</ModuleItem>
+			
+		    <ModuleItem ID="SPDB-0004A-002 4AO*14Bit V" ModuleIdentNumber="0x00000029">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4AnalogVoltageOutFixed"/>
+						<InfoText TextId="TOK_TextId_Module_4AnalogVoltageOutFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_9" SubmoduleIdentNumber="0x0001" API="0">	
+			                <IOData>
+						       <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4AnalogVoltageOutput_DataItem" Length="8" UseAsBits="true"/>
+						       </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="4" TransferSequence="0">
+								    <Name TextId="TXT_Mod9 Type"/>
+								    <Const Data="0x29,0xff,0xff,0x00"/>		
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con3 2Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_4AnalogVoltageOutCH"/>
+								   <InfoText TextId="TOK_TextId_Module_4AnalogVoltageOutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>
+ 					
+			</ModuleItem>	
+
+		    <ModuleItem ID="SPDB-008UPA-002 4AIO Universal" ModuleIdentNumber="0x0000002a">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4AnalogCurrentVoltageIn"/>
+						<InfoText TextId="TOK_TextId_Module_4AnalogCurentVoltageIn_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_10" SubmoduleIdentNumber="0x0001" API="0">	
+				          <IOData>
+						      <Input Consistency="All items consistency">
+							      <DataItem DataType="OctetString" TextId="TOK_4AnalogVoltageInput_DataItem" Length="8" UseAsBits="true"/>
+						      </Input>	
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="2" TransferSequence="0">
+								    <Name TextId="TXT_Mod10 Type"/>
+                                    <Const Data="0x2a,0x00"/>
+                                    <Ref ValueItemTarget="Analog Con0 2Pin" DataType="Bit" ByteOffset="1" BitOffset="0" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_AnalogCon0Pin_Conf Type"/>	
+                                    <Ref ValueItemTarget="Analog Con1 2Pin" DataType="Bit" ByteOffset="1" BitOffset="1" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_AnalogCon1Pin_Conf Type"/>	
+                                    <Ref ValueItemTarget="Analog Con2 2Pin" DataType="Bit" ByteOffset="1" BitOffset="2" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_AnalogCon2Pin_Conf Type"/>	 
+                                    <Ref ValueItemTarget="Analog Con3 2Pin" DataType="Bit" ByteOffset="1" BitOffset="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_AnalogCon3Pin_Conf Type"/>								
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_4AnalogCurrentVoltageInCH"/>
+								   <InfoText TextId="TOK_TextId_Module_4AnalogCurrentVoltageIn_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>				
+		    <ModuleItem ID="SPDB-0800D-011 8DI M8" ModuleIdentNumber="0x0000002b">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_8InCHM8"/>
+						<InfoText TextId="TOK_TextId_Module_8InCH_InfoM8"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_11" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Input Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_8InCH_DataItemM8" Length="1" UseAsBits="true"/>
+					              </Input>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod1 TypeM8"/>
+								    <Const Data="0x2b"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_8InCH_ParNameM8"/>
+								<InfoText TextId="TOK_TextId_Module_8InCH_ParName_InfoM8"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>	
+		    <ModuleItem ID="SPDB-0008D-011 8DO M8" ModuleIdentNumber="0x0000002c">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_8OutCHM8"/>
+						<InfoText TextId="TOK_TextId_Module_8OutCH_InfoM8"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_12" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					             <Output Consistency="All items consistency">
+							          <DataItem DataType="OctetString" TextId="TOK_8Output_DataItem" Length="1" UseAsBits="true"/>
+					             </Output>
+				            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod2 TypeM8"/>
+								    <Const Data="0x2c"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_8OutCHM8"/>
+								   <InfoText TextId="TOK_TextId_Module_8OutCH_InfoM8"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>	
+
+			<ModuleItem ID="SPDB-0404D-011 M8 4DI4DO Fixed" ModuleIdentNumber="0x0000002d">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4InOutFixedM8"/>
+						<InfoText TextId="TOK_TextId_Module_4OutCHFixed_InfoM8"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_13" SubmoduleIdentNumber="0x0001" API="0">	
+				            <IOData>					
+						        <Input Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4Input_DataItemM8" Length="1" UseAsBits="true"/>
+						        </Input>							
+						        <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4Output_DataItemM8" Length="1" UseAsBits="true"/>
+						        </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod5 TypeM8"/>
+								    <Const Data="0x2d"/> 							
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_4InOutCHM8"/>
+								   <InfoText TextId="TOK_TextId_Module_4InOutCH_InfoM8"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>				
+
+		    <ModuleItem ID="SPDB-08UP-011 M8 8universal" ModuleIdentNumber="0x0000002e">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_8InOutCHM8"/>
+						<InfoText TextId="TOK_TextId_Module_8InOutCH_InfoM8"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_14" SubmoduleIdentNumber="0x0001" API="0">
+				          <IOData>
+					          <Input Consistency="All items consistency">
+							      <DataItem DataType="OctetString" TextId="TOK_8InOut_SubMod_DataItemM8" Length="1" UseAsBits="true"/>
+					          </Input>
+					          <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8InOut_SubMod_DataItemM8" Length="1" UseAsBits="true"/>
+					          </Output>
+				          </IOData>
+                            <RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="3" TransferSequence="0">
+								    <Name TextId="TXT_Mod3 TypeM8"/>
+								    <Const Data="0x2e,0xff,0xff"/>		
+                                    <Ref ValueItemTarget="Con0 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con0 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con1 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con1 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con2 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con2 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con3 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con3 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con4 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con4 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con5 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con5 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con6 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con6 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con7 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con7 4Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>            							
+							<ModuleInfo>
+							     <Name TextId="TOK_TextId_Module_8InOutCHM8"/>
+								 <InfoText TextId="TOK_TextId_Module_8InOutCH_InfoM8"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>						
+					</VirtualSubmoduleList>				
+			</ModuleItem>
+
+		    <ModuleItem ID="SPDB-0300A-001 3AI*14Bit I" ModuleIdentNumber="0x0000002f">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_3AnalogCurrentInFixed"/>
+						<InfoText TextId="TOK_TextId_Module_3AnalogCurrentInFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_15" SubmoduleIdentNumber="0x0001" API="0">	 
+				          <IOData>
+						      <Input Consistency="All items consistency">
+							      <DataItem DataType="OctetString" TextId="TOK_3AnalogCurrentInput_DataItem" Length="6" UseAsBits="true"/>
+						       </Input>	
+				          </IOData>					
+                            <RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="4" TransferSequence="0">
+								    <Name TextId="TXT_Mod Current Input Type"/>
+								    <Const Data="0x2f,0xff,0x3f,0x00"/>		
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Current Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="3" Changeable="false" Visible="false" TextId="TXT_Par_Analog Con3 2Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_3AnalogCurrentInCH"/>
+								   <InfoText TextId="TOK_TextId_Module_3AnalogCurrentInCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>
+					
+			</ModuleItem>		
+
+		    <ModuleItem ID="SPDB-0300A-002 3AI*14Bit V" ModuleIdentNumber="0x00000030">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_3AnalogVoltageInFixed"/>
+						<InfoText TextId="TOK_TextId_Module_3AnalogVoltageInFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_16" SubmoduleIdentNumber="0x0001" API="0">		
+				           <IOData>
+						      <Input Consistency="All items consistency">
+							      <DataItem DataType="OctetString" TextId="TOK_3AnalogVoltageInput_DataItem" Length="6" UseAsBits="true"/>
+						      </Input>	
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="4" TransferSequence="0">
+								    <Name TextId="TXT_Mod Voltage Input Type"/>
+								    <Const Data="0x30,0xff,0x4f,0x00"/>		
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Voltage Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="4" Changeable="false" Visible="false" TextId="TXT_Par_Analog Con3 2Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_3AnalogVoltageInCH"/>
+								   <InfoText TextId="TOK_TextId_Module_3AnalogVoltageInCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>						
+					</VirtualSubmoduleList>				
+			</ModuleItem>
+
+		    <ModuleItem ID="SPDB-0003A-001 3AO*14Bit I" ModuleIdentNumber="0x00000031">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_3AnalogCurrentOutFixed"/>
+						<InfoText TextId="TOK_TextId_Module_3AnalogCurrentOutFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_17" SubmoduleIdentNumber="0x0001" API="0">
+				           <IOData>
+						         <Output Consistency="All items consistency">
+							          <DataItem DataType="OctetString" TextId="TOK_3AnalogCurrentOutput_DataItem" Length="6" UseAsBits="true"/>
+						         </Output>	
+				            </IOData>	
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="4" TransferSequence="0">
+								    <Name TextId="TXT_Mod Current Output Type"/>
+								    <Const Data="0x31,0xff,0xff,0x00"/>		
+                                    <Ref ValueItemTarget="Output Current Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Output Current Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Output Current Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Output Current Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con3 2Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>    
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_3AnalogCurrentOutCH"/>
+								   <InfoText TextId="TOK_TextId_Module_3AnalogCurrentOutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>						
+					</VirtualSubmoduleList>
+				
+			</ModuleItem>
+			
+		    <ModuleItem ID="SPDB-0003A-002 3AO*14Bit V" ModuleIdentNumber="0x00000032">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_3AnalogVoltageOutFixed"/>
+						<InfoText TextId="TOK_TextId_Module_3AnalogVoltageOutFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_18" SubmoduleIdentNumber="0x0001" API="0">	
+			                <IOData>
+						       <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_18AnalogVoltageOutput_DataItem" Length="6" UseAsBits="true"/>
+						       </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="4" TransferSequence="0">
+								    <Name TextId="TXT_Mod Voltage Output Type"/>
+								    <Const Data="0x32,0xff,0x4f,0x00"/>		
+                                    <Ref ValueItemTarget="Output Voltage Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Output Voltage Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Output Voltage Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_Analog Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Output Voltage Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="4" Changeable="false" Visible="false" TextId="TXT_Par_Analog Con3 2Pin Conf"/>
+                                </ParameterRecordDataItem>
+                            </RecordDataList>
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_3AnalogVoltageOutCH"/>
+								   <InfoText TextId="TOK_TextId_Module_3AnalogVoltageOutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList> 					
+			</ModuleItem>				
+		    <ModuleItem ID="SPDB-0008D-Mxxx" ModuleIdentNumber="0x00000033">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_8CHValve"/>
+						<InfoText TextId="TOK_TextId_Module_8CHValve_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_19" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Output Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_8CHValve_DataItem" Length="1" UseAsBits="true"/>
+					              </Output>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_8CHValveMod Type"/>
+								    <Const Data="0x33"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_8CHValve_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_8CHValve_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>				
+		    <ModuleItem ID="SPDB-0016D-Mxxx" ModuleIdentNumber="0x00000034">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_16CHValve"/>
+						<InfoText TextId="TOK_TextId_Module_16CHValve_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_20" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Output Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_16CHValve_DataItem" Length="2" UseAsBits="true"/>
+					              </Output>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_16CHValveMod Type"/>
+								    <Const Data="0x34"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_16CHValve_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_16CHValve_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>	
+		    <ModuleItem ID="SPDB-0024D-Mxxx" ModuleIdentNumber="0x00000035">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_24CHValve"/>
+						<InfoText TextId="TOK_TextId_Module_24CHValve_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_21" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Output Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_24CHValve_DataItem" Length="3" UseAsBits="true"/>
+					              </Output>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_24CHValveMod Type"/>
+								    <Const Data="0x35"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_24CHValve_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_24CHValve_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>	
+		    <ModuleItem ID="SPDB-0032D-Mxxx" ModuleIdentNumber="0x00000036">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_32CHValve"/>
+						<InfoText TextId="TOK_TextId_Module_32CHValve_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_22" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Output Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_32CHValve_DataItem" Length="4" UseAsBits="true"/>
+					              </Output>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_32CHValveMod Type"/>
+								    <Const Data="0x36"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_32CHValve_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_32CHValve_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>	
+
+		    <ModuleItem ID="SPDB-0800D-013 NPN8DI M8" ModuleIdentNumber="0x00000037">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_NPN8InCHM8"/>
+						<InfoText TextId="TOK_TextId_Module_NPN8InCH_InfoM8"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_27" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Input Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_NPN8InCH_DataItemM8" Length="1" UseAsBits="true"/>
+					              </Input>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod26 Type"/>
+								    <Const Data="0x2b"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_NPN8InCH_ParNameM8"/>
+								<InfoText TextId="TOK_TextId_Module_NPN8InCH_ParName_InfoM8"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>				
+                            
+			<ModuleItem ID="SPDB-0404D-013 NPN4DI4DO M8 Fixed" ModuleIdentNumber="0x00000038">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_NPN4InOutFixedM8"/>
+						<InfoText TextId="TOK_TextId_Module_NPN4OutCHFixed_InfoM8"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_38" SubmoduleIdentNumber="0x0001" API="0">	
+				            <IOData>					
+						        <Input Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4Input_NPNDataItemM8" Length="1" UseAsBits="true"/>
+						        </Input>							
+						        <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4Output_NPNDataItemM8" Length="1" UseAsBits="true"/>
+						        </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod28 TypeM8"/>
+								    <Const Data="0x38"/> 							
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_NPN4InOutCHM8"/>
+								   <InfoText TextId="TOK_TextId_Module_NPN4InOutCH_InfoM8"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>					
+			
+		    <ModuleItem ID="SPDB-0800D-003 NPN8DI" ModuleIdentNumber="0x00000039">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_NPN8InCH"/>
+						<InfoText TextId="TOK_TextId_Module_NPN8InCH_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_25" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Input Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_NPN8InCH_DataItem" Length="1" UseAsBits="true"/>
+					              </Input>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod25 Type"/>
+								    <Const Data="0x39"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_NPN8InCH_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_NPN8InCH_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+			</ModuleItem>	
+		    <ModuleItem ID="SPDB-0404D-003 NPN4DI4DO Fixed" ModuleIdentNumber="0x00000040">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_NPN4InOutFixed"/>
+						<InfoText TextId="TOK_TextId_Module_NPN4OutCHFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_26" SubmoduleIdentNumber="0x0001" API="0">	
+				            <IOData>					
+						        <Input Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4Input_NPNDataItem" Length="1" UseAsBits="true"/>
+						        </Input>							
+						        <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_4Output_NPNDataItem" Length="1" UseAsBits="true"/>
+						        </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod26 Type"/>
+								    <Const Data="0x40"/> 							
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_NPN4InOutCH"/>
+								   <InfoText TextId="TOK_TextId_Module_NPN4InOutCH_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>			
+		    <ModuleItem ID="SPDB-0400A-005 RTD" ModuleIdentNumber="0x00000041">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4CHRTD"/>
+						<InfoText TextId="TOK_TextId_Module_4CHRTD_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_23" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Input Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_4CHRTD_DataItem" Length="8" UseAsBits="true"/>
+					              </Input>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="5" TransferSequence="0">
+								    <Name TextId="TXT_Mod RTD Input Type"/>
+								    <Const Data="0x41,0x00,0x00,0x00,0x00"/>	
+									<Ref ValueItemTarget="RTD Wire Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_RTD CH0 Wire Setting"/>
+                                    <Ref ValueItemTarget="RTD Type Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_RTD CH0 Type Setting"/>									
+									<Ref ValueItemTarget="RTD Wire Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_RTD CH1 Wire Setting"/>
+                                    <Ref ValueItemTarget="RTD Type Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_RTD CH1 Type Setting"/>	
+									<Ref ValueItemTarget="RTD Wire Setting" DataType="BitArea" ByteOffset="3" BitOffset="0" BitLength="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_RTD CH2 Wire Setting"/>
+                                    <Ref ValueItemTarget="RTD Type Setting" DataType="BitArea" ByteOffset="3" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_RTD CH2 Type Setting"/>	
+									<Ref ValueItemTarget="RTD Wire Setting" DataType="BitArea" ByteOffset="4" BitOffset="0" BitLength="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_RTD CH3 Wire Setting"/>
+                                    <Ref ValueItemTarget="RTD Type Setting" DataType="BitArea" ByteOffset="4" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_RTD CH3 Type Setting"/>										
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_4CHRTD_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_4CHRTD_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>	
+		    <ModuleItem ID="SPDB-0400A-006 TC" ModuleIdentNumber="0x00000042">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_4CHTC"/>
+						<InfoText TextId="TOK_TextId_Module_4CHTC_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_24" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Input Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_4CHTC_DataItem" Length="8" UseAsBits="true"/>
+					              </Input>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="5" TransferSequence="0">
+								    <Name TextId="TXT_Mod TC Input Type"/>
+								    <Const Data="0x42,0x00,0x00,0x00,0x00"/>	
+									<Ref ValueItemTarget="TC Mode Setting" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_TC CH0 Mode Setting"/>
+                                    <Ref ValueItemTarget="TC Type Setting" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_TC CH0 Type Setting"/>									
+									<Ref ValueItemTarget="TC Mode Setting" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_TC CH1 Mode Setting"/>
+                                    <Ref ValueItemTarget="TC Type Setting" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_TC CH1 Type Setting"/>	
+									<Ref ValueItemTarget="TC Mode Setting" DataType="BitArea" ByteOffset="3" BitOffset="0" BitLength="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_TC CH2 Mode Setting"/>
+                                    <Ref ValueItemTarget="TC Type Setting" DataType="BitArea" ByteOffset="3" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_TC CH2 Type Setting"/>	
+									<Ref ValueItemTarget="TC Mode Setting" DataType="BitArea" ByteOffset="4" BitOffset="0" BitLength="3" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_TC CH3 Mode Setting"/>
+                                    <Ref ValueItemTarget="TC Type Setting" DataType="BitArea" ByteOffset="4" BitOffset="4" BitLength="4" DefaultValue="0" Changeable="true" Visible="true" TextId="TXT_Par_TC CH3 Type Setting"/>										
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_4CHTC_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_4CHTC_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>	
+
+			
+					
+
+			<ModuleItem ID="SPDB-0800D-Mxxx" ModuleIdentNumber="0x00000043">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_CablePNP8InFixed"/>
+						<InfoText TextId="TOK_TextId_Module_CablePNP8InFixed_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_43" SubmoduleIdentNumber="0x0001" API="0">	
+				            <IOData>					
+						        <Input Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8In_PNPDataItemCable" Length="1" UseAsBits="true"/>
+						        </Input>							
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Mod43 TypeCable"/>
+								    <Const Data="0x43"/> 							
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_8InCH_PNPCable"/>
+								   <InfoText TextId="TOK_TextId_Module_8InCH_InfoPNPCable"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>	
+			<ModuleItem ID="SPDB-08UN-003 NPN8UP M12" ModuleIdentNumber="0x00000044">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_NPN8InOutConfigurableM12"/>
+						<InfoText TextId="TOK_TextId_Module_NPN8InOutConfigurable_InfoM12"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_44" SubmoduleIdentNumber="0x0001" API="0">	
+				            <IOData>					
+						        <Input Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8Input_NPNDataItemM12" Length="1" UseAsBits="true"/>
+						        </Input>							
+						        <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8Output_NPNDataItemM12" Length="1" UseAsBits="true"/>
+						        </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="3" TransferSequence="0">
+								    <Name TextId="TXT_Mod44 TypeM12"/>
+								    <Const Data="0x44,0xff,0xff"/>		
+                                    <Ref ValueItemTarget="Con0 2Pin" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con0 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Con0 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con0 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con1 2Pin" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con1 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Con1 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con1 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con2 2Pin" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con2 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Con2 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con2 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con3 2Pin" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con3 2Pin Conf"/>
+                                    <Ref ValueItemTarget="Con3 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con3 4Pin Conf"/>						
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_NPN8InOutCHM12"/>
+								   <InfoText TextId="TOK_TextId_Module_NPN8InOutCH_InfoM12"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>	
+
+			<ModuleItem ID="SPDB-08UN-013 NPN8UP M8" ModuleIdentNumber="0x00000045">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_NPN8InOutCHConfigurabledM8"/>
+						<InfoText TextId="TOK_TextId_Module_NPN8InOutCHConfigurable_InfoM8"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_45" SubmoduleIdentNumber="0x0001" API="0">	
+				            <IOData>					
+						        <Input Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8Input_NPNDataItemM8" Length="1" UseAsBits="true"/>
+						        </Input>							
+						        <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8Output_NPNDataItemM8" Length="1" UseAsBits="true"/>
+						        </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="3" TransferSequence="0">
+								    <Name TextId="TXT_Mod45 TypeM8"/>
+								    <Const Data="0x45,0xff,0xff"/>		
+                                    <Ref ValueItemTarget="Con0 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con0 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con1 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con1 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con2 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con2 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con3 4Pin" DataType="BitArea" ByteOffset="1" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con3 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con4 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con4 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con5 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con5 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con6 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con6 4Pin Conf"/>
+                                    <Ref ValueItemTarget="Con7 4Pin" DataType="BitArea" ByteOffset="2" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module3 Con7 4Pin Conf"/>
+                                </ParameterRecordDataItem>	
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_NPN8InOutConfigurableCHM8"/>
+								   <InfoText TextId="TOK_TextId_Module_NPN8InOutCHConfigurableCH_InfoM8"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>					
+			<ModuleItem ID="SPDB-08UP-Mxxx" ModuleIdentNumber="0x00000046">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_PNP8InOutConfigured_cable"/>
+						<InfoText TextId="TOK_TextId_Module_PNP8InOutConfigured_InfoCable"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_46" SubmoduleIdentNumber="0x0001" API="0">	
+				            <IOData>					
+						        <Input Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8Input_PNPConfiguredDataItemCable" Length="1" UseAsBits="true"/>
+						        </Input>							
+						        <Output Consistency="All items consistency">
+							       <DataItem DataType="OctetString" TextId="TOK_8Output_PNPConfiguredDataItemCable" Length="1" UseAsBits="true"/>
+						        </Output>
+				            </IOData>					
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="3" TransferSequence="0">
+								    <Name TextId="TXT_Mod46 TypeCable"/>
+								    <Const Data="0x46,0xff,0xff"/>		
+                                    <Ref ValueItemTarget="CH0Cable" DataType="BitArea" ByteOffset="1" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module46 CH0Cable Conf"/>
+                                    <Ref ValueItemTarget="CH1Cable" DataType="BitArea" ByteOffset="1" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module46 CH1Cable Conf"/>
+                                    <Ref ValueItemTarget="CH2Cable" DataType="BitArea" ByteOffset="1" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module46 CH2Cable Conf"/>
+                                    <Ref ValueItemTarget="CH3Cable" DataType="BitArea" ByteOffset="1" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module46 CH3Cable Conf"/>
+                                    <Ref ValueItemTarget="CH4Cable" DataType="BitArea" ByteOffset="2" BitOffset="0" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module46 CH4Cable Conf"/>
+                                    <Ref ValueItemTarget="CH5Cable" DataType="BitArea" ByteOffset="2" BitOffset="2" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module46 CH5Cable Conf"/>
+                                    <Ref ValueItemTarget="CH6Cable" DataType="BitArea" ByteOffset="2" BitOffset="4" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module46 CH6Cable Conf"/>
+                                    <Ref ValueItemTarget="CH7Cable" DataType="BitArea" ByteOffset="2" BitOffset="6" BitLength="2" DefaultValue="3" Changeable="true" Visible="true" TextId="TXT_Par_Module46 CH7Cable Conf"/>							
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  
+							<ModuleInfo>
+								   <Name TextId="TOK_TextId_Module_PNP8InOutConfiguredCHCable"/>
+								   <InfoText TextId="TOK_TextId_Module_PNP8InOutConfiguredCH_InfoCable"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>					
+					</VirtualSubmoduleList>					
+			</ModuleItem>
+		    <ModuleItem ID="SPDB-0008D-013 NPN8DO M8" ModuleIdentNumber="0x00000047">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_NPN8OutputM8CHM8"/>
+						<InfoText TextId="TOK_TextId_Module_8CHNPNOutM8_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_47" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Output Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_8CHNPNOutM8_DataItem" Length="1" UseAsBits="true"/>
+					              </Output>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_8CHNPNOutM8Mod Type"/>
+								    <Const Data="0x47"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_8CHNPNOutM8_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_8CHNPNOutM8_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>		
+		
+		    <ModuleItem ID="SPDB-0008D-003 NPN8DO M12" ModuleIdentNumber="0x00000048">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_NPN8OutputCH"/>
+						<InfoText TextId="TOK_TextId_Module_8CHNPNOut_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_48" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Output Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_8CHNPNOut_DataItem" Length="1" UseAsBits="true"/>
+					              </Output>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_8CHNPNOutMod Type"/>
+								    <Const Data="0x48"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_8CHNPNOut_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_8CHNPNOut_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>	
+
+		    <ModuleItem ID="SPDB-0404D-Mxxx" ModuleIdentNumber="0x00000049">
+					<ModuleInfo>
+						<Name TextId="TOK_TextId_Module_Cable4DIOCH"/>
+						<InfoText TextId="TOK_TextId_Module_Cable4DIO_Info"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="SPDB_SubModule_49" SubmoduleIdentNumber="0x0001" API="0">
+				            <IOData>
+					              <Input Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_Cable4DIO_InputDataItem" Length="1" UseAsBits="true"/>
+					              </Input>							
+					              <Output Consistency="All items consistency">
+						              <DataItem DataType="OctetString" TextId="TOK_Cable4DIO_OutputDataItem" Length="1" UseAsBits="true"/>
+					              </Output>
+                            </IOData>
+							<RecordDataList>
+                                <ParameterRecordDataItem Index="123" Length="1" TransferSequence="0">
+								    <Name TextId="TXT_Cable4DIOMod Type"/>
+								    <Const Data="0x49"/>  	
+                                </ParameterRecordDataItem>
+                            </RecordDataList>  								
+							<ModuleInfo> 
+							    <Name TextId="TOK_TextId_Module_Cable4DIO_ParName"/>
+								<InfoText TextId="TOK_TextId_Module_Cable4DIO_ParName_Info"/>
+							</ModuleInfo>
+							<PROFIenergy/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>				
+			</ModuleItem>					
+			
+		</ModuleList>
+	
+    <ValueList>                        
+        <!-- Device Parameters (preliminary!!!) -->
+		<ValueItem ID="TC Mode Setting">
+			<Help TextId="TC Mode Setting"/>
+			<Assignments>                  
+					<Assign Content="0" TextId="Inactive"/>
+					<Assign Content="1" TextId="Internal Compensation"/>	  
+					<Assign Content="2" TextId="External Compensation"/>	  					
+			</Assignments> 
+		</ValueItem>
+		<ValueItem ID="TC Type Setting">
+			<Help TextId="TC Type Setting"/>
+			<Assignments>                  
+					<Assign Content="0" TextId="K Type TC"/>
+					<Assign Content="1" TextId="J Type TC"/>  	
+					<Assign Content="2" TextId="N Type TC"/>	
+					<Assign Content="3" TextId="E Type TC"/>			
+					<Assign Content="4" TextId="B Type TC"/>
+					<Assign Content="5" TextId="S Type TC"/>  	
+					<Assign Content="6" TextId="T Type TC"/>	
+					<Assign Content="7" TextId="R Type TC"/>	
+					<Assign Content="8" TextId="C Type TC"/>				
+			</Assignments> 
+		</ValueItem>				
+		
+		<ValueItem ID="RTD Wire Setting">
+			<Help TextId="RTD Wire Setting"/>
+			<Assignments>                  
+					<Assign Content="0" TextId="Inactive"/>
+					<Assign Content="1" TextId="2-Wire type"/>	  
+					<Assign Content="2" TextId="3-Wire type"/>
+					<Assign Content="3" TextId="4-Wire type"/>	  					
+			</Assignments> 
+		</ValueItem>
+		<ValueItem ID="RTD Type Setting">
+			<Help TextId="RTD Type Setting"/>
+			<Assignments>                  
+					<Assign Content="0" TextId="Pt100 RTD"/>
+					<Assign Content="1" TextId="Pt200 RTD"/>  	
+					<Assign Content="2" TextId="Pt500 RTD"/>	
+					<Assign Content="3" TextId="Pt1000 RTD"/>			
+					<Assign Content="4" TextId="Ni100 RTD"/>
+					<Assign Content="5" TextId="Ni200 RTD"/>  	
+					<Assign Content="6" TextId="Ni500 RTD"/>	
+					<Assign Content="7" TextId="Ni1000 RTD"/>	
+					<Assign Content="8" TextId="150 Ohm"/>
+					<Assign Content="9" TextId="300 Ohm"/>  	
+					<Assign Content="10" TextId="1000 Ohm"/>	
+					<Assign Content="11" TextId="3000 Ohm"/>						
+			</Assignments> 
+		</ValueItem>		
+        <ValueItem ID="Module Type1">        
+          <Help TextId="Txt_Help_Module Type1"/>
+        </ValueItem> 
+        <ValueItem ID="Module Type2">        
+          <Help TextId="Txt_Help_Module Type2"/>
+        </ValueItem> 
+        <ValueItem ID="Module Type3">        
+          <Help TextId="Txt_Help_Module Type3"/>
+        </ValueItem> 
+        <ValueItem ID="Module Type4">        
+          <Help TextId="Txt_Help_Module Type4"/>
+        </ValueItem> 
+        <ValueItem ID="Module Type5">        
+          <Help TextId="Txt_Help_Module Type5"/>
+        </ValueItem> 
+        <ValueItem ID="Module Type6">        
+          <Help TextId="Txt_Help_Module Type6"/>
+        </ValueItem> 
+		
+        <ValueItem ID="Module Type7">        
+          <Help TextId="Txt_Help_Module Type7"/>
+        </ValueItem> 			
+        <ValueItem ID="Module Type8">        
+          <Help TextId="Txt_Help_Module Type8"/>
+        </ValueItem> 			
+        <ValueItem ID="Module Type9">        
+          <Help TextId="Txt_Help_Module Type9"/>
+        </ValueItem> 		
+        <ValueItem ID="Module Type10">        
+          <Help TextId="Txt_Help_Module Type10"/>
+        </ValueItem> 
+        <ValueItem ID="Module Type11">        
+          <Help TextId="Txt_Help_Module Type11"/>
+        </ValueItem> 
+		
+		<ValueItem ID="Monitor UO">
+          <Help TextId="Txt_Help_MonitorUO_Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="MonitorUO disable"/>
+              <Assign Content="1" TextId="MonitorUO enable"/>	  
+          </Assignments>    
+        </ValueItem> 			
+        <ValueItem ID="Con0 2Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign> -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+        <ValueItem ID="Con0 4Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign> -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 
+
+        <ValueItem ID="Con1 2Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+        <ValueItem ID="Con1 4Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 
+
+        <ValueItem ID="Con2 2Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+        <ValueItem ID="Con2 4Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 		
+	
+        <ValueItem ID="Con3 2Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+        <ValueItem ID="Con3 4Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+		
+       <ValueItem ID="Con4 4Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+
+       <ValueItem ID="Con5 4Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+		
+       <ValueItem ID="Con6 4Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+
+       <ValueItem ID="Con7 4Pin">        
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+        <ValueItem ID="CH0Cable">
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>  		
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+		
+        <ValueItem ID="CH1Cable">
+		  <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>  
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 		
+        <ValueItem ID="CH2Cable">
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>  		
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 
+        <ValueItem ID="CH3Cable">
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>  		
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 
+        <ValueItem ID="CH4Cable">
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>  		
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 	
+        <ValueItem ID="CH5Cable">
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>  		
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 
+        <ValueItem ID="CH6Cable">
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>  		
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 
+        <ValueItem ID="CH7Cable">
+          <Help TextId="Txt_Help_Channel InOut Configure"/>
+		  <Assignments>  		
+              <Assign Content="0" TextId="Input Configure"/>
+            <!--  <Assign Content="1" TextId="Input Inverted Configure"></Assign>  -->
+              <Assign Content="1" TextId="Output Configure"/>
+              <Assign Content="3" TextId="Output universal Configure"/>			  
+          </Assignments>    
+        </ValueItem> 			
+
+        <ValueItem ID="Analog Con0 2Pin">        
+          <Help TextId="Txt_Help_AnalogChannel In Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="CurrentIn Configure"/>
+              <Assign Content="1" TextId="VoltageIn Configure"/>			  
+          </Assignments>    
+        </ValueItem>
+		
+        <ValueItem ID="Analog Con1 2Pin">        
+          <Help TextId="Txt_Help_AnalogChannel In Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="CurrentIn Configure"/>
+              <Assign Content="1" TextId="VoltageIn Configure"/>			  
+          </Assignments>    
+        </ValueItem>
+
+        <ValueItem ID="Analog Con2 2Pin">        
+          <Help TextId="Txt_Help_AnalogChannel In Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="CurrentIn Configure"/>
+              <Assign Content="1" TextId="VoltageIn Configure"/>			  
+          </Assignments>    
+        </ValueItem>
+
+        <ValueItem ID="Analog Con3 2Pin">        
+          <Help TextId="Txt_Help_AnalogChannel In Configure"/>
+		  <Assignments>                  
+              <Assign Content="0" TextId="CurrentIn Configure"/>
+              <Assign Content="1" TextId="VoltageIn Configure"/>			  
+          </Assignments>    
+        </ValueItem>		
+		<ValueItem ID="Voltage Setting">
+		   <Help TextId="Txt_Help_Voltage_Setting Configure"/>
+		   <Assignments>
+		      <Assign Content="0" TextId="0-10V"/>
+			  <Assign Content="1" TextId="-10V-+10V"/>
+			  <Assign Content="2" TextId="0-5V"/>
+			  <Assign Content="3" TextId="-5-+5V"/>
+			  <Assign Content="4" TextId="Channel Off"/>
+		   </Assignments>
+		</ValueItem>
+		<ValueItem ID="Current Setting">
+		   <Help TextId="Txt_Help_Current_Setting Configure"/>
+		   <Assignments>
+		      <Assign Content="0" TextId="0-20mA"/>
+			  <Assign Content="1" TextId="4-20mA"/>
+			  <Assign Content="2" TextId="-20-+20mA"/>
+			  <Assign Content="3" TextId="Channel Off"/>
+		   </Assignments>
+		</ValueItem>		
+
+		<ValueItem ID="Output Voltage Setting">
+		   <Help TextId="Txt_Help_Voltage_Setting Configure"/>
+		   <Assignments>
+		      <Assign Content="0" TextId="0-10V"/>
+			<!--  <Assign Content="1" TextId="-10V-+10V"></Assign>  -->
+			  <Assign Content="2" TextId="0-5V"/>
+			<!--  <Assign Content="3" TextId="-5-+5V"></Assign>  -->
+			  <Assign Content="4" TextId="Channel Off"/>
+		   </Assignments>
+		</ValueItem>
+		<ValueItem ID="Output Current Setting">
+		   <Help TextId="Txt_Help_Current_Setting Configure"/>
+		   <Assignments>
+		      <Assign Content="0" TextId="0-20mA"/>
+			  <Assign Content="1" TextId="4-20mA"/>
+			<!--  <Assign Content="2" TextId="-20-+20mA"></Assign>  -->
+			  <Assign Content="3" TextId="Channel Off"/>
+		   </Assignments>
+		</ValueItem>
+		<ValueItem ID="Off line action">
+			<Help TextId="Txt_Help_Offline_Actiong Setting"/>
+			<Assignments>
+				<Assign Content="0" TextId="Hold as Old Output"/>
+				<Assign Content="1" TextId="Reset to Zero"/>
+			</Assignments>
+		</ValueItem>
+		
+		
+	</ValueList>  
+
+  
+			<GraphicsList>
+				<GraphicItem ID="ID_Graph_1" GraphicFile="GSDML-0202-0003-IP67GATEWAY"/>		
+				<GraphicItem ID="ID_Graph_2" GraphicFile="GSDML-0202-0003-IP67GATEWAY"/>
+				<GraphicItem ID="ID_Graph_3" GraphicFile="GSDML-0202-0003-IP67GATEWAY"/>
+				<GraphicItem ID="ID_Graph_4" GraphicFile="GSDML-0202-0003-IP67GATEWAY"/>
+			</GraphicsList>
+			<CategoryList>
+				<CategoryItem ID="ID_SPIDER67_Gateway" TextId="TXT_Category_SPIDER67GATEWAYMODULE"/>
+			</CategoryList>
+	        <!-- ============================================ -->
+	        <!--     language dependent text lists            -->
+	        <!-- ============================================ -->
+			<ExternalTextList>
+	            <!-- ============================= -->
+	            <!--    primary language: english  -->
+	            <!-- ============================= -->
+				<PrimaryLanguage>
+				    <Text TextId="TXT_SPIDER67GATEWAYMODULE_InfoText" Value="Spider 67 Profinet Gateway module"/>					
+			        <Text TextId="ELCO" Value="ELCO"/>		
+					<Text TextId="SPPN-GW-001" Value="Spider 67 Profinet Gateway 001"/>
+					<Text TextId="TXT_Category_SPIDER67GATEWAYMODULE" Value="Spider67 Gateway Module"/>
+                    <Text TextId="TXT_SPIDER67GATEWAY_DAP1" Value="Spider67 Gateway Device Access Pointer No PDEV"/>	
+                    <Text TextId="TXT_SPIDER67GATEWAY_DAP1_Info" Value="Spider67 Gateway Device Access Pointer NO PEDV"/>
+					<Text TextId="TXT_Module_SPIDER67GATEWAY_NOPDEVMODULE" Value="spider 67 Gateway No Pdev Module"/>
+					
+                    <Text TextId="TXT_Module_SPIDER67GATEWAY_NOPDEVMODULE_Info" Value="spider 67 Gateway No Pdev Module information"/>  
+					<Text TextId="Spider_67_Gateway_NoPdev_Parameter" Value="Spider 67 Gateway No Pdev parameter"/>
+					
+					<Text TextId="Spider_67_Gateway_Parameter" Value="Spider 67 Gateway parameter"/>
+					<Text TextId="TXT_Module_SPIDER67GATEWAY_MODULE" Value="spider 67 Gateway Module"/>
+                    <Text TextId="TXT_Module_SPIDER67GATEWAY_MODULE_Info" Value="spider 67 Gateway Module information"/>  
+                    <Text TextId="TXT_SPIDER67GATEWAY_DAP2" Value="SPPN-GW-001 "/>	
+                    <Text TextId="TXT_SPIDER67GATEWAY_DAP2_Info" Value="Spider67 Gateway Device Access Pointer "/>
+                    <Text TextId="Input Configure" Value="Input"/>
+					<Text TextId="Txt_Help_MonitorUO_Configure" Value="Monitor VOUT configurable"/>
+		            <Text TextId="MonitorUO disable" Value="disable"/>
+                    <Text TextId="MonitorUO enable" Value="enable"/>
+                    <Text TextId="Input Inverted Configure" Value="Input Inverted"/>
+                    <Text TextId="Output Configure" Value="Output"/>
+                    <Text TextId="Output universal Configure" Value="Output universal"/>
+                    <Text TextId="CurrentIn Configure" Value="0-20mA Current"/>
+                    <Text TextId="VoltageIn Configure" Value="0-10V Voltage"/>	
+					<Text TextId="Txt_Help_AnalogChannel In Configure" Value="Analog channel current/voltage configure"/>					
+                    <Text TextId="Txt_Help_Channel InOut Configure" Value="Channel Input/output configure"/>
+
+					<Text TextId="TOK_8InCH_DataItem" Value="8 channel input module data item"/>
+					<Text TextId="TOK_TextId_Module_8InCH" Value="SPDB-0800D-001 8DI"/>
+					<Text TextId="TOK_TextId_Module_8InCH_Info" Value="8 channel input module information"/>
+					<Text TextId="TOK_TextId_Module_8OutCH" Value="SPDB-0008D-001 8DO"/>
+					<Text TextId="TOK_TextId_Module_8OutCH_Info" Value="8 channel Output Module"/>
+					<Text TextId="TOK_8Output_DataItem" Value="8 channel Output module data item"/>
+					<Text TextId="TXT_Par_Module2 Type" Value="8 channel Output module parameter"/>
+
+				
+					<Text TextId="TOK_8InOut_DataItem" Value="SPDB-08UP-001 8universal"/>
+					
+					<Text TextId="TXT_Par_Module3 Type" Value="8 channel Input/Output module paramter"/>
+					<Text TextId="TXT_Par_Module3 Con0 2Pin Conf" Value="connector0 pin 2 setting"/>
+					<Text TextId="TXT_Par_Module3 Con0 4Pin Conf" Value="connector0 pin 4 setting"/>
+					<Text TextId="TXT_Par_Module3 Con1 2Pin Conf" Value="connector1 pin 2 setting"/>
+					<Text TextId="TXT_Par_Module3 Con1 4Pin Conf" Value="connector1 pin 4 setting"/>	
+					<Text TextId="TXT_Par_Module3 Con2 2Pin Conf" Value="connector2 pin 2 setting"/>
+					<Text TextId="TXT_Par_Module3 Con2 4Pin Conf" Value="connector2 pin 4 setting"/>
+					<Text TextId="TXT_Par_Module3 Con3 2Pin Conf" Value="connector3 pin 2 setting"/>
+					<Text TextId="TXT_Par_Module3 Con3 4Pin Conf" Value="connector3 pin 4 setting"/>	
+					<Text TextId="TXT_Par_Module3 Con4 2Pin Conf" Value="connector4 pin 2 setting"/>
+					<Text TextId="TXT_Par_Module3 Con4 4Pin Conf" Value="connector4 pin 4 setting"/>
+					<Text TextId="TXT_Par_Module3 Con5 2Pin Conf" Value="connector5 pin 2 setting"/>
+					<Text TextId="TXT_Par_Module3 Con5 4Pin Conf" Value="connector5 pin 4 setting"/>	
+					<Text TextId="TXT_Par_Module3 Con6 2Pin Conf" Value="connector6 pin 2 setting"/>
+					<Text TextId="TXT_Par_Module3 Con6 4Pin Conf" Value="connector6 pin 4 setting"/>
+					<Text TextId="TXT_Par_Module3 Con7 2Pin Conf" Value="connector7 pin 2 setting"/>
+					<Text TextId="TXT_Par_Module3 Con7 4Pin Conf" Value="connector7 pin 4 setting"/>
+					
+					<Text TextId="TOK_TextId_Module_8InOutCH" Value="SPDB-08UP-001 8universal"/>
+					<Text TextId="TOK_TextId_Module_8InOutCH_Info" Value="8 channel input/output module information"/>
+					<Text TextId="TOK_TextId_Module_6OutCH_2A" Value="SPDB-0006D-001 6DO 2A"/>
+					<Text TextId="TOK_TextId_Module_6OutCH_2A_Info" Value="6 channel Output max 2A module information"/>
+					<Text TextId="TOK_6Output_DataItem" Value="6 channel Output max 2A data item"/>
+					<Text TextId="TXT_Par_Module4 Type" Value="6 channel Output max 2A module parameter"/>
+					<Text TextId="TOK_TextId_Module_6OutCH" Value="6 channel Output max2A module"/>
+					<Text TextId="TOK_TextId_Module_6OutCH_Info" Value="6 channel Output max2A module information"/>
+					<Text TextId="TOK_TextId_Module_4InOutFixed" Value="SPDB-0404D-001 4DI4DO Fixed"/>
+					<Text TextId="TOK_TextId_Module_4OutCHFixed_Info" Value="4 channel input/output fixed module information"/>
+					<Text TextId="TOK_4Input_DataItem" Value="4 channel input/output fixed input data item"/>
+					<Text TextId="TOK_4Output_DataItem" Value="4 channel input/output fixed output data item"/>
+					<Text TextId="TXT_Par_Module5 Type" Value="4 channel input/output fixed module parameter"/>	
+					
+					<Text TextId="TOK_TextId_Module_4InOutCH_Info" Value="4 channel input/output fixed module information"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentInFixed" Value="SPDB-0400A-001 4AI*14Bit I"/>	
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentInFixed_Info" Value="4 channel analog current 0-20mA input information"/>
+					<Text TextId="TOK_4AnalogCurrentInput_DataItem" Value="4 channel analog current 0-20mA input data item"/>
+					<Text TextId="TXT_Par_Module6 Type" Value="4 channel analog current 0-20mA input module parameter"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentInCH" Value="4 channel analog current 0-20mA input module"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentInCH_Info" Value="4 channel analog current 0-20mA input information"/>
+					<Text TextId="TOK_TextId_Module_4AnalogVoltageInFixed" Value="SPDB-0400A-002 4AI*14Bit V"/>
+					<Text TextId="TOK_TextId_Module_4AnalogVoltageInFixed_Info" Value="4 channel analog voltage 0-10V input information"/>
+					<Text TextId="TOK_4AnalogVoltageInput_DataItem" Value="4 channel analog voltage 0-10V input data item"/>
+					<Text TextId="TXT_Par_Module7 Type" Value="4 channel analog voltage 0-10V input parameter"/>
+					<Text TextId="TOK_TextId_Module_4AnalogVoltageInCH" Value="4 channel analog voltage 0-10V input"/>
+					<Text TextId="TOK_TextId_Module_4AnalogVoltageInCH_Info" Value="4 channel analog voltage 0-10V input information"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentOutFixed" Value="SPDB-0004A-001 4AO*14Bit I"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentOutFixed_Info" Value="4 channel analog Current Output 0-20mA information"/>
+					<Text TextId="TOK_4AnalogCurrentOutput_DataItem" Value="4 channel analog Current Output 0-20mA data item"/>
+					<Text TextId="TXT_Par_Module8 Type" Value="4 channel analog Current Output 0-20mA module parameter"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentOutCH" Value="4 channel analog Current Output 0-20mA"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentOutCH_Info" Value="4 channel analog Current Output 0-20mA information"/>
+					<Text TextId="TOK_TextId_Module_4AnalogVoltageOutFixed" Value="SPDB-0004A-002 4AO*14Bit V"/>
+					<Text TextId="TOK_TextId_Module_4AnalogVoltageOutFixed_Info" Value="4 channel analog voltage output 0-10V information"/>
+					<Text TextId="TOK_4AnalogVoltageOutput_DataItem" Value="4 channel analog voltage output 0-10V data item"/>
+					<Text TextId="TXT_Par_Module9 Type" Value="4 channel analog voltage output 0-10V module parameter"/>
+					<Text TextId="TOK_TextId_Module_4AnalogVoltageOutCH" Value="4 channel analog voltage output 0-10V module"/>
+					<Text TextId="TOK_TextId_Module_4AnalogVoltageOutCH_Info" Value="4 channel analog voltage output 0-10V information"/> 
+					<Text TextId="PDB-008UPA-002 4AIO Universal" Value="4 channel analog voltage/current input   0-10V/0-20mA"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentVoltageIn" Value="SPDB-008UPA-002 4AIO Universal"/>
+					<Text TextId="TOK_TextId_Module_4AnalogCurentVoltageIn_Info" Value="4 channel analog voltage/current input   0-10V/0-20mA information"/>
+					
+					<Text TextId="TXT_Par_Module10 Type" Value="4 channel analog voltage/current input   0-10V/0-20mA module parameter"/>
+					<Text TextId="TXT_Par_AnalogCon0Pin_Conf Type" Value="4 channel configurable analog input con0 2pin setting"/>		
+					<Text TextId="TXT_Par_AnalogCon1Pin_Conf Type" Value="4 channel configurable analog input con1 2pin setting"/>	
+					<Text TextId="TXT_Par_AnalogCon2Pin_Conf Type" Value="4 channel configurable analog input con2 2pin setting"/>	
+					<Text TextId="TXT_Par_AnalogCon3Pin_Conf Type" Value="4 channel configurable analog input con3 2pin setting"/>	
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentVoltageInCH" Value="4 channel analog voltage/current input   0-10V/0-20mA module"/>	
+					<Text TextId="TOK_TextId_Module_4AnalogCurrentVoltageIn_Info" Value="4 channel analog voltage/current input   0-10V/0-20mA module information"/>
+					<Text TextId="TOK_TextId_Module_4InOutCH" Value="4 channel In/out module "/>
+					
+					
+				
+					<Text TextId="TXT_Par_Module11 Type" Value="4 channel In/out module parameter "/>
+				
+				
+                    <Text TextId="TXT_Par_MonitorUO" Value="Module monitor Vout voltage"/>                   
+                    <Text TextId="TXT_Par_PortN0umber" Value="Port0 module number"/>                   
+                    <Text TextId="TXT_Par_PortN1umber" Value="Port1 module number"/>
+                    <Text TextId="TXT_Par_PortN2umber" Value="Port2 module number"/>
+                    <Text TextId="TXT_Par_PortN3umbert" Value="Port3 module number"/>       					
+
+					 <Text TextId="Txt_Help_Module Type1" Value="8 Channel Input"/>
+					 <Text TextId="Txt_Help_Module Type2" Value="8 Channel Output"/>					 
+					 <Text TextId="Txt_Help_Module Type3" Value="8 Channel Input/output configurable"/>					 
+					 <Text TextId="Txt_Help_Module Type4" Value="6 Channel Output max current 2A"/>
+					 <Text TextId="Txt_Help_Module Type5" Value="4 Channel Input 4 channel input/Output fixed"/>					 
+					 <Text TextId="Txt_Help_Module Type6" Value="4 Channel analog 0-20mA current Input"/>
+					 <Text TextId="Txt_Help_Module Type7" Value="4 Channel analog 0-10V voltage Input"/>
+					 <Text TextId="Txt_Help_Module Type8" Value="4 Channel 0-20mA current Output"/>					 
+					 <Text TextId="Txt_Help_Module Type9" Value="4 Channel 0-10V voltage Output"/>					 
+					 <Text TextId="Txt_Help_Module Type10" Value="4 Channel analog 0-20mA/0-10V Input"/>
+					 <Text TextId="Txt_Help_Module Type11" Value="4 Channel Input/output"/>
+					 
+					 <Text TextId="TXT_Mod1 Type" Value="module type 1"/>
+					 <Text TextId="TXT_Mod2 Type" Value="module type 2"/>
+					 <Text TextId="TXT_Mod3 Type" Value="module type 3"/>
+					 <Text TextId="TXT_Mod4 Type" Value="module type 4"/>
+					 <Text TextId="TXT_Mod5 Type" Value="module type 5"/>
+					 <Text TextId="TXT_Mod6 Type" Value="module type 6"/>
+					 <Text TextId="TXT_Mod7 Type" Value="module type 7"/>
+					 <Text TextId="TXT_Mod8 Type" Value="module type 8"/>
+					 <Text TextId="TXT_Mod9 Type" Value="module type 9"/>
+					 <Text TextId="TXT_Mod10 Type" Value="module type 10"/>
+					 <Text TextId="TXT_Mod11 Type" Value="module type 11"/>
+					 
+		             <Text TextId="TXT_Id_Module_0800D" Value="8 input digital module"/>
+					 <Text TextId="TXT_Id_Module_0800D_Info" Value="8 input digital module information"/>
+					 
+				     <Text TextId="TXT_Id_Module_0008D" Value="8 output digital module"/>
+					 <Text TextId="TXT_Id_Module_0008D_Info" Value="8 output digital module information"/>
+
+					<Text TextId="TXT_Id_Module_0006D" Value="6 output digital module max 2A"/>
+					<Text TextId="TXT_Id_Module_0006D_Info" Value="6 output digital module max 2A information"/>		
+                    <Text TextId="TOK_8InOut_SubMod_DataItem" Value="SPDB-08UP-001"/>	
+					<Text TextId="TXT_Id_Module_08UPD" Value="SPDB-08UP-001"/>
+					<Text TextId="TXT_Id_Module_08UPD_Info" Value=" 8 input/output configurable module information"/>	
+					<Text TextId="TOK_TextId_Module_8InCH_ParName" Value="8 input channel"/>
+					<Text TextId="TOK_TextId_Module_8InCH_ParName_Info" Value="8 input channel information"/>	
+					
+					<Text TextId="TOK_TextId_Module_8InCHM8" Value="SPDB-0800D-011 8DI M8"/>
+					<Text TextId="TOK_TextId_Module_8InCH_InfoM8" Value="M8 8 input channel information"/>	
+					<Text TextId="TOK_8InCH_DataItemM8" Value="M8 8 Input channel Item"/>
+					<Text TextId="TXT_Mod1 TypeM8" Value="M8 8 Input Module"/>
+					<Text TextId="TOK_TextId_Module_8InCH_ParNameM8" Value="M8 8 Input module parameter"/>
+					<Text TextId="TOK_TextId_Module_8InCH_ParName_InfoM8" Value="M8 8 Input module parameter information"/>		
+
+					
+		            <Text TextId="TOK_TextId_Module_8OutCHM8" Value="SPDB-0008D-011 8DO M8"/>
+					<Text TextId="TOK_TextId_Module_8OutCH_InfoM8" Value="M8 8 output Channel information"/>
+					<Text TextId="TOK_8Output_DataItemM8" Value="M8 8 Output channel Item"/>
+					<Text TextId="TXT_Mod2 TypeM8" Value="M8 8 Output Module"/>
+
+					
+			        <Text TextId="TOK_TextId_Module_4InOutFixedM8" Value="SPDB-0404D-011 M8 4DI4DO Fixed"/>
+					<Text TextId="TOK_TextId_Module_4OutCHFixed_InfoM8" Value="M8 4 input and 4 output channel information"/>
+					<Text TextId="TOK_4Input_DataItemM8" Value="M8 4 input  Channel Data item"/>
+					<Text TextId="TOK_4Output_DataItemM8" Value="M8 4 Output Channel data item"/>
+					<Text TextId="TXT_Mod5 TypeM8" Value="M8 4 fixed input and output module"/>
+					<Text TextId="TOK_TextId_Module_4InOutCHM8" Value="M8 4 in and 4 out module paramter"/>
+					<Text TextId="TOK_TextId_Module_4InOutCH_InfoM8" Value="M8 4 input and 4 output module parameter information"/>
+
+		            <Text TextId="TOK_TextId_Module_8InOutCHM8" Value="SPDB-08UP-011 M8 8universal"/>
+					<Text TextId="TOK_TextId_Module_8InOutCH_InfoM8" Value="M8 Digital 8 configurable input and output channel information"/>
+					<Text TextId="TOK_8InOut_SubMod_DataItemM8" Value="M8 input output universal 8 channel data item"/>
+
+					<Text TextId="TXT_Mod3 TypeM8" Value="M8 8 channel configurable submodule"/>
+					<Text TextId="TXT_Par_Module3 Con0 4Pin ConfM8" Value="M8 input output universal 8 channel data item "/>
+					
+		            <Text TextId="TOK_TextId_Module_3AnalogCurrentInFixed" Value="SPDB-0300A-001 3AI*14Bit I"/>
+					<Text TextId="TOK_TextId_Module_3AnalogCurrentInFixed_Info" Value="3 Analog Current In Fixed information"/>
+					<Text TextId="TOK_3AnalogCurrentInput_DataItem" Value="3 Analog Current Input Data Item"/>
+					<Text TextId="TXT_Mod Current Input Type" Value="Current Input Module"/>
+					<Text TextId="TOK_TextId_Module_3AnalogCurrentInCH" Value="3 Analog Current Input Channel"/>
+					<Text TextId="TOK_TextId_Module_3AnalogCurrentInCH_Info" Value="3 Analog Current Input Channel"/>
+	
+
+		            <Text TextId="TOK_TextId_Module_3AnalogVoltageInFixed" Value="SPDB-0300A-002 3AI*14Bit V"/>
+					<Text TextId="TOK_TextId_Module_3AnalogVoltageInFixed_Info" Value="3 Analog Voltage In Fixed Information"/>
+	                <Text TextId="TOK_3AnalogVoltageInput_DataItem" Value="3 Voltage Current Input Data item"/>
+					<Text TextId="TXT_Mod Voltage Input Type" Value="Voltage input Module"/>
+					<Text TextId="TOK_TextId_Module_3AnalogVoltageInCH" Value="3 Analog Voltage Input Channel"/>
+					<Text TextId="TOK_TextId_Module_3AnalogVoltageInCH_Info" Value="3 Analog Voltage Input Channel"/>
+					
+
+		            <Text TextId="TOK_TextId_Module_3AnalogCurrentOutFixed" Value="SPDB-0003A-001 3AO*14Bit I"/>
+					<Text TextId="TOK_TextId_Module_3AnalogCurrentOutFixed_Info" Value="3 Analog Current Out Fixed Information"/>
+					<Text TextId="TOK_3AnalogCurrentOutput_DataItem" Value="3 Current Out Data item"/>
+					<Text TextId="TXT_Mod Current Output Type" Value="Current Output Module "/>
+					<Text TextId="TOK_TextId_Module_3AnalogCurrentOutCH" Value="3 Analog Current Output Channel"/>
+					<Text TextId="TOK_TextId_Module_3AnalogCurrentOutCH_Info" Value="3 Analog Current Output Channel"/>
+
+				
+			        <Text TextId="TOK_TextId_Module_3AnalogVoltageOutFixed" Value="SPDB-0003A-002 3AO*14Bit V"/>
+					<Text TextId="TOK_TextId_Module_3AnalogVoltageOutFixed_Info" Value="3 Analog Voltage Out Fixed Information"/>
+					<Text TextId="TOK_18AnalogVoltageOutput_DataItem" Value="3 Voltage Out Data Item"/>
+					<Text TextId="TXT_Mod Voltage Output Type" Value="Voltage Output Module"/>
+					<Text TextId="TOK_TextId_Module_3AnalogVoltageOutCH" Value="3 Analog Voltage Output Channel"/>
+					<Text TextId="TOK_TextId_Module_3AnalogVoltageOutCH_Info" Value="3 Analog Voltage Output Channel"/>		
+									
+					<Text TextId="TOK_TextId_Module_8CHValve" Value="SPDB-0008D-Mxxx"/>
+					<Text TextId="TOK_TextId_Module_8CHValve_Info" Value="8 Channel output cable module information"/>
+					<Text TextId="TOK_8CHValve_DataItem" Value="8 Channel output cable Module data item"/>
+					<Text TextId="TXT_8CHValveMod Type" Value="8 Channel output cable module"/>
+					<Text TextId="TOK_TextId_Module_8CHValve_ParName" Value="8 Channel output cable module parameter name"/>
+					<Text TextId="TOK_TextId_Module_8CHValve_ParName_Info" Value="8 Channel output cable module parameter name information"/>
+					<Text TextId="TOK_TextId_Module_16CHValve" Value="SPDB-0016D-Mxxx"/>
+					<Text TextId="TOK_TextId_Module_16CHValve_Info" Value="16 Channel output cable module information"/>
+					<Text TextId="TOK_16CHValve_DataItem" Value="16 Channel output cable Module data item"/>
+					<Text TextId="TXT_16CHValveMod Type" Value="16 Channel output cable module"/>
+					<Text TextId="TOK_TextId_Module_16CHValve_ParName" Value="16 Channel output cable module parameter name"/>
+					<Text TextId="TOK_TextId_Module_16CHValve_ParName_Info" Value="16 Channel output cable module parameter name information"/>
+					<Text TextId="TOK_TextId_Module_24CHValve" Value="SPDB-0024D-Mxxx"/>
+					<Text TextId="TOK_TextId_Module_24CHValve_Info" Value="24 Channel output cable module information"/>
+					<Text TextId="TOK_24CHValve_DataItem" Value="24 Channel output cable Module data item"/>
+					<Text TextId="TXT_24CHValveMod Type" Value="24 Channel output cable module"/>
+					<Text TextId="TOK_TextId_Module_24CHValve_ParName" Value="24 Channel output cable module parameter name"/>
+					<Text TextId="TOK_TextId_Module_24CHValve_ParName_Info" Value="24 Channel output cable module parameter name information"/>
+					<Text TextId="TOK_TextId_Module_32CHValve" Value="SPDB-0032D-Mxxx"/>
+					<Text TextId="TOK_TextId_Module_32CHValve_Info" Value="32 Channel output cable module information"/>
+					<Text TextId="TOK_32CHValve_DataItem" Value="32 Channel output cable Module data item"/>
+					<Text TextId="TXT_32CHValveMod Type" Value="32 Channel output cable module"/>
+					<Text TextId="TOK_TextId_Module_32CHValve_ParName" Value="32 Channel output cable module parameter name"/>
+					<Text TextId="TOK_TextId_Module_32CHValve_ParName_Info" Value="32 Channel output cable module parameter name information"/>
+					
+					<Text TextId="Txt_Help_Offline_Actiong Setting" Value="Off line Action Setting"/>
+					<Text TextId="Hold as Old Output" Value="Hold as Old Output"/>
+					<Text TextId="Reset to Zero" Value="Reset output to zero"/>
+					<Text TextId="TXT_Par_OffLineAction" Value="Off line action parameter"/>
+
+					
+		            <Text TextId="Txt_Help_Voltage_Setting Configure" Value="Voltage Setting Configure"/>
+
+					<Text TextId="0-10V" Value="0-10V"/>
+					<Text TextId="-10V-+10V" Value="-10-+10V"/>					
+					<Text TextId="0-5V" Value="0-5V"/>
+		            <Text TextId="-5-+5V" Value="-5-+5V"/>
+					<Text TextId="Channel Off" Value="Channel is off"/>
+					<Text TextId="Txt_Help_Current_Setting Configure" Value="Current Setting Configure"/>
+					<Text TextId="0-20mA" Value="0-20mA"/>	
+		            <Text TextId="4-20mA" Value="4-20mA"/>
+					<Text TextId="-20-+20mA" Value="-20-+20mA"/>
+
+                    <Text TextId="TXT_Par_Analog Con0 2Pin Conf" Value="Connector 0 2 pin Configuration"/>
+                    <Text TextId="TXT_Par_Analog Con1 2Pin Conf" Value="Connector 1 2 pin Configuration"/>						
+                    <Text TextId="TXT_Par_Analog Con2 2Pin Conf" Value="Connector 2 2 pin Configuration"/>					
+                    <Text TextId="TXT_Par_Analog Con3 2Pin Conf" Value="Connector 3 2 pin Configuration"/>					
+					<Text TextId="RTD Wire Setting" Value="RTD Wire Setting"/>
+					<Text TextId="Inactive" Value="Inactive"/>
+					<Text TextId="2-Wire type" Value="2 wire type"/>	  
+					<Text TextId="3-Wire type" Value="3 Wire type"/>
+					<Text TextId="4-Wire type" Value="4 Wire type"/>	  					
+					<Text TextId="RTD Type Setting" Value="RTD type setting"/>
+					<Text TextId="Pt100 RTD" Value="Pt100 RTD"/>
+					<Text TextId="Pt200 RTD" Value="Pt200 RTD"/>
+					<Text TextId="Pt500 RTD" Value="Pt500 RTD"/>
+					<Text TextId="Pt1000 RTD" Value="Pt1000 RTD"/>
+					<Text TextId="Ni100 RTD" Value="Ni100 RTD"/>
+					<Text TextId="Ni200 RTD" Value="Ni200 RTD"/>
+					<Text TextId="Ni500 RTD" Value="Ni500 RTD"/>
+					<Text TextId="Ni1000 RTD" Value="Ni1000 RTD"/>
+					<Text TextId="150 Ohm" Value="150 Ohm"/>
+					<Text TextId="300 Ohm" Value="300 Ohm"/>
+					<Text TextId="1000 Ohm" Value="1000 Ohm"/>				
+					<Text TextId="3000 Ohm" Value="3000 Ohm"/>		
+					<Text TextId="TOK_TextId_Module_4CHRTD" Value="SPDB-0400A-005 RTD"/>
+					<Text TextId="TOK_TextId_Module_4CHRTD_Info" Value="4 Channel RTD Input Module Information"/>
+					<Text TextId="TOK_4CHRTD_DataItem" Value="4 Channel RTD input Data item"/>
+					<Text TextId="TXT_Mod RTD Input Type" Value="RTD input module"/>
+					<Text TextId="TXT_Par_RTD Con0 2Pin Conf" Value="RTD input channel connector 0 2 pin"/>	
+					<Text TextId="TXT_Par_RTD Con1 2Pin Conf" Value="RTD input channel connector 1 2 pin"/>
+					<Text TextId="TXT_Par_RTD Con2 2Pin Conf" Value="RTD input channel connector 2 2 pin"/>
+					<Text TextId="TXT_Par_RTD Con3 2Pin Conf" Value="RTD input channel connector 3 2 pin"/>		
+					<Text TextId="TOK_TextId_Module_4CHRTD_ParName" Value="RTD input channel Parameter name"/>
+					<Text TextId="TOK_TextId_Module_4CHRTD_ParName_Info" Value="RTD input channel Parameter name information"/>		
+
+					<Text TextId="TC Mode Setting" Value="Thermal Couple mode setting"/>					
+					<Text TextId="Internal Compensation" Value="Internal Compensation"/>	  
+					<Text TextId="External Compensation"  Value="External Compensation"/>	  					
+					<Text TextId="TC Type Setting" Value="Thermal couple type setting"/>
+					<Text TextId="K Type TC" Value="K type Thermal couple"/>
+					<Text TextId="J Type TC" Value="J type Thermal couple"/>  	
+					<Text TextId="N Type TC" Value="N type Thermal couple"/>	
+					<Text TextId="E Type TC" Value="E type Thermal couple"/>			
+					<Text TextId="B Type TC" Value="B type Thermal couple"/>
+					<Text TextId="S Type TC" Value="S type Thermal couple"/>  	
+					<Text TextId="T Type TC" Value="T type Thermal couple"/>	
+					<Text TextId="R Type TC" Value="R type Thermal couple"/>	
+					<Text TextId="C Type TC" Value="C type Thermal couple"/>							
+
+					<Text TextId="TOK_TextId_Module_4CHTC" Value="SPDB-0400A-006 TC"/>
+					<Text TextId="TOK_TextId_Module_4CHTC_Info" Value="4 Channel Thermal Couple Input module "/>
+					<Text TextId="TOK_4CHTC_DataItem" Value="4 Channel Thermal couple data item"/>
+					<Text TextId="TXT_Mod TC Input Type" Value="Thermal couple input type"/>
+					<Text TextId="TXT_Par_TC Con0 2Pin Conf" Value="TC input channel connector 0 2 pin" />
+					<Text TextId="TXT_Par_TC Con1 2Pin Conf" Value="TC input channel connector 1 2 pin"/>
+					<Text TextId="TXT_Par_TC Con2 2Pin Conf" Value="TC input channel connector 2 2 pin"/>
+					<Text TextId="TXT_Par_TC Con3 2Pin Conf" Value="TC input channel connector 3 2 pin"/>
+					<Text TextId="TOK_TextId_Module_4CHTC_ParName" Value="4 Channel Input thermal couple parameter"/>
+					<Text TextId="TOK_TextId_Module_4CHTC_ParName_Info" Value="4 Channel Input thermal couple parameter information"/>					
+					<Text TextId="TXT_Par_RTD CH0 Wire Setting" Value="RTD CH0 wire setting"/>
+					<Text TextId="TXT_Par_RTD CH0 Type Setting" Value="RTD CH0 type setting"/>		
+					<Text TextId="TXT_Par_RTD CH1 Wire Setting" Value="RTD CH1 wire setting"/>
+					<Text TextId="TXT_Par_RTD CH1 Type Setting" Value="RTD CH1 type setting"/>	
+					<Text TextId="TXT_Par_RTD CH2 Wire Setting" Value="RTD CH2 wire setting"/>
+					<Text TextId="TXT_Par_RTD CH2 Type Setting" Value="RTD CH2 type setting"/>	
+					<Text TextId="TXT_Par_RTD CH3 Wire Setting" Value="RTD CH3 wire setting"/>
+					<Text TextId="TXT_Par_RTD CH3 Type Setting" Value="RTD CH3 type setting"/>			
+					<Text TextId="TXT_Par_TC CH0 Mode Setting"  Value="TC CH0 mode setting"/>
+					<Text TextId="TXT_Par_TC CH0 Type Setting" Value="TC CH0 type setting"/>	
+					<Text TextId="TXT_Par_TC CH1 Mode Setting"  Value="TC CH1 mode setting"/>
+					<Text TextId="TXT_Par_TC CH1 Type Setting" Value="TC CH1 type setting"/>	
+					<Text TextId="TXT_Par_TC CH2 Mode Setting"  Value="TC CH2 mode setting"/>
+					<Text TextId="TXT_Par_TC CH2 Type Setting" Value="TC CH2 type setting"/>	
+					<Text TextId="TXT_Par_TC CH3 Mode Setting"  Value="TC CH3 mode setting"/>
+					<Text TextId="TXT_Par_TC CH3 Type Setting" Value="TC CH3 type setting"/>	
+
+					<Text TextId="TOK_TextId_Module_NPN8InCH" Value="SPDB-0800D-003 NPN8DI"/>
+					<Text TextId="TOK_TextId_Module_NPN8InCH_Info" Value="8 digital NPN input module "/>
+					<Text TextId="TOK_NPN8InCH_DataItem" Value="8 digital NPN input module data item"/>
+					<Text TextId="TXT_Mod25 Type" Value="Input 8 NPN digital channel module"/>
+					<Text TextId="TOK_TextId_Module_NPN8InCH_ParName" Value="input 8 NPN digital channel module parameter name"/>
+					<Text TextId="TOK_TextId_Module_NPN8InCH_ParName_Info" Value="input 8 NPN digital channel module parameter name information"/>
+
+
+					<Text TextId="TOK_TextId_Module_NPN4InOutFixed" Value="SPDB-0404D-003 NPN4DI4DO Fixed"/>
+					<Text TextId="TOK_TextId_Module_NPN4OutCHFixed_Info" Value="4 fixed NPN input/output digital channel module information"/>
+					<Text TextId="TOK_4Input_NPNDataItem" Value="4 fixed NPN input/output digital channel module input data item"/>
+					<Text TextId="TOK_4Output_NPNDataItem" Value="4 fixed NPN input/output digital channel module output data item"/>
+					<Text TextId="TXT_Mod26 Type" Value="4 fixed NPN input/output digital channel module"/>
+					<Text TextId="TOK_TextId_Module_NPN4InOutCH" Value="4 fixed NPN input/output digital channel"/>
+					<Text TextId="TOK_TextId_Module_NPN4InOutCH_Info" Value="4 fixed  NPN input/output digital channel"/>
+						
+					<Text TextId="TOK_TextId_Module_NPN8InCHM8" Value="SPDB-0800D-013 NPN8DI M8"/>
+					<Text TextId="TOK_TextId_Module_NPN8InCH_InfoM8" Value="8 channel NPN digital M8 input module information"/>
+					<Text TextId="TOK_NPN8InCH_DataItemM8" Value="8 Channel NPN digital M8 input module data item"/>
+					<Text TextId="TXT_Mod27 TypeM8" Value="8 channel NPN digital M8 input module"/>
+					<Text TextId="TOK_TextId_Module_NPN8InCH_ParNameM8" Value="8 channel NPN digital M8 input channel parameter "/>
+					<Text TextId="TOK_TextId_Module_NPN8InCH_ParName_InfoM8" Value="8 channel NPN digital M8 input channel parameter "/>
+		
+					<Text TextId="TOK_TextId_Module_NPN4InOutFixedM8" Value="SPDB-0404D-013 NPN4DI4DO M8 Fixed"/>
+					<Text TextId="TOK_TextId_Module_NPN4OutCHFixed_InfoM8" Value="4 input/output fixed NPN digital module information with M8 connector"/>
+					<Text TextId="TOK_4Input_NPNDataItemM8" Value="4 input/output fixed NPN digital module input data item"/>
+					<Text TextId="TOK_4Output_NPNDataItemM8" Value="4 input/output fixed NPN digital module output data item"/>
+					<Text TextId="TXT_Mod28 TypeM8" Value="4 input/output fixed NPN digital module with M8 Connector"/>
+					<Text TextId="TOK_TextId_Module_NPN4InOutCHM8" Value="4 input/output fixed NPN digital module with M8 Connector"/>
+					<Text TextId="TOK_TextId_Module_NPN4InOutCH_InfoM8" Value="4 input/output fixed NPN digital module with M8 Connector information"/>
+					
+
+					<Text TextId="TOK_TextId_Module_CablePNP8InFixed" Value="SPDB-0800D-Mxxx 8In Cable"/>
+					<Text TextId="TOK_TextId_Module_CablePNP8InFixed_Info" Value="8 channel PNP digital Cable Input module information"/>
+					<Text TextId="TOK_8In_PNPDataItemCable" Value="8 channel PNP digital cable input data item "/>
+                 
+					<Text TextId="TXT_Mod43 TypeCable" Value="8 channel PNP digital cable input data item"/>
+					<Text TextId="TOK_TextId_Module_8InCH_PNPCable"  Value="8 channel PNP digital cable input data item"/>
+					<Text TextId="TOK_TextId_Module_8InCH_InfoPNPCable" Value="8 channel PNP digital cable input data item"/>
+						
+	
+					<Text TextId="TOK_TextId_Module_PNP8InOutConfigured_cable" Value="SPDB-08UP-Mxxx 8InOut universal"/>
+					<Text TextId="TOK_TextId_Module_PNP8InOutConfigured_InfoCable" Value="8 channel PNP digital cable input output module information"/>
+					<Text TextId="TOK_8Input_PNPConfiguredDataItemCable" Value="8 input data for In/Out cable configurable module"/>
+					<Text TextId="TOK_8Output_PNPConfiguredDataItemCable" Value="8 output data for In/out cable configurable module"/>
+					<Text TextId="TXT_Mod46 TypeCable" Value="8In/out universal with cable module paramter "/>
+                    <Text TextId="TXT_Par_Module46 CH0Cable Conf" Value="Channel 0 configurable paramter"/>
+                    <Text TextId="TXT_Par_Module46 CH1Cable Conf" Value="Channel 1 configurable paramter"/>
+                    <Text TextId="TXT_Par_Module46 CH2Cable Conf" Value="Channel 2 configurable paramter"/>
+                    <Text TextId="TXT_Par_Module46 CH3Cable Conf" Value="Channel 3 configurable paramter"/>
+                    <Text TextId="TXT_Par_Module46 CH4Cable Conf" Value="Channel 4 configurable paramter"/>
+                    <Text TextId="TXT_Par_Module46 CH5Cable Conf" Value="Channel 5 configurable paramter"/>
+                    <Text TextId="TXT_Par_Module46 CH6Cable Conf" Value="Channel 6 configurable paramter"/>
+                    <Text TextId="TXT_Par_Module46 CH7Cable Conf" Value="Channel 7 configurable paramter"/>
+                    <Text TextId="TOK_TextId_Module_PNP8InOutConfiguredCHCable" Value="8 channel configurable input/ouput module with cable"/>
+					<Text TextId="TOK_TextId_Module_PNP8InOutConfiguredCH_InfoCable" Value="8 channel configurable input/ouput module with cable information"/>
+
+			        <Text TextId="TOK_TextId_Module_NPN8InOutConfigurableM12"  Value="SPDB-08UN-003 NPN8UP M12"/>
+					<Text TextId="TOK_TextId_Module_NPN8InOutConfigurable_InfoM12" Value="8 channel NPN digital input output configurable module with M12 connector"/>
+					<Text TextId="TOK_8Input_NPNDataItemM12" Value="8 channel NPN digital input data configurable module with M12 connector"/>
+					<Text TextId="TXT_Mod44 TypeM12"  Value="8In/Out universal with M12 connector NPN module paramter"/>		
+					<Text TextId="TOK_8Output_NPNDataItemM12" Value="8 channel NPN digital output data configurable module with M12 connector"/>
+					<Text TextId="TOK_TextId_Module_NPN8InOutCHM12" Value="8 channel NPN digital input output configurable module with M12 connector"/>
+					<Text TextId="TOK_TextId_Module_NPN8InOutCH_InfoM12" Value="8 channel NPN digital input output configurable module with M12 connector information"/>
+									
+					
+			        <Text TextId="TOK_TextId_Module_NPN8InOutCHConfigurabledM8" Value="SPDB-08UN-013 NPN8UP M8"/>
+					<Text TextId="TOK_TextId_Module_NPN8InOutCHConfigurable_InfoM8" Value="8 channel NPN digital input output configurable module with M8 connector"/>
+			        <Text TextId="TXT_Mod45 TypeM8" Value="8In/Out universal with M8 connector NPN module paramter"/>		
+					<Text TextId="TOK_8Input_NPNDataItemM8" Value="8 channel NPN digital input data configurable module with M8 connector"/>
+					<Text TextId="TOK_8Output_NPNDataItemM8" Value="8 channel NPN digital output data configurable module with M8 connector"/>
+					<Text TextId="TOK_TextId_Module_NPN8InOutConfigurableCHM8" Value="8 channel NPN digital input output configurable module with M8 connector"/>
+					<Text TextId="TOK_TextId_Module_NPN8InOutCHConfigurableCH_InfoM8" Value="8 channel NPN digital input output configurable module with M8 connector information"/>
+
+					<Text TextId="TOK_TextId_Module_NPN8OutputCH" Value="SPDB-0008D-003 NPN8DO M12"/>
+					<Text TextId="TOK_TextId_Module_8CHNPNOut_Info" Value="8 Channel NPN Digital output module with M12 connector"/>
+					<Text TextId="TOK_8CHNPNOut_DataItem" Value="8 Channel NPN Digital output module with M12 connector data item"/>
+					<Text TextId="TXT_8CHNPNOutMod Type"  Value="8 Channel NPN Digital output module with M12 connector"/>
+					<Text TextId="TOK_TextId_Module_8CHNPNOut_ParName" Value="8 Channel NPN Digital output module with M12 connector"/>
+					<Text TextId="TOK_TextId_Module_8CHNPNOut_ParName_Info"  Value="8 Channel NPN Digital output module with M12 connector"/>
+
+
+		            <Text TextId="TOK_TextId_Module_NPN8OutputM8CHM8" Value="SPDB-0008D-013 NPN8DO M8"/>
+					<Text TextId="TOK_TextId_Module_8CHNPNOutM8_Info" Value="8 Channel NPN Digital output module with M8 connector"/>
+					<Text TextId="TOK_8CHNPNOutM8_DataItem" Value="8 Channel NPN Digital output module with M8 connector data item"/>
+					<Text TextId="TXT_8CHNPNOutM8Mod Type" Value="8 Channel NPN Digital output module with M8 connector"  />
+					<Text TextId="TOK_TextId_Module_8CHNPNOutM8_ParName" Value="8 Channel NPN Digital output module with M8 connector"/>
+					<Text TextId="TOK_TextId_Module_8CHNPNOutM8_ParName_Info"  Value="8 Channel NPN Digital output module with M8 connector"/>
+					
+		            <Text TextId="TOK_TextId_Module_Cable4DIOCH" Value="SPDB-0404D-Mxxx" />
+					<Text TextId="TOK_TextId_Module_Cable4DIO_Info" Value="4 fixed input/ouput digital channel with cable"/>
+					<Text TextId="TOK_Cable4DIO_InputDataItem" Value="4 fixed input/ouput digital channel with cable input data item"/>
+					<Text TextId="TOK_Cable4DIO_OutputDataItem" Value="4 fixed input/ouput digital channel with cable Output data item"/>
+					<Text TextId="TXT_Cable4DIOMod Type" Value="4 fixed input/ouput digital channel with cable module"/>
+					<Text TextId="TOK_TextId_Module_Cable4DIO_ParName" Value="4 fixed input/ouput digital channel with cable parameter"/>
+					<Text TextId="TOK_TextId_Module_Cable4DIO_ParName_Info" Value="4 fixed input/ouput digital channel with cable parameter information"/>
+
+	
+					<!--port name-->
+					<Text TextId="TOK_Subslot_8000" Value="X1"/>
+					<Text TextId="TOK_Subslot_8001" Value="X1 P1"/>
+					<Text TextId="TOK_Subslot_8002" Value="X1 P2"/>
+					<Text TextId="TOK_DAP_InterfaceModule" Value="Interface"/>
+					<Text TextId="TOK_Port1" Value="Port 1"/>
+					<Text TextId="TOK_Port2" Value="Port 2"/>
+					<Text TextId="TOK_Port1_POF" Value="Port 1"/>
+					<Text TextId="TOK_Port2_POF" Value="Port 2"/>  
+				</PrimaryLanguage>
+	            
+			</ExternalTextList>
+		</ApplicationProcess>
+	</ProfileBody>
+</ISO15745Profile>

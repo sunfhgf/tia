@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--******************************************************************************************* -->
+<!--******************************************************************************************* -->
+<!--******************************************************************************************* -->
+<!--******************************************************************************************* -->
+<!-- Edited with MS Visual Studio 2005 - Copyright Datalogic Automation s.r.l                   -->
+<!-- Author F.D. - MSP - R&D - SW                                                               -->
+<!--                                                                                            -->
+<!-- Versions:                                                                                  -->
+<!-- v1.0 - 20130530 First Release for Matrix 410, 210                                          -->
+<!-- v1.1 - 20130830 Modification to params (Lanconelli tips)                                   -->
+<!-- v1.2 - 20130902 Param "Match code" splitted and other minor modifications (Lanconelli tips)-->
+<!-- v1.3 - 20130926 Default I/O size and fixed identification ID                               -->
+<!-- v1.4 - 20130930 All Congif Modules removed                                                 -->
+<!-- v2.0 - 20131025 See following modifications below:                                         -->
+<!--        - input/output slot order modified (new one: slot1=OUT, slot2=IN)                   -->
+<!--        - MaxInputLength and MaxOuputLength modified (128 instead of 1440)                  -->
+<!--        - available modules modified (new list: 8,16,32,64,128 Byte, both IN and OUT)       -->
+<!--        - module's terminology modified (no more "virtual", "digital", "bit" strings)       -->
+<!--        - mixed IN/OUT modules deleted (yet not managed)                                    -->
+<!--        - AllowedInSlots modified (now: OUT modules slot1 only, IN modules slot2 only)      -->
+<!--        - new DAP added (customized for: Matrix210, Matrix410, Matrix300)                   -->
+<!--        - multiple images added (one for every DAP)                                         -->
+<!-- v2.1 - 20140206 MaxInputLength="1440" and MaxOutputLength="1440" instead of 128            -->
+<!--        to overcome header limitation (and error message on S7): 1440 is the real max!      -->
+<!-- v2.2 - 20140214 default MinDeviceInterval changed (courtesy of LM)                         -->
+<!-- v2.3 - 20140429 "Ordination Number" modified: "PN-Matrix-DSP" instead of "MATRIX-300"      -->
+<!-- v2.3.1 - 20140430 "Ordination Number" modified to "PN-Matrix-DSP" for every DAP            -->
+<!--******************************************************************************************* -->
+<!--******************************************************************************************* -->
+<!--******************************************************************************************* -->
+<!--******************************************************************************************* -->
+
+<ISO15745Profile xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile ..\XSD\GSDML-DeviceProfile-v2.1.xsd">
+
+  <!--******************************************************************************************* -->
+  <!--******************************************************************************************* -->
+  <!--***************************************** ProfileHeader *********************************** -->
+  <!--******************************************************************************************* -->
+  <ProfileHeader>
+		<ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+		<ProfileRevision>1.00</ProfileRevision>
+		<ProfileName>Device Profile for PROFINET Devices</ProfileName>
+		<ProfileSource>PROFIBUS Nutzerorganisation e. V. (PNO)</ProfileSource>
+		<ProfileClassID>Device</ProfileClassID>
+		<ISO15745Reference>
+			<ISO15745Part>4</ISO15745Part>
+			<ISO15745Edition>1</ISO15745Edition>
+			<ProfileTechnology>GSDML</ProfileTechnology>
+		</ISO15745Reference>
+	</ProfileHeader>
+
+  <!--******************************************************************************************* -->
+  <!--***************************************** ProfileBody ************************************* -->
+  <!--******************************************************************************************* -->
+  <ProfileBody>
+    <DeviceIdentity VendorID="0x019C" DeviceID="0x0001"> 
+      <InfoText TextId="IDT_FAMILY_DESCRIPTION"/>
+			<VendorName Value="Datalogic Automation s.r.l."/>
+		</DeviceIdentity>
+		<DeviceFunction>
+			<Family MainFamily="Sensors" ProductFamily="Datalogic Matrix Readers"/>
+		</DeviceFunction>
+		<ApplicationProcess>
+          
+      <!--******************************************************************************************* -->
+      <!--********************************** DeviceAccessPointList ********************************** -->
+      <!--******************************************************************************************* -->
+      <DeviceAccessPointList>
+
+        <!--******************************************************************************************* -->
+        <!--******************************************* Matrix210 ************************************* -->
+        <!--******************************************************************************************* -->
+
+        <!--************************ Start modification for Migration ************************-->
+        <DeviceAccessPointItem ID="ID_DAP1_V1" PhysicalSlots="0..31" ModuleIdentNumber="0x00000200" MinDeviceInterval="256" ImplementationType="DSP" DNS_CompatibleName="Matrix" ExtendedAddressAssignmentSupported="false" FixedInSlots="0" ObjectUUID_LocalIndex="1" RequiredSchemaVersion="V2.1" MultipleWriteSupported="false" IOXS_Required="true" RemoteApplicationTimeout="300" AddressAssignment="DCP">
+          <ModuleInfo CategoryRef ="CAT_REF_MIGRATION_DAP">
+            <Name TextId="IDT_DAP1_RTEM_NAME"/>
+            <InfoText TextId="IDT_DAP_RTEM_INFO"/>
+            <VendorName Value="Datalogic Automation s.r.l."/>
+            <OrderNumber Value="PN-Matrix-DSP"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="R1.00.00"/>
+          </ModuleInfo>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI128" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI64" AllowedInSlots="2" UsedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI32" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI16" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI8" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO128" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO64" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO32" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO16" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO8" AllowedInSlots="1" UsedInSlots="1"/>
+
+            <!--Die Referenzen zeigen auf die Module der ModuleList -->
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="ID_DAP1_V1" SubmoduleIdentNumber="0x00000000" API="0" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1"/>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="1"/>
+          </Graphics>
+          <!--************************ Stop modification for Migration ************************ -->
+
+        </DeviceAccessPointItem>
+        <DeviceAccessPointItem ID="ID_DAP1_RTEM" PhysicalSlots="0..31" ModuleIdentNumber="0x00000200" MinDeviceInterval="256" ImplementationType="DSP" DNS_CompatibleName="Matrix" ExtendedAddressAssignmentSupported="false" FixedInSlots="0" ObjectUUID_LocalIndex="1" RequiredSchemaVersion="V2.1" MultipleWriteSupported="false" IOXS_Required="true" RemoteApplicationTimeout="300" AddressAssignment="DCP">
+          <ModuleInfo>
+            <Name TextId="IDT_DAP1_RTEM_NAME"/>
+            <InfoText TextId="IDT_DAP_RTEM_INFO"/>
+            <VendorName Value="Datalogic Automation s.r.l."/>
+            <OrderNumber Value="PN-Matrix-DSP"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="R1.00.00"/>
+          </ModuleInfo>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="IDT_Interface"/>
+            <SubslotItem SubslotNumber="32769" TextId="IDT_Port1"/>
+            <SubslotItem SubslotNumber="32770" TextId="IDT_Port2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI128" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI64" AllowedInSlots="2" UsedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI32" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI16" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI8" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO128" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO64" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO32" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO16" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO8" AllowedInSlots="1" UsedInSlots="1"/>
+
+            <!--Die Referenzen zeigen auf die Module der ModuleList -->
+					</UseableModules>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="IDS_SUBMODULE_PARAMDAP1RTEM" SubmoduleIdentNumber="0x00000000" API="0" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+							<IOData IOPS_Length="1" IOCS_Length="1"/>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+					<SystemDefinedSubmoduleList>
+						<InterfaceSubmoduleItem SupportedRT_Classes="RT_CLASS_1" SupportedProtocols="SNMP;LLDP" SupportedMibs="MIB2" SubslotNumber="32768" TextId="IDT_DAP_RTEM_INTERFACE" SubmoduleIdentNumber="0x00000001">
+							<ApplicationRelations>
+								<TimingProperties SendClock="32 64 128"/>
+							</ApplicationRelations>
+						</InterfaceSubmoduleItem>
+						<PortSubmoduleItem SubslotNumber="32769" MAUTypes="10 11 15 16" TextId="IDT_ETHERNETINTERFACE_Port1" SubmoduleIdentNumber="0x00000001"/>
+						<PortSubmoduleItem SubslotNumber="32770" MAUTypes="10 11 15 16" TextId="IDT_ETHERNETINTERFACE_Port2" SubmoduleIdentNumber="0x00000001"/>
+					</SystemDefinedSubmoduleList>
+					<Graphics>
+						<GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="1"/>
+					</Graphics>
+          <!--******************************************************************************************* -->
+        </DeviceAccessPointItem>
+
+        <!--******************************************************************************************* -->
+        <!--******************************************* Matrix410 ************************************* -->
+        <!--******************************************************************************************* -->
+
+        <!--************************ Start modification for Migration ************************-->
+        <DeviceAccessPointItem ID="ID_DAP2_V1" PhysicalSlots="0..31" ModuleIdentNumber="0x00000200" MinDeviceInterval="256" ImplementationType="DSP" DNS_CompatibleName="Matrix" ExtendedAddressAssignmentSupported="false" FixedInSlots="0" ObjectUUID_LocalIndex="1" RequiredSchemaVersion="V2.1" MultipleWriteSupported="false" IOXS_Required="true" RemoteApplicationTimeout="300" AddressAssignment="DCP">
+          <ModuleInfo CategoryRef ="CAT_REF_MIGRATION_DAP">
+            <Name TextId="IDT_DAP2_RTEM_NAME"/>
+            <InfoText TextId="IDT_DAP_RTEM_INFO"/>
+            <VendorName Value="Datalogic Automation s.r.l."/>
+            <OrderNumber Value="PN-Matrix-DSP"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="R1.00.00"/>
+          </ModuleInfo>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI128" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI64" AllowedInSlots="2" UsedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI32" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI16" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI8" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO128" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO64" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO32" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO16" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO8" AllowedInSlots="1" UsedInSlots="1"/>
+
+            <!--Die Referenzen zeigen auf die Module der ModuleList -->
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="ID_DAP2_V1" SubmoduleIdentNumber="0x00000000" API="0" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1"/>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="2"/>
+          </Graphics>
+          <!--************************ Stop modification for Migration ************************ -->
+
+        </DeviceAccessPointItem>
+        <DeviceAccessPointItem ID="ID_DAP2_RTEM" PhysicalSlots="0..31" ModuleIdentNumber="0x00000200" MinDeviceInterval="256" ImplementationType="DSP" DNS_CompatibleName="Matrix" ExtendedAddressAssignmentSupported="false" FixedInSlots="0" ObjectUUID_LocalIndex="1" RequiredSchemaVersion="V2.1" MultipleWriteSupported="false" IOXS_Required="true" RemoteApplicationTimeout="300" AddressAssignment="DCP">
+          <ModuleInfo>
+            <Name TextId="IDT_DAP2_RTEM_NAME"/>
+            <InfoText TextId="IDT_DAP_RTEM_INFO"/>
+            <VendorName Value="Datalogic Automation s.r.l."/>
+            <OrderNumber Value="PN-Matrix-DSP"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="R1.00.00"/>
+          </ModuleInfo>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="IDT_Interface"/>
+            <SubslotItem SubslotNumber="32769" TextId="IDT_Port1"/>
+            <SubslotItem SubslotNumber="32770" TextId="IDT_Port2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI128" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI64" AllowedInSlots="2" UsedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI32" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI16" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI8" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO128" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO64" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO32" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO16" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO8" AllowedInSlots="1" UsedInSlots="1"/>
+
+            <!--Die Referenzen zeigen auf die Module der ModuleList -->
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="IDS_SUBMODULE_PARAMDAP2RTEM" SubmoduleIdentNumber="0x00000000" API="0" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1"/>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem SupportedRT_Classes="RT_CLASS_1" SupportedProtocols="SNMP;LLDP" SupportedMibs="MIB2" SubslotNumber="32768" TextId="IDT_DAP_RTEM_INTERFACE" SubmoduleIdentNumber="0x00000001">
+              <ApplicationRelations>
+                <TimingProperties SendClock="32 64 128"/>
+              </ApplicationRelations>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem SubslotNumber="32769" MAUTypes="10 11 15 16" TextId="IDT_ETHERNETINTERFACE_Port1" SubmoduleIdentNumber="0x00000001"/>
+            <PortSubmoduleItem SubslotNumber="32770" MAUTypes="10 11 15 16" TextId="IDT_ETHERNETINTERFACE_Port2" SubmoduleIdentNumber="0x00000001"/>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="2"/>
+          </Graphics>
+          <!--******************************************************************************************* -->
+        </DeviceAccessPointItem>
+
+        <!--******************************************************************************************* -->
+        <!--******************************************* Matrix300 ************************************* -->
+        <!--******************************************************************************************* -->
+        
+        <!--************************ Start modification for Migration ************************-->
+        <DeviceAccessPointItem ID="ID_DAP3_V1" PhysicalSlots="0..31" ModuleIdentNumber="0x00000200" MinDeviceInterval="256" ImplementationType="DSP" DNS_CompatibleName="Matrix" ExtendedAddressAssignmentSupported="false" FixedInSlots="0" ObjectUUID_LocalIndex="1" RequiredSchemaVersion="V2.1" MultipleWriteSupported="false" IOXS_Required="true" RemoteApplicationTimeout="300" AddressAssignment="DCP">
+          <ModuleInfo CategoryRef ="CAT_REF_MIGRATION_DAP">
+            <Name TextId="IDT_DAP3_RTEM_NAME"/>
+            <InfoText TextId="IDT_DAP_RTEM_INFO"/>
+            <VendorName Value="Datalogic Automation s.r.l."/>
+            <OrderNumber Value="PN-Matrix-DSP"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="R1.00.00"/>
+          </ModuleInfo>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI128" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI64" AllowedInSlots="2" UsedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI32" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI16" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI8" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO128" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO64" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO32" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO16" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO8" AllowedInSlots="1" UsedInSlots="1"/>
+
+            <!--Die Referenzen zeigen auf die Module der ModuleList -->
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="ID_DAP3_V1" SubmoduleIdentNumber="0x00000000" API="0" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1"/>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="3"/>
+          </Graphics>
+          <!--************************ Stop modification for Migration ************************ -->
+
+        </DeviceAccessPointItem>
+        <DeviceAccessPointItem ID="ID_DAP3_RTEM" PhysicalSlots="0..31" ModuleIdentNumber="0x00000200" MinDeviceInterval="256" ImplementationType="DSP" DNS_CompatibleName="Matrix" ExtendedAddressAssignmentSupported="false" FixedInSlots="0" ObjectUUID_LocalIndex="1" RequiredSchemaVersion="V2.1" MultipleWriteSupported="false" IOXS_Required="true" RemoteApplicationTimeout="300" AddressAssignment="DCP">
+          <ModuleInfo>
+            <Name TextId="IDT_DAP3_RTEM_NAME"/>
+            <InfoText TextId="IDT_DAP_RTEM_INFO"/>
+            <VendorName Value="Datalogic Automation s.r.l."/>
+            <OrderNumber Value="PN-Matrix-DSP"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="R1.00.00"/>
+          </ModuleInfo>
+          <SubslotList>
+            <SubslotItem SubslotNumber="32768" TextId="IDT_Interface"/>
+            <SubslotItem SubslotNumber="32769" TextId="IDT_Port1"/>
+            <SubslotItem SubslotNumber="32770" TextId="IDT_Port2"/>
+          </SubslotList>
+          <IOConfigData MaxInputLength="1440" MaxOutputLength="1440"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI128" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI64" AllowedInSlots="2" UsedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI32" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI16" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VI8" AllowedInSlots="2"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO128" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO64" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO32" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO16" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="IDM_MODULE_VO8" AllowedInSlots="1" UsedInSlots="1"/>
+
+            <!--Die Referenzen zeigen auf die Module der ModuleList -->
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="IDS_SUBMODULE_PARAMDAP3RTEM" SubmoduleIdentNumber="0x00000000" API="0" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1"/>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <SystemDefinedSubmoduleList>
+            <InterfaceSubmoduleItem SupportedRT_Classes="RT_CLASS_1" SupportedProtocols="SNMP;LLDP" SupportedMibs="MIB2" SubslotNumber="32768" TextId="IDT_DAP_RTEM_INTERFACE" SubmoduleIdentNumber="0x00000001">
+              <ApplicationRelations>
+                <TimingProperties SendClock="32 64 128"/>
+              </ApplicationRelations>
+            </InterfaceSubmoduleItem>
+            <PortSubmoduleItem SubslotNumber="32769" MAUTypes="10 11 15 16" TextId="IDT_ETHERNETINTERFACE_Port1" SubmoduleIdentNumber="0x00000001"/>
+            <PortSubmoduleItem SubslotNumber="32770" MAUTypes="10 11 15 16" TextId="IDT_ETHERNETINTERFACE_Port2" SubmoduleIdentNumber="0x00000001"/>
+          </SystemDefinedSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="3"/>
+          </Graphics>
+          <!--******************************************************************************************* -->
+        </DeviceAccessPointItem>
+
+      </DeviceAccessPointList>
+
+      <!--******************************************************************************************* -->
+      <!--******************************** ModuleList + SubModuleList ******************************* -->
+      <!--******************************************************************************************* -->
+      <ModuleList>
+
+        <!--******************************************************************************************* -->
+
+        <!-- virtual intput modules -->
+				<ModuleItem ID="IDM_MODULE_VI128" ModuleIdentNumber="0x00000504">
+					<ModuleInfo CategoryRef="Input Module">
+						<Name TextId="IDT_MODULE_VI128_NAME"/>
+						<InfoText TextId="IDT_MODULE_VI128_INFO"/>
+						<OrderNumber Value="MODULE-128BYTE-IN"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="IDS_SUBMODULE_VI128" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Input Consistency="All items consistency">
+									<DataItem DataType="OctetString" TextId="IDT_DATAITEM_VI128" Length="128"/>
+								</Input>
+							</IOData>
+							<RecordDataList>
+								<ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+									<Name TextId="IDT_MODULE_VI128_ParameterData"/>
+									<Const Data="0x00,0x80" ByteOffset="0"/>
+								</ParameterRecordDataItem>
+							</RecordDataList>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+          
+				</ModuleItem>
+				<ModuleItem ID="IDM_MODULE_VI64" ModuleIdentNumber="0x00000505">
+					<ModuleInfo CategoryRef="Input Module">
+						<Name TextId="IDT_MODULE_VI64_NAME"/>
+						<InfoText TextId="IDT_MODULE_VI64_INFO"/>
+						<OrderNumber Value="MODULE-64BYTE-IN"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="IDS_SUBMODULE_VI64" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Input Consistency="All items consistency">
+									<DataItem DataType="OctetString" TextId="IDT_DATAITEM_VI64" Length="64"/>
+								</Input>
+							</IOData>
+							<RecordDataList>
+								<ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+									<Name TextId="IDT_MODULE_VI64_ParameterData"/>
+									<Const Data="0x00,0x40" ByteOffset="0"/>
+								</ParameterRecordDataItem>
+							</RecordDataList>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+        </ModuleItem>
+
+        <ModuleItem ID="IDM_MODULE_VI32" ModuleIdentNumber="0x00000506">
+          <ModuleInfo CategoryRef="Input Module">
+            <Name TextId="IDT_MODULE_VI32_NAME"/>
+            <InfoText TextId="IDT_MODULE_VI32_INFO"/>
+            <OrderNumber Value="MODULE-32BYTE-IN"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="IDS_SUBMODULE_VI32" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="IDT_DATAITEM_VI32" Length="32"/>
+                </Input>
+              </IOData>
+              <RecordDataList>
+                <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+                  <Name TextId="IDT_MODULE_VI32_ParameterData"/>
+                  <Const Data="0x00,0x20" ByteOffset="0"/>
+                </ParameterRecordDataItem>
+              </RecordDataList>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+
+        <ModuleItem ID="IDM_MODULE_VI16" ModuleIdentNumber="0x00000507">
+          <ModuleInfo CategoryRef="Input Module">
+            <Name TextId="IDT_MODULE_VI16_NAME"/>
+            <InfoText TextId="IDT_MODULE_VI16_INFO"/>
+            <OrderNumber Value="MODULE-16BYTE-IN"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="IDS_SUBMODULE_VI16" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="IDT_DATAITEM_VI16" Length="16"/>
+                </Input>
+              </IOData>
+              <RecordDataList>
+                <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+                  <Name TextId="IDT_MODULE_VI16_ParameterData"/>
+                  <Const Data="0x00,0x10" ByteOffset="0"/>
+                </ParameterRecordDataItem>
+              </RecordDataList>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+
+        <ModuleItem ID="IDM_MODULE_VI8" ModuleIdentNumber="0x00000508">
+          <ModuleInfo CategoryRef="Input Module">
+            <Name TextId="IDT_MODULE_VI8_NAME"/>
+            <InfoText TextId="IDT_MODULE_VI8_INFO"/>
+            <OrderNumber Value="MODULE-8BYTE-IN"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="IDS_SUBMODULE_VI8" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="IDT_DATAITEM_VI8" Length="8"/>
+                </Input>
+              </IOData>
+              <RecordDataList>
+                <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+                  <Name TextId="IDT_MODULE_VI8_ParameterData"/>
+                  <Const Data="0x00,0x08" ByteOffset="0"/>
+                </ParameterRecordDataItem>
+              </RecordDataList>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+
+        <!-- virtual output modules -->
+        <ModuleItem ID="IDM_MODULE_VO128" ModuleIdentNumber="0x00000604">
+					<ModuleInfo CategoryRef="Output Module">
+						<Name TextId="IDT_MODULE_VO128_NAME"/>
+						<InfoText TextId="IDT_MODULE_VO128_INFO"/>
+						<OrderNumber Value="MODULE-128BYTE-OUT"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="IDS_SUBMODULE_VO128" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Output Consistency="All items consistency">
+									<DataItem DataType="OctetString" TextId="IDT_DATAITEM_VO128" Length="128"/>
+								</Output>
+							</IOData>
+							<RecordDataList>
+								<ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+									<Name TextId="IDT_MODULE_VO128_ParameterData"/>
+									<Const Data="0x00,0x80" ByteOffset="0"/>
+								</ParameterRecordDataItem>
+							</RecordDataList>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+          
+				</ModuleItem>
+				<ModuleItem ID="IDM_MODULE_VO64" ModuleIdentNumber="0x00000605">
+					<ModuleInfo CategoryRef="Output Module">
+						<Name TextId="IDT_MODULE_VO64_NAME"/>
+						<InfoText TextId="IDT_MODULE_VO64_INFO"/>
+						<OrderNumber Value="MODULE-64BYTE-OUT"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="IDS_SUBMODULE_VO64" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Output Consistency="All items consistency">
+									<DataItem DataType="OctetString" TextId="IDT_DATAITEM_VO64" Length="64"/>
+								</Output>
+							</IOData>
+							<RecordDataList>
+								<ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+									<Name TextId="IDT_MODULE_VO64_ParameterData"/>
+									<Const Data="0x00,0x40" ByteOffset="0"/>
+								</ParameterRecordDataItem>
+							</RecordDataList>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+
+        </ModuleItem>
+        <ModuleItem ID="IDM_MODULE_VO32" ModuleIdentNumber="0x00000606">
+          <ModuleInfo CategoryRef="Output Module">
+            <Name TextId="IDT_MODULE_VO32_NAME"/>
+            <InfoText TextId="IDT_MODULE_VO32_INFO"/>
+            <OrderNumber Value="MODULE-32BYTE-OUT"/>
+            <HardwareRelease Value="1.0"/>
+            <SoftwareRelease Value="1.0"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="IDS_SUBMODULE_VO32" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Output Consistency="All items consistency">
+                  <DataItem DataType="OctetString" TextId="IDT_DATAITEM_VO32" Length="32"/>
+                </Output>
+              </IOData>
+              <RecordDataList>
+                <ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+                  <Name TextId="IDT_MODULE_VO32_ParameterData"/>
+                  <Const Data="0x00,0x20" ByteOffset="0"/>
+                </ParameterRecordDataItem>
+              </RecordDataList>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+   				
+        </ModuleItem>
+				<ModuleItem ID="IDM_MODULE_VO16" ModuleIdentNumber="0x00000607">
+					<ModuleInfo CategoryRef="Output Module">
+						<Name TextId="IDT_MODULE_VO16_NAME"/>
+						<InfoText TextId="IDT_MODULE_VO16_INFO"/>
+						<OrderNumber Value="MODULE-16BYTE-OUT"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="IDS_SUBMODULE_VO16" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Output Consistency="All items consistency">
+									<DataItem DataType="OctetString" TextId="IDT_DATAITEM_VO16" Length="16"/>
+								</Output>
+							</IOData>
+							<RecordDataList>
+								<ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+									<Name TextId="IDT_MODULE_VO16_ParameterData"/>
+									<Const Data="0x00,0x10" ByteOffset="0"/>
+								</ParameterRecordDataItem>
+							</RecordDataList>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+          		
+        </ModuleItem>
+				<ModuleItem ID="IDM_MODULE_VO8" ModuleIdentNumber="0x00000608">
+					<ModuleInfo CategoryRef="Output Module">
+						<Name TextId="IDT_MODULE_VO8_NAME"/>
+						<InfoText TextId="IDT_MODULE_VO8_INFO"/>
+						<OrderNumber Value="MODULE-8BYTE-OUT"/>
+						<HardwareRelease Value="1.0"/>
+						<SoftwareRelease Value="1.0"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="IDS_SUBMODULE_VO8" SubmoduleIdentNumber="0x00000000" FixedInSubslots="1" PROFIsafeSupported="false" Writeable_IM_Records="1 2 3">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+								<Output Consistency="All items consistency">
+									<DataItem DataType="OctetString" TextId="IDT_DATAITEM_VO8" Length="8"/>
+								</Output>
+							</IOData>
+							<RecordDataList>
+								<ParameterRecordDataItem Index="1" Length="2" TransferSequence="1">
+									<Name TextId="IDT_MODULE_VO8_ParameterData"/>
+									<Const Data="0x00,0x08" ByteOffset="0"/>
+								</ParameterRecordDataItem>
+							</RecordDataList>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+
+          <!--******************************************************************************************* -->
+          <!--***************************** ParameterRecordDataObjects ********************************** -->
+          <!--******************************************************************************************* -->
+                
+        </ModuleItem>
+      </ModuleList>
+
+       <!--******************************************************************************************* -->
+      <!--****************************************** ValueList ************************************** -->
+      <!--******************************************************************************************* -->
+      <ValueList>
+      
+        <ValueItem ID="BoolValue">
+          <Assignments>
+            <Assign Content="0" TextId="T_disable"/>
+            <Assign Content="1" TextId="T_enable"/>
+          </Assignments>
+        </ValueItem>
+               
+      </ValueList>
+      <!--******************************************************************************************* -->
+      <!--************************************** ChannelDiagList ************************************ -->
+      <!--******************************************************************************************* -->
+      <!-- Ab hier beginnen die Diagnose-Texte -->
+			<ChannelDiagList>
+				<ChannelDiagItem ErrorType="16">
+					<Name TextId="T_Parameter assignment error"/>
+				</ChannelDiagItem>
+			</ChannelDiagList>
+
+      <!--******************************************************************************************* -->
+      <!--************************************** GraphicsList *************************************** -->
+      <!--******************************************************************************************* -->
+      <GraphicsList>
+        <GraphicItem ID="1" GraphicFile="GSDML-019C-Matrix210"/>
+        <GraphicItem ID="2" GraphicFile="GSDML-019C-Matrix410"/>
+        <GraphicItem ID="3" GraphicFile="GSDML-019C-Matrix300"/>
+      </GraphicsList>
+
+      <!--******************************************************************************************* -->
+      <!--************************************** CategoryList *************************************** -->
+      <!--******************************************************************************************* -->
+      <CategoryList>
+				<CategoryItem ID="Input Module" TextId="T_I Module"/>
+				<CategoryItem ID="Output Module" TextId="T_O Module"/>
+				<CategoryItem ID="Input/Output Module" TextId="T_IO Module"/>
+        <!--FD Start Migration mod -->
+        <CategoryItem ID="CAT_REF_MIGRATION_DAP" TextId="T_ID_MIGRATION_DAP" />
+        <!--FD Stop Migration mod -->
+ 
+      </CategoryList>
+      <!--******************************************************************************************* -->
+      <!--************************************** ExternalTextList *********************************** -->
+      <!--******************************************************************************************* -->
+ 
+      <ExternalTextList>
+				<PrimaryLanguage>
+					<!--  -->
+					<Text TextId="IDT_FAMILY_DESCRIPTION" Value="Implementation of PROFINET IO stack in Datalogic Matrix hardware platforms "/>
+					<!--Textstrings f&#252;r DAP  -->      
+					<Text TextId="IDT_DAP1_RTEM_NAME" Value="Matrix 210"/>
+					<Text TextId="IDT_DAP_RTEM_INFO" Value="Matrix Barcode Reader and Vision Sensor with embedded PROFINET IO; supports Conformance Class A"/>
+					<Text TextId="IDT_DAP_RTEM_INTERFACE" Value="Single Port - without PN-Switch"/>
+					<Text TextId="IDT_Interface" Value="X1"/>
+					<Text TextId="IDT_Port1" Value="X1 P1"/>
+					<Text TextId="IDT_Port2" Value="X1 P2"/>
+					<Text TextId="IDT_ETHERNETINTERFACE_Port1" Value="Port 1"/>
+					<Text TextId="IDT_ETHERNETINTERFACE_Port2" Value="Port 2"/>
+					<Text TextId="T_Parameter assignment error" Value="Parameter assignment error"/>
+					<Text TextId="T_enable" Value="enable"/>
+					<Text TextId="T_disable" Value="disable"/>
+
+          <!-- other DAP specifics -->
+          <Text TextId="IDT_DAP2_RTEM_NAME" Value="Matrix 410"/>
+          <Text TextId="IDT_DAP3_RTEM_NAME" Value="Matrix 300"/>
+
+          <!--  -->
+					<!--module categories-->
+					<Text TextId="T_I Module" Value="Input Module"/>
+					<Text TextId="T_O Module" Value="Output Module"/>
+					<Text TextId="T_IO Module" Value="Input/Output Module"/>
+
+          <!--FD Start Migration mod -->
+          <Text TextId="T_ID_MIGRATION_DAP" Value="Migration Module"/>
+          <!--FD Stop Migration mod -->
+
+					<!-- input modules -->
+					<Text TextId="IDT_MODULE_VI128_NAME" Value="128 Byte Input"/>
+					<Text TextId="IDT_MODULE_VI128_INFO" Value="Input module, 128 byte data"/>
+					<Text TextId="IDT_MODULE_VI128_ParameterData" Value="Allgemeine Parameter f&#252;r 128 Byte Input Modul"/>
+					<Text TextId="IDT_DATAITEM_VI128" Value="Input 128 Byte Modul"/>
+					<Text TextId="IDT_MODULE_VI64_NAME" Value="64 Byte Input"/>
+					<Text TextId="IDT_MODULE_VI64_INFO" Value="Input module, 64 byte data"/>
+					<Text TextId="IDT_MODULE_VI64_ParameterData" Value="Allgemeine Parameter f&#252;r 64 Byte Input Modul"/>
+					<Text TextId="IDT_DATAITEM_VI64" Value="Input 64 Byte Modul"/>
+          <Text TextId="IDT_MODULE_VI32_NAME" Value="32 Byte Input"/>
+          <Text TextId="IDT_MODULE_VI32_INFO" Value="Input module, 32 byte data"/>
+          <Text TextId="IDT_MODULE_VI32_ParameterData" Value="Allgemeine Parameter f&#252;r 32 Byte Input Modul"/>
+          <Text TextId="IDT_DATAITEM_VI32" Value="Input 32 Byte Modul"/>
+          <Text TextId="IDT_MODULE_VI16_NAME" Value="16 Byte Input"/>
+          <Text TextId="IDT_MODULE_VI16_INFO" Value="Input module, 16 byte data"/>
+          <Text TextId="IDT_MODULE_VI16_ParameterData" Value="Allgemeine Parameter f&#252;r 16 Byte Input Modul"/>
+          <Text TextId="IDT_DATAITEM_VI16" Value="Input 16 Byte Modul"/>        
+ 					<Text TextId="IDT_MODULE_VI8_NAME" Value="8 Byte Input"/>
+					<Text TextId="IDT_MODULE_VI8_INFO" Value="Input module, 8 byte data"/>
+					<Text TextId="IDT_MODULE_VI8_ParameterData" Value="Allgemeine Parameter f&#252;r 8 Byte Input Modul"/>
+					<Text TextId="IDT_DATAITEM_VI8" Value="Input 8 Byte Modul"/>
+
+          <!-- output modules -->
+					<Text TextId="IDT_MODULE_VO128_NAME" Value="128 Byte Output"/>
+					<Text TextId="IDT_MODULE_VO128_INFO" Value="Output module, 128 byte data"/>
+					<Text TextId="IDT_MODULE_VO128_ParameterData" Value="Allgemeine Parameter f&#252;r 128 Byte  Output Modul"/>
+					<Text TextId="IDT_DATAITEM_VO128" Value="Output 128 Byte Modul"/>
+					<Text TextId="IDT_MODULE_VO64_NAME" Value="64 Byte Output"/>
+					<Text TextId="IDT_MODULE_VO64_INFO" Value="Output module, 64 byte data"/>
+					<Text TextId="IDT_MODULE_VO64_ParameterData" Value="Allgemeine Parameter f&#252;r 64 Byte  Output Modul"/>
+					<Text TextId="IDT_DATAITEM_VO64" Value="Output 64 Byte Modul"/>
+          <Text TextId="IDT_MODULE_VO32_NAME" Value="32 Byte Output"/>
+          <Text TextId="IDT_MODULE_VO32_INFO" Value="Output module, 32 byte data"/>
+          <Text TextId="IDT_MODULE_VO32_ParameterData" Value="Allgemeine Parameter f&#252;r 32 Byte  Output Modul"/>
+          <Text TextId="IDT_DATAITEM_VO32" Value="Output 32 Byte Modul"/>
+          <Text TextId="IDT_MODULE_VO16_NAME" Value="16 Byte Output"/>
+          <Text TextId="IDT_MODULE_VO16_INFO" Value="Output module, 16 byte data"/>
+          <Text TextId="IDT_MODULE_VO16_ParameterData" Value="Allgemeine Parameter f&#252;r 16 Byte  Output Modul"/>
+          <Text TextId="IDT_DATAITEM_VO16" Value="Output 16 Byte Modul"/>
+          <Text TextId="IDT_MODULE_VO8_NAME" Value="8 Byte Output"/>
+          <Text TextId="IDT_MODULE_VO8_INFO" Value="Output module, 8 byte data"/>
+          <Text TextId="IDT_MODULE_VO8_ParameterData" Value="Allgemeine Parameter f&#252;r 8 Byte  Output Modul"/>
+          <Text TextId="IDT_DATAITEM_VO8" Value="Output 8 Byte Modul"/>
+
+        </PrimaryLanguage>
+			</ExternalTextList>
+      
+		</ApplicationProcess>
+	</ProfileBody>
+</ISO15745Profile>

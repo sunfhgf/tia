@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace TiaAutomation.Api
 
             if (string.IsNullOrWhiteSpace(gsdDir))
             {
-                gsdDir = @"C:\ProgramData\Siemens\Automation\Portal V20\data\xdd\gsd";
+                gsdDir = ResolveDefaultGsdDir();
             }
 
             var version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "0.0.0";
@@ -63,17 +63,16 @@ namespace TiaAutomation.Api
                 });
             });
 
-            // ── 已安装 GSD 设备目录 ──
+            // ── 项目 GSD 设备目录 ──
             router.Map("GET", "/api/gsd/devices", async ctx =>
             {
                 var query = ctx.Request.QueryString;
-                var dir = query["dir"];
                 var search = (query["search"] ?? string.Empty).Trim();
                 var limitText = query["limit"];
                 var limit = 120;
                 if (int.TryParse(limitText, out var parsedLimit)) limit = Math.Max(10, Math.Min(parsedLimit, 500));
 
-                var scanDir = string.IsNullOrWhiteSpace(dir) ? gsdDir : dir;
+                var scanDir = gsdDir;
                 var scan = new GsdCatalogScanner().Scan(scanDir);
                 var rows = scan.Devices
                     .SelectMany(g => (g.AccessPoints != null && g.AccessPoints.Count > 0 ? g.AccessPoints : new List<GsdAccessPointInfo> { new GsdAccessPointInfo() })
@@ -91,6 +90,25 @@ namespace TiaAutomation.Api
                             orderNumber = a.OrderNumber,
                             hardwareRelease = a.HardwareRelease,
                             softwareRelease = a.SoftwareRelease,
+                            modules = (a.Modules ?? new List<GsdModuleInfo>()).Select(m => new
+                            {
+                                id = m.Id,
+                                name = m.Name,
+                                moduleIdentNumber = m.ModuleIdentNumber,
+                                orderNumber = m.OrderNumber,
+                                allowedInSlots = m.AllowedInSlots,
+                                inputLength = m.InputLength,
+                                outputLength = m.OutputLength,
+                                submodules = (m.Submodules ?? new List<GsdSubmoduleInfo>()).Select(s => new
+                                {
+                                    id = s.Id,
+                                    name = s.Name,
+                                    submoduleIdentNumber = s.SubmoduleIdentNumber,
+                                    allowedInSubslots = s.AllowedInSubslots,
+                                    inputLength = s.InputLength,
+                                    outputLength = s.OutputLength
+                                }).ToList()
+                            }).ToList(),
                             fileName = g.FileName,
                             filePath = g.FilePath
                         }))
@@ -329,6 +347,22 @@ namespace TiaAutomation.Api
             }
         }
 
+        private static string ResolveDefaultGsdDir()
+        {
+            var candidates = new List<string>();
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            var current = new DirectoryInfo(baseDir);
+            while (current != null)
+            {
+                candidates.Add(Path.Combine(current.FullName, "gsd"));
+                current = current.Parent;
+            }
+
+            candidates.Add(Path.Combine(Environment.CurrentDirectory, "gsd"));
+            candidates.Add(@"C:\ProgramData\Siemens\Automation\Portal V20\data\xdd\gsd");
+
+            return candidates.FirstOrDefault(Directory.Exists) ?? candidates[0];
+        }
         private static bool MatchesSearch(string search, params string[] fields)
         {
             if (string.IsNullOrWhiteSpace(search)) return true;

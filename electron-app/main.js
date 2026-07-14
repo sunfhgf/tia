@@ -1,4 +1,4 @@
-﻿const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const { spawn } = require('child_process');
 const path = require('path');
 const http = require('http');
@@ -9,9 +9,12 @@ let apiProcess = null;
 let mainWindow = null;
 
 function startApi() {
-  const exe = path.resolve(__dirname, '..', 'TiaAutomation', 'src', 'TiaAutomation.Api', 'bin', 'Release', 'net48', 'TiaAutomation.Api.exe');
+  const projectRoot = path.resolve(__dirname, '..');
+  const exe = path.join(projectRoot, 'TiaAutomation', 'src', 'TiaAutomation.Api', 'bin', 'Release', 'net48', 'TiaAutomation.Api.exe');
+  const gsdDir = path.join(projectRoot, 'gsd');
   console.log('[main] spawning api:', exe);
-  apiProcess = spawn(exe, ['--port', String(API_PORT)], {
+  console.log('[main] gsd dir:', gsdDir);
+  apiProcess = spawn(exe, ['--port', String(API_PORT), '--gsd-dir', gsdDir], {
     stdio: ['ignore', 'pipe', 'pipe'],
     windowsHide: false,
   });

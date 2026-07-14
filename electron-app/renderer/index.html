@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -33,6 +33,33 @@
     .fg { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .fg label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--m); }
     .fg input, .fg select { padding: 5px 8px; border: 1px solid var(--bd); border-radius: var(--r); font-size: 13px; }
+    .fg input[readonly], td input[readonly] { background: #f7f7f7; color: #666; }
+    .device-card h2 { flex-wrap: wrap; }
+    .device-meta { color: var(--m); font-size: 11px; font-weight: 400; margin-left: 6px; }
+    .device-actions { margin-left: auto; display: flex; gap: 8px; }
+    .dev-table-wrap { overflow-x: auto; }
+    .device-table { min-width: 980px; }
+    .device-table input, .device-table select { padding: 5px 7px; border: 1px solid var(--bd); border-radius: var(--r); font-size: 13px; background: #fff; }
+    .device-table .dev-name { width: 120px; }
+    .device-table .dev-gsd { width: 390px; max-width: 390px; }
+    .device-table .dev-pn { width: 120px; }
+    .device-table .dev-ip { width: 125px; }
+    .device-table .dev-addr { width: 80px; }
+    .device-table .dev-remove { min-width: 36px; justify-content: center; padding: 6px 10px; }
+    .device-row-actions { display: flex; gap: 6px; white-space: nowrap; }
+    .device-module-row > td { padding: 0; background: #f7f9fb; }
+    .device-module-row:hover > td { background: #f7f9fb; }
+    .module-editor { padding: 10px 14px 12px 28px; border-bottom: 1px solid var(--bd); }
+    .module-editor-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .module-editor-title { font-size: 12px; font-weight: 600; }
+    .module-editor-meta { color: var(--m); font-size: 11px; }
+    .module-table { min-width: 820px; background: #fff; }
+    .module-table th, .module-table td { padding: 5px 7px; }
+    .module-table .module-slot { width: 62px; }
+    .module-table .module-type { width: 310px; max-width: 310px; }
+    .module-table .module-subtype { width: 285px; max-width: 285px; }
+    .module-table .module-address { width: 72px; }
+    .module-empty { color: var(--m); font-size: 12px; padding: 7px 0; }
     .dz { border: 2px dashed var(--bd); border-radius: var(--r); padding: 28px; text-align: center; color: var(--m); cursor: pointer; transition: .15s; }
     .dz:hover, .dz.over { border-color: var(--p); color: var(--p); background: var(--pl); }
     .dz input { display: none; }
@@ -105,8 +132,17 @@
       async health() { return this.fetch('/api/health'); },
     };
     let view = 'projects', pid = null;
+    let autoSaveTimer = null;
 
     function nav(v, id) { view = v; if (id !== undefined) pid = id; render(); }
+
+    function scheduleAutoSave() {
+      if (view !== 'config' || !pid) return;
+      clearTimeout(autoSaveTimer);
+      const st = document.getElementById('hdrSt');
+      if (st) st.textContent = '正在自动保存...';
+      autoSaveTimer = setTimeout(() => saveCfg(true), 350);
+    }
 
     function renderNav() {
       const el = document.getElementById('mainNav');
@@ -212,27 +248,15 @@
     }
     async function delProj(id) { if (!confirm('确定删除此项目？')) return; await API.fetch(`/api/projects/${id}`, { method: 'DELETE' }); render(); }
 
-    function networkPrepCard(j) {
-      if (!j.templateProject && !j.networkProjectDirectory) {
-        return `<div class="card"><h2>网络配置准备</h2><p style="color:var(--warn);font-size:12px">当前项目还没有复制出的 TIA 工程，请重新新建项目或手动填写模板工程路径。</p></div>`;
-      }
-      return `<div class="card"><h2>网络配置准备</h2>
-        <table><tbody>
-          <tr><th>PLC 名称</th><td>${esc(j.project?.plcName || '')}</td></tr>
-          <tr><th>PLC IP</th><td>${esc(j.project?.plcIpAddress || '')}</td></tr>
-          <tr><th>复制工程目录</th><td>${esc(j.networkProjectDirectory || '')}</td></tr>
-          <tr><th>项目文件</th><td>${esc(j.templateProject || '')}</td></tr>
-          <tr><th>准备报告</th><td>${esc(j.networkPreparationReport || '')}</td></tr>
-        </tbody></table>
-        <p style="color:var(--m);font-size:12px;margin-top:8px">下一步按网络配置要求补充设备、PROFINET 名称、IP 地址和 I/Q 起始地址；GSD 安装和硬件组态仍需在 TIA Portal 中确认。</p>
-      </div>`;
-    }
+
     // ── 配置 ──
     async function renderConfig(el) {
       const j = await API.fetch(`/api/projects/${pid}`);
       if (!j) { el.innerHTML = '<div class="empty">项目不存在</div>'; return; }
       const p = j.project || {};
       const displayProjectName = buildProjectName(p.code || '', p.station || '', p.versionDate || '') || j.projectName || '';
+      await ensureGsdDevices();
+      const deviceAddDisabled = gsdDevices.length ? '' : 'disabled';
       el.innerHTML = `
       <div class="card"><h2>项目信息</h2>
         <div class="fg">
@@ -246,83 +270,289 @@
         </div>
         <div style="margin-top:10px"><button class="btn bp" onclick="saveCfg()">保存</button></div>
       </div>
-      ${networkPrepCard(j)}
-      ${gsdPickerCard()}
-      <div class="card"><h2>设备 <button class="btn" style="margin-left:auto" onclick="addRow('devices')">+ 添加</button></h2>
-        <table><thead><tr><th>名称</th><th>类型/GSD</th><th>PROFINET名</th><th>IP</th><th>I起始</th><th>Q起始</th><th></th></tr></thead>
-        <tbody id="devTbl">${devRows(j.devices||[])}</tbody></table>
+      <div class="card device-card"><h2>设备 <span class="device-meta">${esc(gsdStatusText())}</span><span class="device-actions"><button class="btn" onclick="refreshGsdDevices()">刷新GSD</button><button class="btn bp" onclick="addDeviceRow()" ${deviceAddDisabled}>+ 添加设备</button></span></h2>
+        <div class="dev-table-wrap"><table class="device-table"><thead><tr><th>名称</th><th>类型/GSD</th><th>PROFINET名</th><th>IP</th><th>I起始</th><th>Q起始</th><th></th></tr></thead>
+        <tbody id="devTbl">${devRows(j.devices||[])}</tbody></table></div>
       </div>
-      <div class="card"><h2>IO 点 <button class="btn" style="margin-left:auto" onclick="addRow('ioPoints')">+ 添加</button></h2>
-        <table><thead><tr><th>设备</th><th>通道</th><th>地址</th><th>标签</th><th>类型</th><th>注释</th><th></th></tr></thead>
-        <tbody id="ioTbl">${ioRows(j.ioPoints||[])}</tbody></table>
-      </div>
-      <div class="card"><h2>伺服 <button class="btn" style="margin-left:auto" onclick="addRow('servos')">+ 添加</button></h2>
-        <table><thead><tr><th>名称</th><th>工位</th><th>设备</th><th>轴名称</th><th>报文</th><th>HW ID</th><th>报文地址</th><th>逻辑块</th><th></th></tr></thead>
-        <tbody id="servoTbl">${servoRows(j.servos||[])}</tbody></table>
-      </div>
-      <div class="card"><h2>工位 <button class="btn" style="margin-left:auto" onclick="addRow('stations')">+ 添加</button></h2>
-        <table><thead><tr><th>工位号</th><th>名称</th><th>逻辑块</th><th>安全条件</th><th></th></tr></thead>
-        <tbody id="stTbl">${stRows(j.stations||[])}</tbody></table>
-      </div>`;
-      loadGsdDevices();
-    }
-
-    function gsdPickerCard() {
-      return `<div class="card"><h2>从已安装 GSD 添加设备</h2>
-        <div class="fg">
-          <label>搜索型号/厂商/订货号 <input id="gsdSearch" placeholder="如 SINAMICS、V90、SMC、Festo" onkeydown="if(event.key==='Enter') loadGsdDevices()"></label>
-          <label>已安装 GSD 型号 <select id="gsdSelect"></select></label>
-          <label>设备名称 <input id="gsdName" placeholder="如 Servo_1 / ET200_1"></label>
-          <label>PROFINET 名 <input id="gsdPn" placeholder="如 servo-1"></label>
-          <label>IP 地址 <input id="gsdIp" placeholder="如 192.168.1.21"></label>
-          <label>I/Q 起始 <input id="gsdAddr" placeholder="如 100/100"></label>
-        </div>
-        <div style="display:flex;gap:10px;margin-top:10px"><button class="btn" onclick="loadGsdDevices()">扫描/搜索</button><button class="btn bp" onclick="addDeviceFromGsd()">添加到设备</button></div>
-        <p id="gsdInfo" style="color:var(--m);font-size:12px;margin-top:8px">正在读取 TIA V20 已安装 GSD...</p>
-      </div>`;
+`;
+      const needsServoDefault = (j.devices || []).some(device => {
+        const g = gsdDevices[findGsdIndex(device)];
+        return !(device.modules || []).length && defaultModulesForGsd(g, device).length > 0;
+      });
+      if (needsServoDefault) scheduleAutoSave();
     }
 
     let gsdDevices = [];
-    async function loadGsdDevices() {
-      const sel = document.getElementById('gsdSelect');
-      if (!sel) return;
-      const search = document.getElementById('gsdSearch')?.value.trim() || '';
-      const info = document.getElementById('gsdInfo');
-      if (info) info.textContent = '正在扫描已安装 GSD...';
-      const r = await API.fetch(`/api/gsd/devices?search=${encodeURIComponent(search)}&limit=180`);
-      gsdDevices = r.devices || [];
-      sel.innerHTML = gsdDevices.map((d,i)=>`<option value="${i}">${esc(d.displayName)} · ${esc(d.deviceId||'')} · ${esc(d.fileName||'')}</option>`).join('');
-      if (info) info.textContent = `目录: ${r.gsdDir || ''}，GSD 文件 ${r.totalFiles || 0} 个，显示 ${r.returned || 0} 个。`;
+    let gsdLoaded = false;
+    let gsdMeta = { gsdDir: '', totalFiles: 0, returned: 0, error: '' };
+
+    async function ensureGsdDevices(force = false) {
+      if (gsdLoaded && !force) return;
+      try {
+        const r = await API.fetch('/api/gsd/devices?limit=500');
+        gsdDevices = r.devices || [];
+        gsdMeta = { gsdDir: r.gsdDir || '', totalFiles: r.totalFiles || 0, returned: r.returned || 0, error: '' };
+        gsdLoaded = true;
+      } catch (e) {
+        gsdDevices = [];
+        gsdMeta = { gsdDir: '', totalFiles: 0, returned: 0, error: e?.message || '读取失败' };
+        gsdLoaded = true;
+      }
     }
 
-    async function addDeviceFromGsd() {
-      const idx = +(document.getElementById('gsdSelect')?.value || 0);
-      const g = gsdDevices[idx];
-      if (!g) { alert('请先选择一个 GSD 型号'); return; }
+    async function refreshGsdDevices() {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      if (j) {
+        collectEdits(j, 'devTbl', 'devices');
+        collectEdits(j, 'ioTbl', 'ioPoints');
+        collectEdits(j, 'servoTbl', 'servos');
+        collectEdits(j, 'stTbl', 'stations');
+        await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
+      }
+      await ensureGsdDevices(true);
+      renderConfig(document.getElementById('app'));
+    }
+
+    function gsdStatusText() {
+      if (gsdMeta.error) return `项目 GSD 读取失败：${gsdMeta.error}`;
+      if (!gsdLoaded) return '正在读取项目 GSD...';
+      return `项目 GSD：${gsdMeta.totalFiles || 0} 个文件，${gsdDevices.length || 0} 个型号`;
+    }
+
+    function gsdOptionLabel(g) {
+      return [g?.displayName, g?.deviceId, g?.fileName].filter(Boolean).join(' · ') || 'GSD 设备';
+    }
+
+    function sameText(a, b) {
+      return String(a || '').toLowerCase() === String(b || '').toLowerCase();
+    }
+
+    function findGsdIndex(device) {
+      if (!device) return -1;
+      let idx = gsdDevices.findIndex(g =>
+        device.gsdFilePath && sameText(g.filePath, device.gsdFilePath) &&
+        (!device.accessPointId || sameText(g.accessPointId, device.accessPointId))
+      );
+      if (idx >= 0) return idx;
+      idx = gsdDevices.findIndex(g =>
+        device.gsdFileName && sameText(g.fileName, device.gsdFileName) &&
+        (!device.accessPointId || sameText(g.accessPointId, device.accessPointId))
+      );
+      if (idx >= 0) return idx;
+      idx = gsdDevices.findIndex(g => device.deviceType && sameText(g.displayName, device.deviceType));
+      if (idx >= 0) return idx;
+      return gsdDevices.findIndex(g =>
+        device.deviceId && sameText(g.deviceId, device.deviceId) &&
+        (!device.orderNumber || sameText(g.orderNumber, device.orderNumber))
+      );
+    }
+
+    function gsdOptions(device) {
+      const selected = findGsdIndex(device);
+      let html = '';
+      if (selected < 0) {
+        const label = device?.deviceType ? `未匹配：${device.deviceType}` : '请选择 GSD 型号';
+        html += `<option value="" selected>${esc(label)}</option>`;
+      }
+      if (!gsdDevices.length) {
+        html += '<option value="">项目 gsd 目录没有可选设备</option>';
+        return html;
+      }
+      return html + gsdDevices.map((g, i) =>
+        `<option value="${i}" ${i === selected ? 'selected' : ''}>${esc(gsdOptionLabel(g))}</option>`
+      ).join('');
+    }
+
+    function applyGsdToDevice(device, g) {
+      if (!device || !g) return;
+      device.deviceType = g.displayName || '';
+      device.vendorName = g.vendorName || '';
+      device.vendorId = g.vendorId || '';
+      device.deviceId = g.deviceId || '';
+      device.gsdFileName = g.fileName || '';
+      device.gsdFilePath = g.filePath || '';
+      device.accessPointId = g.accessPointId || '';
+      device.orderNumber = g.orderNumber || '';
+      device.moduleIdentNumber = g.moduleIdentNumber || '';
+      device.mainFamily = g.mainFamily || '';
+      device.productFamily = g.productFamily || '';
+    }
+
+    function nextDeviceNameFromRows(seed) {
+      const prefix = String(seed || 'DEV').replace(/[^A-Za-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 18) || 'DEV';
+      const names = new Set([...document.querySelectorAll('#devTbl input[data-f="name"]')].map(x => x.value.trim()).filter(Boolean));
+      let n = 1;
+      while (names.has(`${prefix}_${n}`)) n++;
+      return `${prefix}_${n}`;
+    }
+
+    async function addDeviceRow() {
+      await ensureGsdDevices();
+      if (!gsdDevices.length) { alert('项目 gsd 目录没有可选设备'); return; }
       const j = await API.fetch(`/api/projects/${pid}`);
       j.devices = j.devices || [];
-      const addr = (document.getElementById('gsdAddr').value || '').split('/');
-      const name = document.getElementById('gsdName').value.trim() || nextDeviceName(j, g.orderNumber || g.productFamily || 'DEV');
-      j.devices.push({
-        name,
-        deviceType: g.displayName,
-        profinetName: normalizeProfinetName(document.getElementById('gsdPn').value.trim() || name),
-        ipAddress: document.getElementById('gsdIp').value.trim(),
-        inputStart: addr[0] ? +addr[0] : 0,
-        outputStart: addr[1] ? +addr[1] : 0,
-        vendorName: g.vendorName,
-        vendorId: g.vendorId,
-        deviceId: g.deviceId,
-        gsdFileName: g.fileName,
-        gsdFilePath: g.filePath,
-        accessPointId: g.accessPointId,
-        orderNumber: g.orderNumber,
-        moduleIdentNumber: g.moduleIdentNumber
-      });
+      collectEdits(j, 'devTbl', 'devices');
+      collectEdits(j, 'ioTbl', 'ioPoints');
+      collectEdits(j, 'servoTbl', 'servos');
+      collectEdits(j, 'stTbl', 'stations');
+      j.devices.push({ name: '', deviceType: '', profinetName: '', ipAddress: '', inputStart: 0, outputStart: 0 });
       await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
       renderConfig(document.getElementById('app'));
     }
 
+    function onDeviceGsdChange(i) {
+      const row = document.querySelector(`#devTbl tr.device-row[data-device-index="${i}"]`);
+      const sel = row?.querySelector('select[data-f="gsdIndex"]');
+      const g = gsdDevices[+(sel?.value || -1)];
+      if (!row || !g) return;
+      const nameInput = row.querySelector('input[data-f="name"]');
+      const pnInput = row.querySelector('input[data-f="profinetName"]');
+      if (nameInput && !nameInput.value.trim()) nameInput.value = nextDeviceNameFromRows(g.orderNumber || g.productFamily || 'DEV');
+      if (pnInput) pnInput.value = normalizeProfinetName(nameInput?.value || g.dnsCompatibleName || 'device');
+      const defaultModules = defaultModulesForGsd(g, {});
+      const moduleCell = document.querySelector(`#deviceModules-${i}`);
+      if (moduleCell) moduleCell.innerHTML = moduleEditorHtml({ modules: defaultModules }, g, i);
+      const moduleRow = document.querySelector(`#deviceModuleRow-${i}`);
+      if (moduleRow) moduleRow.classList.toggle('hidden', defaultModules.length === 0);
+      scheduleAutoSave();
+    }
+
+    function onDeviceNameInput(i) {
+      const row = document.querySelector(`#devTbl tr.device-row[data-device-index="${i}"]`);
+      const nameInput = row?.querySelector('input[data-f="name"]');
+      const pnInput = row?.querySelector('input[data-f="profinetName"]');
+      if (pnInput) pnInput.value = normalizeProfinetName(nameInput?.value || '');
+      scheduleAutoSave();
+    }
+
+    function isServoGsd(g) {
+      const text = [g?.mainFamily, g?.productFamily, g?.displayName, g?.orderNumber].filter(Boolean).join(' ').toLowerCase();
+      return /drives|servo|sinamics|v90|s200|sv660/.test(text);
+    }
+
+    function firstPosition(spec, fallback = 1) {
+      const match = String(spec || '').match(/\d+/);
+      return match ? +match[0] : fallback;
+    }
+
+    function defaultModulesForGsd(g, device) {
+      if (!g || !isServoGsd(g)) return [];
+      for (const module of (g.modules || [])) {
+        const submodule = (module.submodules || []).find(s => /(?:^|\D)111(?:\D|$)/.test(`${s.id || ''} ${s.name || ''}`));
+        if (!submodule) continue;
+        return [{
+          moduleId: module.id || '', moduleName: module.name || '', moduleIdentNumber: module.moduleIdentNumber || '',
+          slot: firstPosition(module.allowedInSlots, 1), submoduleId: submodule.id || '', submoduleName: submodule.name || '',
+          submoduleIdentNumber: submodule.submoduleIdentNumber || '', subslot: firstPosition(submodule.allowedInSubslots, 2),
+          inputStart: +(device?.inputStart || 0), outputStart: +(device?.outputStart || 0)
+        }];
+      }
+      return [];
+    }
+
+    function effectiveDeviceModules(device, g) {
+      return (device?.modules || []).length ? device.modules : defaultModulesForGsd(g, device || {});
+    }
+
+    function findModuleIndex(g, selected) {
+      return (g?.modules || []).findIndex(m => sameText(m.id, selected?.moduleId) || sameText(m.moduleIdentNumber, selected?.moduleIdentNumber));
+    }
+
+    function findSubmoduleIndex(module, selected) {
+      return (module?.submodules || []).findIndex(s => sameText(s.id, selected?.submoduleId) || sameText(s.submoduleIdentNumber, selected?.submoduleIdentNumber));
+    }
+
+    function moduleLabel(module) {
+      const io = [module.inputLength ? `I:${module.inputLength}B` : '', module.outputLength ? `Q:${module.outputLength}B` : ''].filter(Boolean).join(' ');
+      return [module.name || module.id, module.moduleIdentNumber, io].filter(Boolean).join(' · ');
+    }
+
+    function submoduleLabel(submodule) {
+      const io = [submodule.inputLength ? `I:${submodule.inputLength}B` : '', submodule.outputLength ? `Q:${submodule.outputLength}B` : ''].filter(Boolean).join(' ');
+      return [submodule.name || submodule.id, io].filter(Boolean).join(' · ');
+    }
+
+    function moduleOptions(g, selected) {
+      const selectedIndex = findModuleIndex(g, selected);
+      return (g?.modules || []).map((module, index) =>
+        `<option value="${index}" ${index === selectedIndex ? 'selected' : ''}>${esc(moduleLabel(module))}</option>`
+      ).join('');
+    }
+
+    function submoduleOptions(module, selected) {
+      const submodules = module?.submodules || [];
+      if (!submodules.length) return '<option value="">固定子模块</option>';
+      const selectedIndex = findSubmoduleIndex(module, selected);
+      return submodules.map((submodule, index) =>
+        `<option value="${index}" ${index === selectedIndex ? 'selected' : ''}>${esc(submoduleLabel(submodule))}</option>`
+      ).join('');
+    }
+
+    function moduleRowHtml(deviceIndex, moduleIndex, selected, g) {
+      let selectedModuleIndex = findModuleIndex(g, selected);
+      if (selectedModuleIndex < 0 && (g?.modules || []).length) selectedModuleIndex = 0;
+      const module = g?.modules?.[selectedModuleIndex];
+      const slot = selected?.slot || firstPosition(module?.allowedInSlots, moduleIndex + 1);
+      const subslot = selected?.subslot || firstPosition((module?.submodules || [])[0]?.allowedInSubslots, 0);
+      return `<tr data-module-index="${moduleIndex}">
+        <td><input class="module-slot" data-mf="slot" type="number" min="1" value="${slot || ''}" oninput="scheduleAutoSave()"></td>
+        <td><select class="module-type" data-mf="moduleIndex" onchange="onModuleTypeChange(${deviceIndex},${moduleIndex})">${moduleOptions(g, selected)}</select></td>
+        <td><select class="module-subtype" data-mf="submoduleIndex" onchange="scheduleAutoSave()">${submoduleOptions(module, selected)}</select></td>
+        <td><input class="module-address" data-mf="inputStart" type="number" min="0" value="${selected?.inputStart ?? ''}" oninput="scheduleAutoSave()"></td>
+        <td><input class="module-address" data-mf="outputStart" type="number" min="0" value="${selected?.outputStart ?? ''}" oninput="scheduleAutoSave()"></td>
+        <td><input class="module-slot" data-mf="subslot" type="number" min="0" value="${subslot || ''}" oninput="scheduleAutoSave()"></td>
+        <td><button class="btn bd dev-remove" onclick="removeDeviceModule(${deviceIndex},${moduleIndex})" title="删除子级">x</button></td>
+      </tr>`;
+    }
+
+    function moduleEditorHtml(device, g, deviceIndex) {
+      const modules = effectiveDeviceModules(device, g);
+      if (!(g?.modules || []).length) return '<div class="module-empty">该 GSD 没有可配置的子级模块。</div>';
+      return `<div class="module-editor">
+        <div class="module-editor-head"><span class="module-editor-title">子级配置</span><span class="module-editor-meta">${isServoGsd(g) ? '伺服默认使用标准报文 111' : `可用模块 ${(g.modules || []).length} 个`}</span><button class="btn" onclick="addDeviceModule(${deviceIndex})">+ 子级</button></div>
+        <table class="module-table"><thead><tr><th>槽位</th><th>模块</th><th>子模块/报文</th><th>I 起始</th><th>Q 起始</th><th>子槽</th><th></th></tr></thead>
+        <tbody>${modules.map((module, index) => moduleRowHtml(deviceIndex, index, module, g)).join('')}</tbody></table>
+        ${modules.length ? '' : '<div class="module-empty">尚未配置子级模块。</div>'}
+      </div>`;
+    }
+
+    function toggleDeviceModules(deviceIndex) {
+      const row = document.querySelector(`#deviceModuleRow-${deviceIndex}`);
+      if (row) row.classList.toggle('hidden');
+    }
+
+    function onModuleTypeChange(deviceIndex, moduleIndex) {
+      const mainRow = document.querySelector(`#devTbl tr.device-row[data-device-index="${deviceIndex}"]`);
+      const g = gsdDevices[+(mainRow?.querySelector('select[data-f="gsdIndex"]')?.value || -1)];
+      const row = document.querySelector(`#deviceModules-${deviceIndex} tr[data-module-index="${moduleIndex}"]`);
+      const moduleSelect = row?.querySelector('select[data-mf="moduleIndex"]');
+      const module = g?.modules?.[+(moduleSelect?.value || 0)];
+      const submoduleSelect = row?.querySelector('select[data-mf="submoduleIndex"]');
+      if (submoduleSelect) submoduleSelect.innerHTML = submoduleOptions(module, {});
+      const slotInput = row?.querySelector('input[data-mf="slot"]');
+      if (slotInput) slotInput.value = firstPosition(module?.allowedInSlots, moduleIndex + 1);
+      const subslotInput = row?.querySelector('input[data-mf="subslot"]');
+      if (subslotInput) subslotInput.value = firstPosition(module?.submodules?.[0]?.allowedInSubslots, 0) || '';
+      scheduleAutoSave();
+    }
+
+    function addDeviceModule(deviceIndex) {
+      const mainRow = document.querySelector(`#devTbl tr.device-row[data-device-index="${deviceIndex}"]`);
+      const g = gsdDevices[+(mainRow?.querySelector('select[data-f="gsdIndex"]')?.value || -1)];
+      if (!(g?.modules || []).length) { alert('该 GSD 没有可配置的子级模块'); return; }
+      const tbody = document.querySelector(`#deviceModules-${deviceIndex} .module-table tbody`);
+      if (!tbody) return;
+      const indexes = [...tbody.querySelectorAll('tr')].map(row => +(row.dataset.moduleIndex || 0));
+      const moduleIndex = indexes.length ? Math.max(...indexes) + 1 : 0;
+      tbody.insertAdjacentHTML('beforeend', moduleRowHtml(deviceIndex, moduleIndex, {}, g));
+      document.querySelector(`#deviceModules-${deviceIndex} .module-empty`)?.remove();
+      scheduleAutoSave();
+    }
+
+    function removeDeviceModule(deviceIndex, moduleIndex) {
+      document.querySelector(`#deviceModules-${deviceIndex} tr[data-module-index="${moduleIndex}"]`)?.remove();
+      scheduleAutoSave();
+    }
     function normalizeProfinetName(value) {
       return String(value || '')
         .trim()
@@ -340,14 +570,20 @@
       return `${prefix}_${n}`;
     }
 
-    function devRows(d) { return (d||[]).map((x,i)=>`<tr>
-      <td><input data-i="${i}" data-f="name" value="${esc(x.name||'')}" style="width:80px"></td>
-      <td><input data-i="${i}" data-f="deviceType" value="${esc(x.deviceType||'')}" title="${esc(x.gsdFileName||'')}" style="width:190px"></td>
-      <td><input data-i="${i}" data-f="profinetName" value="${esc(x.profinetName||'')}" style="width:90px"></td>
-      <td><input data-i="${i}" data-f="ipAddress" value="${esc(x.ipAddress||'')}" style="width:105px"></td>
-      <td><input data-i="${i}" data-f="inputStart" value="${x.inputStart||''}" style="width:60px" type="number"></td>
-      <td><input data-i="${i}" data-f="outputStart" value="${x.outputStart||''}" style="width:60px" type="number"></td>
-      <td><button class="btn bd" onclick="rmRow('devices',${i})">x</button></td></tr>`).join(''); }
+    function devRows(d) { return (d||[]).map((x,i) => {
+      const g = gsdDevices[findGsdIndex(x)];
+      const hasModules = effectiveDeviceModules(x, g).length > 0;
+      return `<tr class="device-row" data-device-index="${i}">
+        <td><input class="dev-name" data-i="${i}" data-f="name" value="${esc(x.name||'')}" oninput="onDeviceNameInput(${i})"></td>
+        <td><select class="dev-gsd" data-i="${i}" data-f="gsdIndex" onchange="onDeviceGsdChange(${i})">${gsdOptions(x)}</select></td>
+        <td><input class="dev-pn" data-i="${i}" data-f="profinetName" value="${esc(x.profinetName||'')}" oninput="scheduleAutoSave()"></td>
+        <td><input class="dev-ip" data-i="${i}" data-f="ipAddress" value="${esc(x.ipAddress||'')}" oninput="scheduleAutoSave()"></td>
+        <td><input class="dev-addr" data-i="${i}" data-f="inputStart" value="${x.inputStart||''}" type="number" oninput="scheduleAutoSave()"></td>
+        <td><input class="dev-addr" data-i="${i}" data-f="outputStart" value="${x.outputStart||''}" type="number" oninput="scheduleAutoSave()"></td>
+        <td><div class="device-row-actions"><button class="btn" onclick="toggleDeviceModules(${i})" title="配置子级">子级${hasModules ? ` ${effectiveDeviceModules(x, g).length}` : ''}</button><button class="btn bd dev-remove" onclick="rmRow('devices',${i})" title="删除设备">x</button></div></td>
+      </tr>
+      <tr id="deviceModuleRow-${i}" class="device-module-row ${hasModules ? '' : 'hidden'}"><td colspan="7" id="deviceModules-${i}">${moduleEditorHtml(x, g, i)}</td></tr>`;
+    }).join(''); }
 
     function ioRows(d) { return (d||[]).map((x,i)=>`<tr>
       <td><input data-i="${i}" data-f="device" value="${esc(x.device||'')}" style="width:90px"></td>
@@ -376,7 +612,7 @@
       <td><input data-i="${i}" data-f="safetyConditions" value="${esc((x.safetyConditions||[]).join(', '))}" style="width:190px"></td>
       <td><button class="btn bd" onclick="rmRow('stations',${i})">x</button></td></tr>`).join(''); }
 
-    async function saveCfg() {
+    async function saveCfg(silent = false) {
       const j = await API.fetch(`/api/projects/${pid}`);
       const code = document.getElementById('cC').value.trim();
       const station = document.getElementById('cS').value.trim();
@@ -395,14 +631,26 @@
       collectEdits(j, 'ioTbl', 'ioPoints');
       collectEdits(j, 'servoTbl', 'servos');
       collectEdits(j, 'stTbl', 'stations');
-      await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
-      alert('已保存');
+      const saved = await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
+      const st = document.getElementById('hdrSt');
+      if (saved?.ok === false || saved?.error) {
+        if (st) st.textContent = '保存失败';
+        if (!silent) alert(`保存失败：${saved.error || '未知错误'}`);
+        return;
+      }
+      if (st) st.textContent = silent ? `已自动保存 ${new Date().toLocaleTimeString()}` : '已保存';
+      if (!silent) {
+        alert('已保存');
+        renderConfig(document.getElementById('app'));
+      }
     }
 
     function collectEdits(j, tblId, field) {
+      if (field === 'devices') { collectDeviceEdits(j); return; }
       if (!j[field]) j[field] = [];
-      document.querySelectorAll(`#${tblId} input`).forEach(inp => {
+      document.querySelectorAll(`#${tblId} input, #${tblId} select`).forEach(inp => {
         const idx = +inp.dataset.i, f = inp.dataset.f;
+        if (!f || Number.isNaN(idx)) return;
         if (!j[field][idx]) j[field][idx] = {};
         let v = inp.value;
         if (['inputStart','outputStart','hardwareId','telegramAddress'].includes(f)) v = v ? +v : 0;
@@ -410,6 +658,45 @@
         if (f==='safetyConditions') v = v.split(',').map(s=>s.trim()).filter(Boolean);
         j[field][idx][f] = v;
       });
+    }
+
+    function collectDeviceEdits(j) {
+      j.devices = [];
+      document.querySelectorAll('#devTbl tr.device-row').forEach(row => {
+        const deviceIndex = +row.dataset.deviceIndex;
+        const device = {};
+        const gsdIndex = row.querySelector('select[data-f="gsdIndex"]')?.value;
+        const g = gsdDevices[+gsdIndex];
+        if (g) applyGsdToDevice(device, g);
+        device.name = row.querySelector('input[data-f="name"]')?.value.trim() || '';
+        device.profinetName = normalizeProfinetName(row.querySelector('input[data-f="profinetName"]')?.value || device.name);
+        device.ipAddress = row.querySelector('input[data-f="ipAddress"]')?.value.trim() || '';
+        device.inputStart = parseOptionalInt(row.querySelector('input[data-f="inputStart"]')?.value);
+        device.outputStart = parseOptionalInt(row.querySelector('input[data-f="outputStart"]')?.value);
+        device.modules = [];
+        document.querySelectorAll(`#deviceModules-${deviceIndex} .module-table tbody tr`).forEach(moduleRow => {
+          const module = g?.modules?.[+(moduleRow.querySelector('select[data-mf="moduleIndex"]')?.value || 0)];
+          if (!module) return;
+          const submoduleValue = moduleRow.querySelector('select[data-mf="submoduleIndex"]')?.value;
+          const submodule = submoduleValue === '' ? null : module.submodules?.[+submoduleValue];
+          device.modules.push({
+            name: module.name || module.id || '', moduleId: module.id || '', moduleIdentNumber: module.moduleIdentNumber || '',
+            slot: parseOptionalInt(moduleRow.querySelector('input[data-mf="slot"]')?.value),
+            submoduleId: submodule?.id || '', submoduleName: submodule?.name || '', submoduleIdentNumber: submodule?.submoduleIdentNumber || '',
+            subslot: parseOptionalInt(moduleRow.querySelector('input[data-mf="subslot"]')?.value),
+            inputStart: parseOptionalInt(moduleRow.querySelector('input[data-mf="inputStart"]')?.value),
+            outputStart: parseOptionalInt(moduleRow.querySelector('input[data-mf="outputStart"]')?.value)
+          });
+        });
+        j.devices.push(device);
+      });
+    }
+
+    function parseOptionalInt(value) {
+      const text = String(value ?? '').trim();
+      if (!text) return 0;
+      const n = parseInt(text, 10);
+      return Number.isFinite(n) ? n : 0;
     }
 
     async function addRow(field) {
