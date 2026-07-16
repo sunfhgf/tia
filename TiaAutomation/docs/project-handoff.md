@@ -1,7 +1,7 @@
 # TIA Automation 项目交接
 
-更新时间：2026-07-16  
-GitHub：https://github.com/sunfhgf/tia  
+更新时间：2026-07-16
+GitHub：https://github.com/sunfhgf/tia
 默认分支：`main`
 
 ## 1. 项目目标
