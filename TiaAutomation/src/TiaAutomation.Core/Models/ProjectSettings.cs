@@ -1,4 +1,6 @@
-﻿namespace TiaAutomation.Core.Models
+using System.Collections.Generic;
+
+namespace TiaAutomation.Core.Models
 {
     public class ProjectSettings
     {
@@ -7,6 +9,11 @@
         public string VersionDate { get; set; }
         public string PlcName { get; set; }
         public string PlcIpAddress { get; set; }
+        public int HmiDeviceCount { get; set; }
+        public int UnitCount { get; set; } = 1;
+        public List<int?> UnitServoCounts { get; set; } = new List<int?>();
+        public List<List<string>> UnitServoDeviceNames { get; set; } = new List<List<string>>();
+        public List<List<UnitStationSettings>> UnitStations { get; set; } = new List<List<UnitStationSettings>>();
         public string NameFormat { get; set; } = "{code}.{station}.V{date}";
 
         public string BuildProjectName()

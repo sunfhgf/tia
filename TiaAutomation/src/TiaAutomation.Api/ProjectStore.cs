@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using TiaAutomation.Core.Models;
 
 namespace TiaAutomation.Api
@@ -38,7 +39,8 @@ namespace TiaAutomation.Api
                     {
                         Id = Path.GetFileName(dir),
                         ProjectName = job.ProjectName ?? job.Project?.BuildProjectName() ?? "(unnamed)",
-                        StationCount = job.Stations?.Count ?? 0,
+                        StationCount = (job.Project?.UnitStations ?? new List<List<UnitStationSettings>>())
+                            .Sum(unit => unit?.Count ?? 0) + (job.Stations?.Count ?? 0),
                         IoCount = job.IoPoints?.Count ?? 0,
                         ServoCount = job.Servos?.Count ?? 0,
                         MotorCount = job.Motors?.Count ?? 0,
@@ -143,6 +145,66 @@ namespace TiaAutomation.Api
             {
                 return new ImportResult { Success = false, Error = ex.Message };
             }
+        }
+
+        public ImportResult ImportIoComments(string id, string text)
+        {
+            var job = LoadProject(id);
+            if (job == null) return new ImportResult { Success = false, Error = "Project not found" };
+
+            job.IoComments = job.IoComments ?? new List<IoCommentRequest>();
+            var byAddress = job.IoComments
+                .Where(item => !string.IsNullOrWhiteSpace(item.Address))
+                .GroupBy(item => NormalizeIoAddress(item.Address), StringComparer.OrdinalIgnoreCase)
+                .Where(group => !string.IsNullOrWhiteSpace(group.Key))
+                .ToDictionary(group => group.Key, group => group.Last(), StringComparer.OrdinalIgnoreCase);
+            var imported = 0;
+            var errors = new List<string>();
+            var lineNumber = 0;
+
+            foreach (var rawLine in text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                lineNumber++;
+                var line = rawLine.Trim().Trim('(', ')').Trim();
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                var match = Regex.Match(line, @"^%?\s*([IQiq])\s*(\d+)\s*\.\s*(\d+)\s+(.+?)\s*$");
+                if (!match.Success)
+                {
+                    errors.Add($"第 {lineNumber} 行格式无效: {rawLine.Trim()}");
+                    continue;
+                }
+
+                var address = $"%{match.Groups[1].Value.ToUpperInvariant()}{int.Parse(match.Groups[2].Value)}.{int.Parse(match.Groups[3].Value)}";
+                var comment = match.Groups[4].Value.Trim();
+                if (byAddress.TryGetValue(address, out var existing))
+                {
+                    existing.Comment = comment;
+                }
+                else
+                {
+                    var item = new IoCommentRequest { Address = address, Comment = comment };
+                    job.IoComments.Add(item);
+                    byAddress[address] = item;
+                }
+                imported++;
+            }
+
+            if (imported == 0)
+            {
+                return new ImportResult { Success = false, Error = "没有解析到有效的 IO 注释。", Errors = errors };
+            }
+
+            SaveProject(id, job);
+            File.WriteAllText(Path.Combine(GetProjectDir(id), "io-comments.txt"), text, Encoding.UTF8);
+            return new ImportResult { Success = true, Imported = imported, Errors = errors };
+        }
+
+        private static string NormalizeIoAddress(string address)
+        {
+            var match = Regex.Match(address ?? string.Empty, @"%?\s*([IQiq])\s*(\d+)\s*\.\s*(\d+)");
+            return match.Success
+                ? $"%{match.Groups[1].Value.ToUpperInvariant()}{int.Parse(match.Groups[2].Value)}.{int.Parse(match.Groups[3].Value)}"
+                : null;
         }
 
         // ── CSV 解析 ──

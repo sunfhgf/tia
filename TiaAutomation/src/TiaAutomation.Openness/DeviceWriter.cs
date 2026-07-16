@@ -480,6 +480,20 @@ namespace TiaAutomation.Openness
             var modules = BuildEffectiveModuleRequests(request, result);
             if (modules.Count == 0) return;
 
+            var usedSlots = new HashSet<int>();
+            foreach (var module in modules)
+            {
+                var requestedSlot = module.Slot > 0 ? module.Slot : 1;
+                var resolvedSlot = requestedSlot;
+                while (usedSlots.Contains(resolvedSlot)) resolvedSlot++;
+                if (resolvedSlot != module.Slot)
+                {
+                    result.ChangedObjects.Add($"{request.Name}: adjusted duplicate module slot {module.Slot} to {resolvedSlot} for {module.Name ?? module.ModuleId}");
+                    module.Slot = resolvedSlot;
+                }
+                usedSlots.Add(resolvedSlot);
+            }
+
             foreach (var moduleRequest in modules.OrderBy(x => x.Slot))
             {
                 if (moduleRequest.Slot <= 0 || string.IsNullOrWhiteSpace(moduleRequest.ModuleId))
@@ -501,7 +515,7 @@ namespace TiaAutomation.Openness
                     moduleItem = TryPlugNew(
                         FlattenDeviceItems(device), candidates,
                         BuildHardwareItemName(moduleRequest.Name, moduleRequest.ModuleId, moduleRequest.Slot),
-                        moduleRequest.Slot, request.Name, result);
+                        moduleRequest.Slot, false, request.Name, result);
                 }
                 else
                 {
@@ -518,8 +532,8 @@ namespace TiaAutomation.Openness
 
                 if (string.IsNullOrWhiteSpace(moduleRequest.SubmoduleId)) continue;
                 var subslot = moduleRequest.Subslot > 0 ? moduleRequest.Subslot : 1;
-                var submoduleItem = FindConfiguredItem(
-                    FlattenDeviceItems(device), moduleRequest.SubmoduleId, moduleRequest.SubmoduleIdentNumber, subslot);
+                var submoduleItem = FindConfiguredItemByIdentity(
+                    FlattenDeviceItems(device), moduleRequest.SubmoduleId, moduleRequest.SubmoduleIdentNumber);
                 if (submoduleItem == null)
                 {
                     var occupiedSubmodule = FindOccupiedHardwareItem(FlattenDeviceItems(device), subslot, true);
@@ -534,7 +548,7 @@ namespace TiaAutomation.Openness
                     submoduleItem = TryPlugNew(
                         new[] { moduleItem }.Concat(FlattenDeviceItems(device)), candidates,
                         BuildHardwareItemName(moduleRequest.SubmoduleName, moduleRequest.SubmoduleId, subslot),
-                        subslot, request.Name, result);
+                        subslot, true, request.Name, result);
                 }
                 else
                 {
@@ -631,6 +645,14 @@ namespace TiaAutomation.Openness
             });
         }
 
+        private static object FindConfiguredItemByIdentity(IEnumerable<object> items, string id, string identNumber)
+        {
+            return items.FirstOrDefault(item =>
+            {
+                var identity = string.Join(" ", ReadString(item, "TypeIdentifier"), ReadString(item, "Name"));
+                return ContainsIdentity(identity, id) || ContainsIdentity(identity, identNumber);
+            });
+        }
         private static object FindOccupiedHardwareItem(IEnumerable<object> items, int position, bool submodule)
         {
             var marker = submodule ? "/SM/" : "/M/";
@@ -725,7 +747,8 @@ namespace TiaAutomation.Openness
 
         private static object TryPlugNew(
             IEnumerable<object> parents, IEnumerable<object> catalogCandidates,
-            string itemName, int position, string deviceName, DeviceWriteResult result)
+            string itemName, int position, bool useAvailablePlugLocations,
+            string deviceName, DeviceWriteResult result)
         {
             foreach (var candidate in catalogCandidates.Take(20))
             {
@@ -739,17 +762,42 @@ namespace TiaAutomation.Openness
                         .FirstOrDefault(m => m.Name == "PlugNew" && m.GetParameters().Length == 3);
                     if (canPlugNew == null || plugNew == null) continue;
 
-                    try
+                    var positions = new List<int> { position };
+                    if (useAvailablePlugLocations)
                     {
-                        var canPlug = (bool)canPlugNew.Invoke(parent, new object[] { typeIdentifier, itemName, position });
-                        if (!canPlug) continue;
-                        var plugged = plugNew.Invoke(parent, new object[] { typeIdentifier, itemName, position });
-                        result.ChangedObjects.Add($"{deviceName}: plugged {itemName} at {Describe(parent)} position {position}");
-                        return plugged;
+                        try
+                        {
+                            var getLocations = parent.GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                                .FirstOrDefault(m => m.Name == "GetPlugLocations" && m.GetParameters().Length == 0);
+                            var locations = getLocations?.Invoke(parent, null) as IEnumerable;
+                            foreach (var location in locations ?? new object[0])
+                            {
+                                var availablePosition = OpennessReflection.ReadProperty(location, "PositionNumber");
+                                var label = ReadString(location, "Label");
+                                if (availablePosition is int value && !positions.Contains(value)) positions.Add(value);
+                                result.Attempts.Add($"{deviceName}: plug location {Describe(parent)} label={label} position={availablePosition}");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            result.Attempts.Add($"{deviceName}: reading plug locations on {Describe(parent)} failed - {ex.GetBaseException().Message}");
+                        }
                     }
-                    catch (Exception ex)
+
+                    foreach (var candidatePosition in positions)
                     {
-                        result.Attempts.Add($"{deviceName}: PlugNew {itemName} at {Describe(parent)} position {position} failed - {ex.GetBaseException().Message}");
+                        try
+                        {
+                            var canPlug = (bool)canPlugNew.Invoke(parent, new object[] { typeIdentifier, itemName, candidatePosition });
+                            if (!canPlug) continue;
+                            var plugged = plugNew.Invoke(parent, new object[] { typeIdentifier, itemName, candidatePosition });
+                            result.ChangedObjects.Add($"{deviceName}: plugged {itemName} at {Describe(parent)} position {candidatePosition}");
+                            return plugged;
+                        }
+                        catch (Exception ex)
+                        {
+                            result.Attempts.Add($"{deviceName}: PlugNew {itemName} at {Describe(parent)} position {candidatePosition} failed - {ex.GetBaseException().Message}");
+                        }
                     }
                 }
             }

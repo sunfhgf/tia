@@ -81,6 +81,42 @@
     .res-card { padding: 12px; border: 1px solid var(--bd); border-radius: var(--r); }
     .res-card .num { font-size: 24px; font-weight: 700; }
     .res-card .lab { font-size: 12px; color: var(--m); }
+    .unit-servo-table input { width: 110px; padding: 6px 8px; border: 1px solid var(--bd); border-radius: var(--r); font-size: 13px; }
+    .unit-servo-table .unit-name { font-weight: 600; }
+    .unit-servo-table .unit-range { color: var(--m); font-family: 'Cascadia Code', Consolas, monospace; }
+    .unit-axis-table select { width: min(460px, 100%); padding: 6px 8px; border: 1px solid var(--bd); border-radius: var(--r); background: #fff; font-size: 13px; }
+    .unit-axis-table .axis-number { width: 70px; font-weight: 600; }
+    .unit-axis-table .axis-meta { color: var(--m); font-family: 'Cascadia Code', Consolas, monospace; white-space: nowrap; }
+    .station-workspace { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-height: 430px; border: 1px solid var(--bd); border-radius: var(--r); background: #fff; }
+    .station-list { border-right: 1px solid var(--bd); padding: 10px; }
+    .station-list-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
+    .station-list-item { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 6px; align-items: center; padding: 8px; border: 0; border-left: 3px solid transparent; background: transparent; cursor: pointer; text-align: left; }
+    .station-list-item:hover { background: #f4f8fb; }
+    .station-list-item.active { border-left-color: var(--p); background: var(--pl); }
+    .station-list-item strong { display: block; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .station-list-item span { color: var(--m); font-size: 11px; }
+    .station-editor { min-width: 0; padding: 16px; }
+    .station-editor-head { display: grid; grid-template-columns: 1fr 220px auto; gap: 10px; align-items: end; margin-bottom: 16px; }
+    .station-editor label { display: flex; flex-direction: column; gap: 4px; color: var(--m); font-size: 12px; }
+    .station-editor input, .station-editor select { width: 100%; padding: 6px 8px; border: 1px solid var(--bd); border-radius: var(--r); font-size: 13px; background: #fff; }
+    .station-name-columns { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .station-name-panel h3 { font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+    .station-name-row { display: grid; grid-template-columns: 28px minmax(150px, 1fr) 190px minmax(150px, .8fr) 32px; gap: 6px; align-items: center; margin-bottom: 6px; }
+    .station-name-row.sensor { grid-template-columns: 28px minmax(120px, 1fr) 32px; }
+    .station-cylinder-entry { padding: 7px 0; border-bottom: 1px solid #eee; }
+    .station-cylinder-entry .station-name-row { margin-bottom: 6px; }
+    .cylinder-safety-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-left: 34px; }
+    .cylinder-safety-row label { font-size: 11px; }
+    .station-name-index { color: var(--m); font-size: 11px; text-align: right; }
+    .station-name-preview { color: var(--m); font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .station-icon-btn { width: 30px; height: 30px; padding: 0; justify-content: center; }
+    @media (max-width: 820px) {
+      .station-workspace { grid-template-columns: 1fr; }
+      .station-list { border-right: 0; border-bottom: 1px solid var(--bd); }
+      .station-editor-head, .station-name-columns { grid-template-columns: 1fr; }
+      .cylinder-safety-row { grid-template-columns: 1fr; }
+    }
+    .paste-input { width: 100%; min-height: 320px; resize: vertical; padding: 10px; border: 1px solid var(--bd); border-radius: var(--r); font-family: 'Cascadia Code', Consolas, monospace; font-size: 13px; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -131,7 +167,8 @@
       },
       async health() { return this.fetch('/api/health'); },
     };
-    let view = 'projects', pid = null;
+    let view = 'projects', pid = null, activeUnitIndex = 0, unitServoPageJob = null;
+    let activeStationUnitIndex = 0, activeStationIndex = 0, unitStationPageJob = null;
     let autoSaveTimer = null;
 
     function nav(v, id) { view = v; if (id !== undefined) pid = id; render(); }
@@ -149,6 +186,8 @@
       if (!pid) { el.innerHTML = ''; return; }
       const items = [
         { k: 'config', l: '配置' },
+        { k: 'unit-servos', l: '单元伺服' },
+        { k: 'unit-stations', l: '单元工位' },
         { k: 'import', l: '导入' },
         { k: 'generate', l: '生成' },
         { k: 'history', l: '历史' },
@@ -161,7 +200,7 @@
     async function render() {
       renderNav();
       const el = document.getElementById('app');
-      const m = { projects: renderList, create: renderCreate, config: renderConfig, import: renderImport, generate: renderGenerate, history: renderHistory };
+      const m = { projects: renderList, create: renderCreate, config: renderConfig, 'unit-servos': renderUnitServos, 'unit-stations': renderUnitStations, import: renderImport, generate: renderGenerate, history: renderHistory };
       await (m[view] || renderList)(el);
     }
 
@@ -197,6 +236,7 @@
           <label>项目名称 <input id="nPreview" value="" readonly placeholder="自动生成：DM25120.P1.V20250708"></label>
           <label>PLC 名称 <input id="nPlcName" placeholder="如 PLC_1"></label>
           <label>PLC IP <input id="nPlcIp" placeholder="如 192.168.1.10"></label>
+          <label>单元数量 <input id="nUnitCount" type="number" min="1" value="1"></label>
         </div>
         <p style="color:var(--m);font-size:12px;margin-top:10px">项目名称固定按“项目代号.线体/工位.V版本日期”生成，例如 DM25120.P1.V20250708；创建时会自动复制标准工程并按该名称重命名 .ap20 文件。</p>
         <div style="display:flex;gap:10px;margin-top:12px">
@@ -229,13 +269,14 @@
       const projectName = buildProjectName(code, station, versionDate);
       const plcName = document.getElementById('nPlcName').value.trim();
       const plcIpAddress = document.getElementById('nPlcIp').value.trim();
+      const unitCount = Math.max(1, parseInt(document.getElementById('nUnitCount').value, 10) || 1);
       if (!projectName) {
         msg.innerHTML = '<p class="badge ber" style="padding:6px">请完整填写项目代号、线体/工位和版本日期。</p>';
         return;
       }
 
       msg.innerHTML = '<p style="color:var(--m);font-size:12px">正在复制标准工程并准备网络配置...</p>';
-      const body = { projectName, project: { code, station, versionDate, plcName, plcIpAddress, nameFormat: '{code}.{station}.V{date}' } };
+      const body = { projectName, project: { code, station, versionDate, plcName, plcIpAddress, unitCount, nameFormat: '{code}.{station}.V{date}' } };
       const r = await API.fetch('/api/projects', { method: 'POST', body: JSON.stringify(body) });
       if (!r.id) {
         msg.innerHTML = `<p class="badge ber" style="padding:6px">创建失败：${esc(r.error || '未知错误')}</p>`;
@@ -266,6 +307,7 @@
           <label>版本日期 <input id="cD" value="${esc(p.versionDate||'')}" placeholder="如 20250708"></label>
           <label>PLC 名称 <input id="cPlcName" value="${esc(p.plcName||'')}" placeholder="如 PLC_1"></label>
           <label>PLC IP <input id="cPlcIp" value="${esc(p.plcIpAddress||'')}" placeholder="如 192.168.1.10"></label>
+          <label>单元数量 <input id="cUnitCount" type="number" min="1" value="${Math.max(1, +(p.unitCount||1))}"></label>
           <label>模板工程(.ap20) <input id="cT" value="${esc(j.templateProject||'')}" placeholder="绝对路径"></label>
         </div>
         <div style="margin-top:10px"><button class="btn bp" onclick="saveCfg()">保存</button></div>
@@ -275,11 +317,6 @@
         <tbody id="devTbl">${devRows(j.devices||[])}</tbody></table></div>
       </div>
 `;
-      const needsServoDefault = (j.devices || []).some(device => {
-        const g = gsdDevices[findGsdIndex(device)];
-        return !(device.modules || []).length && defaultModulesForGsd(g, device).length > 0;
-      });
-      if (needsServoDefault) scheduleAutoSave();
     }
 
     let gsdDevices = [];
@@ -409,11 +446,10 @@
       const pnInput = row.querySelector('input[data-f="profinetName"]');
       if (nameInput && !nameInput.value.trim()) nameInput.value = nextDeviceNameFromRows(g.orderNumber || g.productFamily || 'DEV');
       if (pnInput) pnInput.value = normalizeProfinetName(nameInput?.value || g.dnsCompatibleName || 'device');
-      const defaultModules = defaultModulesForGsd(g, {});
       const moduleCell = document.querySelector(`#deviceModules-${i}`);
-      if (moduleCell) moduleCell.innerHTML = moduleEditorHtml({ modules: defaultModules }, g, i);
+      if (moduleCell) moduleCell.innerHTML = isServoGsd(g) ? '' : moduleEditorHtml({ modules: [] }, g, i);
       const moduleRow = document.querySelector(`#deviceModuleRow-${i}`);
-      if (moduleRow) moduleRow.classList.toggle('hidden', defaultModules.length === 0);
+      if (moduleRow) moduleRow.classList.add('hidden');
       scheduleAutoSave();
     }
 
@@ -435,23 +471,20 @@
       return match ? +match[0] : fallback;
     }
 
-    function defaultModulesForGsd(g, device) {
-      if (!g || !isServoGsd(g)) return [];
-      for (const module of (g.modules || [])) {
-        const submodule = (module.submodules || []).find(s => /(?:^|\D)111(?:\D|$)/.test(`${s.id || ''} ${s.name || ''}`));
-        if (!submodule) continue;
-        return [{
-          moduleId: module.id || '', moduleName: module.name || '', moduleIdentNumber: module.moduleIdentNumber || '',
-          slot: firstPosition(module.allowedInSlots, 1), submoduleId: submodule.id || '', submoduleName: submodule.name || '',
-          submoduleIdentNumber: submodule.submoduleIdentNumber || '', subslot: firstPosition(submodule.allowedInSubslots, 2),
-          inputStart: +(device?.inputStart || 0), outputStart: +(device?.outputStart || 0)
-        }];
+    function moduleSlotAt(spec, index, fallback = 1) {
+      const text = String(spec || '');
+      const range = text.match(/(\d+)\s*(?:\.\.|-)\s*(\d+)/);
+      if (range) {
+        const start = +range[1];
+        const end = +range[2];
+        return Math.min(start + index, end);
       }
-      return [];
+      const positions = [...text.matchAll(/\d+/g)].map(match => +match[0]);
+      return positions[index] ?? positions[0] ?? (fallback + index);
     }
 
     function effectiveDeviceModules(device, g) {
-      return (device?.modules || []).length ? device.modules : defaultModulesForGsd(g, device || {});
+      return device?.modules || [];
     }
 
     function findModuleIndex(g, selected) {
@@ -492,7 +525,7 @@
       let selectedModuleIndex = findModuleIndex(g, selected);
       if (selectedModuleIndex < 0 && (g?.modules || []).length) selectedModuleIndex = 0;
       const module = g?.modules?.[selectedModuleIndex];
-      const slot = selected?.slot || firstPosition(module?.allowedInSlots, moduleIndex + 1);
+      const slot = selected?.slot || moduleSlotAt(module?.allowedInSlots, moduleIndex, 1);
       const subslot = selected?.subslot || firstPosition((module?.submodules || [])[0]?.allowedInSubslots, 0);
       return `<tr data-module-index="${moduleIndex}">
         <td><input class="module-slot" data-mf="slot" type="number" min="1" value="${slot || ''}" oninput="scheduleAutoSave()"></td>
@@ -506,10 +539,11 @@
     }
 
     function moduleEditorHtml(device, g, deviceIndex) {
+      if (isServoGsd(g)) return '';
       const modules = effectiveDeviceModules(device, g);
       if (!(g?.modules || []).length) return '<div class="module-empty">该 GSD 没有可配置的子级模块。</div>';
       return `<div class="module-editor">
-        <div class="module-editor-head"><span class="module-editor-title">子级配置</span><span class="module-editor-meta">${isServoGsd(g) ? '伺服默认使用标准报文 111' : `可用模块 ${(g.modules || []).length} 个`}</span><button class="btn" onclick="addDeviceModule(${deviceIndex})">+ 子级</button></div>
+        <div class="module-editor-head"><span class="module-editor-title">子级配置</span><span class="module-editor-meta">可用模块 ${(g.modules || []).length} 个</span><button class="btn" onclick="addDeviceModule(${deviceIndex})">+ 子级</button></div>
         <table class="module-table"><thead><tr><th>槽位</th><th>模块</th><th>子模块/报文</th><th>I 起始</th><th>Q 起始</th><th>子槽</th><th></th></tr></thead>
         <tbody>${modules.map((module, index) => moduleRowHtml(deviceIndex, index, module, g)).join('')}</tbody></table>
         ${modules.length ? '' : '<div class="module-empty">尚未配置子级模块。</div>'}
@@ -530,7 +564,7 @@
       const submoduleSelect = row?.querySelector('select[data-mf="submoduleIndex"]');
       if (submoduleSelect) submoduleSelect.innerHTML = submoduleOptions(module, {});
       const slotInput = row?.querySelector('input[data-mf="slot"]');
-      if (slotInput) slotInput.value = firstPosition(module?.allowedInSlots, moduleIndex + 1);
+      if (slotInput) slotInput.value = moduleSlotAt(module?.allowedInSlots, moduleIndex, 1);
       const subslotInput = row?.querySelector('input[data-mf="subslot"]');
       if (subslotInput) subslotInput.value = firstPosition(module?.submodules?.[0]?.allowedInSubslots, 0) || '';
       scheduleAutoSave();
@@ -572,7 +606,8 @@
 
     function devRows(d) { return (d||[]).map((x,i) => {
       const g = gsdDevices[findGsdIndex(x)];
-      const hasModules = effectiveDeviceModules(x, g).length > 0;
+      const servo = isServoGsd(g);
+      const hasModules = !servo && effectiveDeviceModules(x, g).length > 0;
       return `<tr class="device-row" data-device-index="${i}">
         <td><input class="dev-name" data-i="${i}" data-f="name" value="${esc(x.name||'')}" oninput="onDeviceNameInput(${i})"></td>
         <td><select class="dev-gsd" data-i="${i}" data-f="gsdIndex" onchange="onDeviceGsdChange(${i})">${gsdOptions(x)}</select></td>
@@ -580,9 +615,9 @@
         <td><input class="dev-ip" data-i="${i}" data-f="ipAddress" value="${esc(x.ipAddress||'')}" oninput="scheduleAutoSave()"></td>
         <td><input class="dev-addr" data-i="${i}" data-f="inputStart" value="${x.inputStart||''}" type="number" oninput="scheduleAutoSave()"></td>
         <td><input class="dev-addr" data-i="${i}" data-f="outputStart" value="${x.outputStart||''}" type="number" oninput="scheduleAutoSave()"></td>
-        <td><div class="device-row-actions"><button class="btn" onclick="toggleDeviceModules(${i})" title="配置子级">子级${hasModules ? ` ${effectiveDeviceModules(x, g).length}` : ''}</button><button class="btn bd dev-remove" onclick="rmRow('devices',${i})" title="删除设备">x</button></div></td>
+        <td><div class="device-row-actions">${servo ? '' : `<button class="btn" onclick="toggleDeviceModules(${i})" title="配置子级">子级${hasModules ? ` ${effectiveDeviceModules(x, g).length}` : ''}</button>`}<button class="btn bd dev-remove" onclick="rmRow('devices',${i})" title="删除设备">x</button></div></td>
       </tr>
-      <tr id="deviceModuleRow-${i}" class="device-module-row ${hasModules ? '' : 'hidden'}"><td colspan="7" id="deviceModules-${i}">${moduleEditorHtml(x, g, i)}</td></tr>`;
+      <tr id="deviceModuleRow-${i}" class="device-module-row ${hasModules ? '' : 'hidden'}"><td colspan="7" id="deviceModules-${i}">${servo ? '' : moduleEditorHtml(x, g, i)}</td></tr>`;
     }).join(''); }
 
     function ioRows(d) { return (d||[]).map((x,i)=>`<tr>
@@ -619,6 +654,7 @@
       const versionDate = document.getElementById('cD').value.trim();
       const plcName = document.getElementById('cPlcName').value.trim();
       const plcIpAddress = document.getElementById('cPlcIp').value.trim();
+      const unitCount = Math.max(1, parseInt(document.getElementById('cUnitCount').value, 10) || 1);
       j.projectName = buildProjectName(code, station, versionDate) || document.getElementById('cN').value;
       j.project = j.project || {};
       j.project.code = code;
@@ -626,6 +662,7 @@
       j.project.versionDate = versionDate;
       j.project.plcName = plcName;
       j.project.plcIpAddress = plcIpAddress;
+      j.project.unitCount = unitCount;
       j.templateProject = document.getElementById('cT').value;
       collectEdits(j, 'devTbl', 'devices');
       collectEdits(j, 'ioTbl', 'ioPoints');
@@ -719,19 +756,399 @@
       await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
       renderConfig(document.getElementById('app'));
     }
+
+    // ── 单元伺服 ──
+    function unitFolderName(index) {
+      return index === 0 ? '设备1' : `设备1_${index}`;
+    }
+
+    function configuredServoDevices(job) {
+      return (job?.devices || []).filter(device => isServoGsd(device));
+    }
+
+    function servoDeviceOptions(devices, selectedName, usedByOtherUnits) {
+      return `<option value="">选择伺服设备</option>` + devices.map(device => {
+        const selected = sameText(device.name, selectedName);
+        const disabled = !selected && usedByOtherUnits.has(String(device.name || '').toLowerCase());
+        const label = [device.name, device.productFamily || device.deviceType, device.ipAddress].filter(Boolean).join(' · ');
+        return `<option value="${esc(device.name||'')}" ${selected ? 'selected' : ''} ${disabled ? 'disabled' : ''}>${esc(label)}</option>`;
+      }).join('');
+    }
+
+    function servoNamesUsedByOtherUnits(project, unitIndex) {
+      const used = new Set();
+      (project.unitServoDeviceNames || []).forEach((names, index) => {
+        if (index === unitIndex) return;
+        (names || []).forEach(name => used.add(String(name || '').toLowerCase()));
+      });
+      return used;
+    }
+
+    function unitAxisRows(count, selectedNames, devices, usedByOtherUnits) {
+      return Array.from({ length: count }, (_, axis) => `<tr data-axis-index="${axis}">
+        <td class="axis-number">轴 ${axis + 1}</td>
+        <td><select class="axis-servo-select" onchange="refreshUnitServoSelection()">${servoDeviceOptions(devices, selectedNames?.[axis], usedByOtherUnits)}</select></td>
+        <td class="axis-meta" data-axis-meta="ip">-</td>
+        <td class="axis-meta" data-axis-meta="hw">-</td>
+        <td class="axis-meta" data-axis-meta="state">-</td>
+      </tr>`).join('');
+    }
+
+    function openUnitServo(index) {
+      activeUnitIndex = index;
+      renderUnitServos(document.getElementById('app'));
+    }
+
+    async function renderUnitServos(el) {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      if (!j) { el.innerHTML = '<div class="empty">项目不存在</div>'; return; }
+      unitServoPageJob = j;
+      const project = j.project || {};
+      const unitCount = Math.max(1, +(project.unitCount || 1));
+      activeUnitIndex = Math.min(Math.max(0, activeUnitIndex), unitCount - 1);
+      const devices = configuredServoDevices(j);
+      const selectedNames = project.unitServoDeviceNames?.[activeUnitIndex] || [];
+      const storedCount = project.unitServoCounts?.[activeUnitIndex];
+      const servoCount = storedCount === null || storedCount === undefined ? selectedNames.length : +storedCount;
+      const usedByOtherUnits = servoNamesUsedByOtherUnits(project, activeUnitIndex);
+      el.innerHTML = `<div class="tabs">${Array.from({ length: unitCount }, (_, index) =>
+        `<a class="${index === activeUnitIndex ? 'active' : ''}" onclick="openUnitServo(${index})">${unitFolderName(index)}</a>`).join('')}</div>
+      <div class="card">
+        <h2>${unitFolderName(activeUnitIndex)} <span class="badge bok">${devices.length} 台可选伺服</span></h2>
+        <div class="fg" style="margin-bottom:14px">
+          <label>伺服数量 <input id="activeUnitServoCount" type="number" min="0" max="16" value="${servoCount}" oninput="onUnitServoCountInput()"></label>
+        </div>
+        <table class="unit-axis-table">
+          <thead><tr><th>轴</th><th>伺服设备</th><th>IP</th><th>HW</th><th>DiagnosePN.STATE</th></tr></thead>
+          <tbody id="unitAxisRows">${unitAxisRows(servoCount, selectedNames, devices, usedByOtherUnits)}</tbody>
+        </table>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
+          <button class="btn bp" onclick="saveUnitServos()">保存</button>
+          <span id="unitServoSaveStatus" style="font-size:12px;color:var(--m)"></span>
+        </div>
+      </div>`;
+      refreshUnitServoSelection();
+    }
+
+    function onUnitServoCountInput() {
+      const count = Math.min(16, Math.max(0, parseInt(document.getElementById('activeUnitServoCount')?.value, 10) || 0));
+      const selectedNames = [...document.querySelectorAll('#unitAxisRows .axis-servo-select')].map(select => select.value);
+      const devices = configuredServoDevices(unitServoPageJob);
+      const usedByOtherUnits = servoNamesUsedByOtherUnits(unitServoPageJob?.project || {}, activeUnitIndex);
+      document.getElementById('unitAxisRows').innerHTML = unitAxisRows(count, selectedNames, devices, usedByOtherUnits);
+      refreshUnitServoSelection();
+    }
+
+    function refreshUnitServoSelection() {
+      const devices = configuredServoDevices(unitServoPageJob);
+      const selected = new Set();
+      let duplicate = '';
+      document.querySelectorAll('#unitAxisRows tr').forEach(row => {
+        const name = row.querySelector('.axis-servo-select')?.value || '';
+        const deviceIndex = devices.findIndex(device => sameText(device.name, name));
+        const device = devices[deviceIndex];
+        if (name && selected.has(name.toLowerCase())) duplicate = name;
+        if (name) selected.add(name.toLowerCase());
+        row.querySelector('[data-axis-meta="ip"]').textContent = device?.ipAddress || '-';
+        row.querySelector('[data-axis-meta="hw"]').textContent = deviceIndex >= 0 ? String(280 + deviceIndex) : '-';
+        row.querySelector('[data-axis-meta="state"]').textContent = deviceIndex >= 0 ? String(deviceIndex + 1) : '-';
+      });
+      const status = document.getElementById('unitServoSaveStatus');
+      if (status) status.textContent = duplicate ? `${duplicate} 不能重复选择` : '';
+    }
+
+    async function saveUnitServos() {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      const unitCount = Math.max(1, +(j.project?.unitCount || 1));
+      const servoCount = Math.min(16, Math.max(0, parseInt(document.getElementById('activeUnitServoCount')?.value, 10) || 0));
+      const selectedNames = [...document.querySelectorAll('#unitAxisRows .axis-servo-select')].map(select => select.value);
+      const status = document.getElementById('unitServoSaveStatus');
+      if (selectedNames.length !== servoCount || selectedNames.some(name => !name)) {
+        if (status) status.textContent = '请为每一轴选择伺服设备';
+        return;
+      }
+      if (new Set(selectedNames.map(name => name.toLowerCase())).size !== selectedNames.length) {
+        if (status) status.textContent = '同一台伺服不能重复选择';
+        return;
+      }
+      const usedByOtherUnits = servoNamesUsedByOtherUnits(j.project || {}, activeUnitIndex);
+      const conflict = selectedNames.find(name => usedByOtherUnits.has(name.toLowerCase()));
+      if (conflict) {
+        if (status) status.textContent = `${conflict} 已分配给其他单元`;
+        return;
+      }
+      j.project = j.project || {};
+      j.project.unitServoCounts = j.project.unitServoCounts || [];
+      j.project.unitServoDeviceNames = j.project.unitServoDeviceNames || [];
+      while (j.project.unitServoCounts.length < unitCount) j.project.unitServoCounts.push(null);
+      while (j.project.unitServoDeviceNames.length < unitCount) j.project.unitServoDeviceNames.push([]);
+      j.project.unitServoCounts[activeUnitIndex] = servoCount;
+      j.project.unitServoDeviceNames[activeUnitIndex] = selectedNames;
+      const saved = await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(j) });
+      if (saved?.ok === false || saved?.error) {
+        if (status) status.textContent = `保存失败：${saved.error || '未知错误'}`;
+        return;
+      }
+      unitServoPageJob = j;
+      if (status) status.textContent = `已保存 ${new Date().toLocaleTimeString()}`;
+    }
+
+    // ── 单元工位 ──
+    function ensureUnitStations(project, unitCount) {
+      project.unitStations = project.unitStations || [];
+      while (project.unitStations.length < unitCount) project.unitStations.push([]);
+      project.unitStations = project.unitStations.slice(0, unitCount);
+      project.unitStations.forEach((stations, unitIndex) => {
+        if (!Array.isArray(stations)) project.unitStations[unitIndex] = [];
+      });
+      return project.unitStations;
+    }
+
+    function stationTypeBase(value) {
+      return String(value || '').trim().replace(/[IQ]$/i, '');
+    }
+
+    function usedStationTypes(exceptUnit, exceptStation) {
+      const used = new Set();
+      const units = unitStationPageJob?.project?.unitStations || [];
+      units.forEach((stations, unitIndex) => (stations || []).forEach((station, stationIndex) => {
+        if (unitIndex === exceptUnit && stationIndex === exceptStation) return;
+        const type = stationTypeBase(station?.dataTypeName);
+        if (type) used.add(type.toLowerCase());
+      }));
+      return used;
+    }
+
+    function stationTypeOptions(selected, unitIndex, stationIndex) {
+      const current = stationTypeBase(selected);
+      const used = usedStationTypes(unitIndex, stationIndex);
+      return `<option value="">选择数据类型</option>` + Array.from({ length: 9 }, (_, index) => {
+        const name = `工位${index + 1}`;
+        const isSelected = sameText(name, current);
+        const disabled = !isSelected && used.has(name.toLowerCase());
+        return `<option value="${name}" ${isSelected ? 'selected' : ''} ${disabled ? 'disabled' : ''}>${name}I + ${name}Q${disabled ? '（已分配）' : ''}</option>`;
+      }).join('');
+    }
+
+    function safetyConditionOptions() {
+      return (unitStationPageJob?.ioComments || []).filter(item => /^%?I/i.test(item.address || '')).map(item => {
+        const tag = String(item.address || '').replace(/^%/, '').replace('.', '_').toUpperCase();
+        return `<option value="${esc(tag)}">${esc(item.comment || item.address || '')}</option>`;
+      }).join('');
+    }
+
+    function stationNameRows(kind, names, valveMasters = [], extendSafety = [], retractSafety = []) {
+      const isCylinder = kind === 'cylinder';
+      return (names || []).map((name, index) => isCylinder ? `<div class="station-cylinder-entry" data-name-kind="${kind}" data-name-index="${index}">
+      <div class="station-name-row">
+        <span class="station-name-index">${index + 1}</span>
+        <input class="station-cylinder-name" value="${esc(name || '')}" placeholder="气缸名称" oninput="refreshStationNamePreview(this)">
+        <select class="cylinder-valve-master">
+          <option value="0" ${!valveMasters?.[index] ? 'selected' : ''}>独立电磁阀</option>
+          ${Array.from({ length: index }, (_, masterIndex) => `<option value="${masterIndex + 1}" ${+(valveMasters?.[index] || 0) === masterIndex + 1 ? 'selected' : ''}>共用 ${masterIndex + 1}. ${esc(names?.[masterIndex] || `气缸${masterIndex + 1}`)}</option>`).join('')}
+        </select>
+        <span class="station-name-preview">${esc(name ? `${name}出 / ${name}回` : '出 / 回')}</span>
+        <button class="btn bd station-icon-btn" onclick="removeStationName('${kind}',${index})" title="删除">x</button>
+      </div>
+      <div class="cylinder-safety-row">
+        <label>出安全条件<input class="cylinder-extend-safety" list="ioSafetyConditionList" value="${esc(extendSafety?.[index] || '')}" placeholder="I0_0, I0_1"></label>
+        <label>回安全条件<input class="cylinder-retract-safety" list="ioSafetyConditionList" value="${esc(retractSafety?.[index] || '')}" placeholder="I0_2"></label>
+      </div>
+      </div>` : `<div class="station-name-row sensor" data-name-kind="${kind}" data-name-index="${index}">
+        <span class="station-name-index">${index + 1}</span>
+        <input value="${esc(name || '')}" placeholder="感应器名称">
+        <button class="btn bd station-icon-btn" onclick="removeStationName('${kind}',${index})" title="删除">x</button>
+      </div>`).join('');
+    }
+
+    function refreshStationNamePreview(input) {
+      const row = input.closest('.station-name-row');
+      const preview = row?.querySelector('.station-name-preview');
+      const name = input.value.trim();
+      if (preview) preview.textContent = name ? `${name}出 / ${name}回` : '出 / 回';
+    }
+
+    function collectStationEditor() {
+      if (!unitStationPageJob?.project) return;
+      const stations = unitStationPageJob.project.unitStations?.[activeStationUnitIndex];
+      const station = stations?.[activeStationIndex];
+      if (!station || !document.getElementById('stationName')) return;
+      station.name = document.getElementById('stationName').value.trim();
+      station.dataTypeName = stationTypeBase(document.getElementById('stationDataType').value);
+      const cylinders = [...document.querySelectorAll('[data-name-kind="cylinder"]')]
+        .map(row => ({
+          name: row.querySelector('.station-cylinder-name')?.value.trim() || '',
+          master: +(row.querySelector('.cylinder-valve-master')?.value || 0),
+          extendSafety: row.querySelector('.cylinder-extend-safety')?.value.trim() || '',
+          retractSafety: row.querySelector('.cylinder-retract-safety')?.value.trim() || ''
+        }))
+        .filter(item => item.name).slice(0, 16);
+      station.cylinderNames = cylinders.map(item => item.name);
+      station.cylinderValveMasterIndexes = cylinders.map((item, index) => item.master >= 1 && item.master <= index ? item.master : null);
+      station.cylinderExtendSafetyConditions = cylinders.map(item => item.extendSafety);
+      station.cylinderRetractSafetyConditions = cylinders.map(item => item.retractSafety);
+      station.sensorNames = [...document.querySelectorAll('[data-name-kind="sensor"] input')]
+        .map(input => input.value.trim()).filter(Boolean).slice(0, 16);
+    }
+
+    function currentStation() {
+      return unitStationPageJob?.project?.unitStations?.[activeStationUnitIndex]?.[activeStationIndex];
+    }
+
+    async function renderUnitStations(el) {
+      const j = await API.fetch(`/api/projects/${pid}`);
+      if (!j) { el.innerHTML = '<div class="empty">项目不存在</div>'; return; }
+      unitStationPageJob = j;
+      j.project = j.project || {};
+      const unitCount = Math.max(1, +(j.project.unitCount || 1));
+      ensureUnitStations(j.project, unitCount);
+      activeStationUnitIndex = Math.min(Math.max(0, activeStationUnitIndex), unitCount - 1);
+      const stations = j.project.unitStations[activeStationUnitIndex];
+      activeStationIndex = stations.length ? Math.min(Math.max(0, activeStationIndex), stations.length - 1) : 0;
+      paintUnitStations(el);
+    }
+
+    function paintUnitStations(el = document.getElementById('app')) {
+      const project = unitStationPageJob.project;
+      const unitCount = Math.max(1, +(project.unitCount || 1));
+      const stations = project.unitStations[activeStationUnitIndex] || [];
+      const station = stations[activeStationIndex];
+      const totalStations = project.unitStations.reduce((total, unit) => total + (unit?.length || 0), 0);
+      el.innerHTML = `<div class="tabs">${Array.from({ length: unitCount }, (_, index) =>
+        `<a class="${index === activeStationUnitIndex ? 'active' : ''}" onclick="openStationUnit(${index})">${unitFolderName(index)} <span class="badge bok">${project.unitStations[index]?.length || 0}</span></a>`).join('')}</div>
+      <div class="station-workspace">
+        <aside class="station-list">
+          <div class="station-list-head"><span>工位</span><button class="btn station-icon-btn" onclick="addUnitStation()" title="添加工位">+</button></div>
+          ${stations.length ? stations.map((item, index) => `<button class="station-list-item ${index === activeStationIndex ? 'active' : ''}" onclick="openStationEditor(${index})">
+            <span><strong>${esc(item.name || `工位 ${index + 1}`)}</strong><span>${esc(stationTypeBase(item.dataTypeName) || '未选择数据类型')}</span></span>
+            <span>${(item.cylinderNames || []).filter(Boolean).length}/${(item.sensorNames || []).filter(Boolean).length}</span>
+          </button>`).join('') : '<div class="empty" style="padding:28px 0">暂无工位</div>'}
+        </aside>
+        <section class="station-editor">
+          ${station ? `<div class="station-editor-head">
+            <label>工位名称<input id="stationName" value="${esc(station.name || '')}" placeholder="自定义工位名称"></label>
+            <label>PLC 数据类型<select id="stationDataType">${stationTypeOptions(station.dataTypeName, activeStationUnitIndex, activeStationIndex)}</select></label>
+            <button class="btn bd" onclick="removeUnitStation()">删除工位</button>
+          </div>
+          <div class="station-name-columns">
+            <div class="station-name-panel">
+              <h3><span>气缸名称 <span class="badge bok">${(station.cylinderNames || []).filter(Boolean).length}/16</span></span><button class="btn station-icon-btn" onclick="addStationName('cylinder')" title="添加气缸">+</button></h3>
+              <div id="stationCylinderNames">${stationNameRows('cylinder', station.cylinderNames || [], station.cylinderValveMasterIndexes || [], station.cylinderExtendSafetyConditions || [], station.cylinderRetractSafetyConditions || [])}</div>
+            </div>
+            <div class="station-name-panel">
+              <h3><span>感应器名称 <span class="badge bok">${(station.sensorNames || []).filter(Boolean).length}/16</span></span><button class="btn station-icon-btn" onclick="addStationName('sensor')" title="添加感应器">+</button></h3>
+              <div id="stationSensorNames">${stationNameRows('sensor', station.sensorNames || [])}</div>
+            </div>
+          </div>` : '<div class="empty">请选择或添加工位</div>'}
+          <datalist id="ioSafetyConditionList">${safetyConditionOptions()}</datalist>
+        </section>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
+        <button class="btn bp" onclick="saveUnitStations()" ${totalStations ? '' : 'disabled'}>保存</button>
+        <span id="unitStationSaveStatus" style="font-size:12px;color:var(--m)"></span>
+      </div>`;
+    }
+
+    function openStationUnit(index) {
+      collectStationEditor();
+      activeStationUnitIndex = index;
+      activeStationIndex = 0;
+      paintUnitStations();
+    }
+
+    function openStationEditor(index) {
+      collectStationEditor();
+      activeStationIndex = index;
+      paintUnitStations();
+    }
+
+    function addUnitStation() {
+      collectStationEditor();
+      const stations = unitStationPageJob.project.unitStations[activeStationUnitIndex];
+      stations.push({ name: '', dataTypeName: '', cylinderNames: [], cylinderValveMasterIndexes: [], cylinderExtendSafetyConditions: [], cylinderRetractSafetyConditions: [], sensorNames: [] });
+      activeStationIndex = stations.length - 1;
+      paintUnitStations();
+    }
+
+    function removeUnitStation() {
+      const stations = unitStationPageJob.project.unitStations[activeStationUnitIndex];
+      if (!stations?.length || !confirm('确定删除这个工位？')) return;
+      stations.splice(activeStationIndex, 1);
+      activeStationIndex = Math.max(0, Math.min(activeStationIndex, stations.length - 1));
+      paintUnitStations();
+    }
+
+    function addStationName(kind) {
+      collectStationEditor();
+      const station = currentStation();
+      const field = kind === 'cylinder' ? 'cylinderNames' : 'sensorNames';
+      station[field] = station[field] || [];
+      if (station[field].length >= 16) return;
+      station[field].push('');
+      if (kind === 'cylinder') {
+        station.cylinderValveMasterIndexes = station.cylinderValveMasterIndexes || [];
+        station.cylinderValveMasterIndexes.push(null);
+        station.cylinderExtendSafetyConditions = station.cylinderExtendSafetyConditions || [];
+        station.cylinderExtendSafetyConditions.push('');
+        station.cylinderRetractSafetyConditions = station.cylinderRetractSafetyConditions || [];
+        station.cylinderRetractSafetyConditions.push('');
+      }
+      paintUnitStations();
+      const inputs = document.querySelectorAll(kind === 'cylinder' ? '.station-cylinder-name' : `[data-name-kind="${kind}"] input`);
+      inputs[inputs.length - 1]?.focus();
+    }
+
+    function removeStationName(kind, index) {
+      collectStationEditor();
+      const station = currentStation();
+      const field = kind === 'cylinder' ? 'cylinderNames' : 'sensorNames';
+      station[field]?.splice(index, 1);
+      if (kind === 'cylinder') {
+        station.cylinderValveMasterIndexes?.splice(index, 1);
+        station.cylinderExtendSafetyConditions?.splice(index, 1);
+        station.cylinderRetractSafetyConditions?.splice(index, 1);
+        station.cylinderValveMasterIndexes = (station.cylinderValveMasterIndexes || []).map(master => {
+          if (!master) return null;
+          if (master === index + 1) return null;
+          return master > index + 1 ? master - 1 : master;
+        });
+      }
+      paintUnitStations();
+    }
+
+    async function saveUnitStations() {
+      collectStationEditor();
+      const project = unitStationPageJob.project;
+      const all = project.unitStations.flatMap((stations, unitIndex) => (stations || []).map((station, stationIndex) => ({ station, unitIndex, stationIndex })));
+      const status = document.getElementById('unitStationSaveStatus');
+      const unnamed = all.find(item => !String(item.station.name || '').trim());
+      if (unnamed) { status.textContent = `${unitFolderName(unnamed.unitIndex)} 的工位名称不能为空`; return; }
+      const untyped = all.find(item => !stationTypeBase(item.station.dataTypeName));
+      if (untyped) { status.textContent = `${untyped.station.name} 请选择 PLC 数据类型`; return; }
+      const types = all.map(item => stationTypeBase(item.station.dataTypeName).toLowerCase());
+      if (new Set(types).size !== types.length) { status.textContent = '同一对 PLC 数据类型不能分配给多个工位'; return; }
+      const invalidNames = all.find(item => (item.station.cylinderNames || []).length > 16 || (item.station.sensorNames || []).length > 16);
+      if (invalidNames) { status.textContent = `${invalidNames.station.name} 的名称数量不能超过 16`; return; }
+
+      const saved = await API.fetch(`/api/projects/${pid}`, { method: 'PUT', body: JSON.stringify(unitStationPageJob) });
+      if (saved?.ok === false || saved?.error) { status.textContent = `保存失败：${saved.error || '未知错误'}`; return; }
+      paintUnitStations();
+      document.getElementById('unitStationSaveStatus').textContent = `已保存 ${new Date().toLocaleTimeString()}`;
+    }
+
     // ── 导入 ──
     async function renderImport(el) {
       const j = await API.fetch(`/api/projects/${pid}`);
-      const c = { io: j.ioPoints?.length||0, servo: j.servos?.length||0, motor: j.motors?.length||0, alarm: j.alarms?.length||0 };
+      const c = { io: j.ioPoints?.length||0, ioComment: j.ioComments?.length||0, servo: j.servos?.length||0, motor: j.motors?.length||0, alarm: j.alarms?.length||0 };
       const tabInfo = [
         { k:'io', l:'IO点', n:c.io },
+        { k:'io-comment', l:'IO注释', n:c.ioComment },
         { k:'servo', l:'伺服', n:c.servo },
         { k:'motor', l:'电机', n:c.motor },
         { k:'alarm', l:'报警', n:c.alarm },
       ];
-      el.innerHTML = `<div class="card"><h2>CSV 导入</h2>
-        <p style="color:var(--m);font-size:12px;margin-bottom:14px">拖拽 CSV 文件到下方区域，或点击选择文件。列名自动识别。</p>
-        <div class="tabs" id="impTabs">${tabInfo.map(t=>`<a class="${t.k==='io'?'active':''}" onclick="impTab('${t.k}')">${t.l} <span class="badge bok">${t.n}</span></a>`).join('')}</div>
+      el.innerHTML = `<div class="card"><h2>数据导入</h2>
+        <div class="tabs" id="impTabs">${tabInfo.map(t=>`<a data-cat="${t.k}" class="${t.k==='io'?'active':''}" onclick="impTab('${t.k}')">${t.l} <span class="badge bok">${t.n}</span></a>`).join('')}</div>
         <div id="impBody"></div></div>`;
       impTab('io');
     }
@@ -739,10 +1156,19 @@
     let impCat = 'io';
     function impTab(cat) {
       impCat = cat;
-      const labels = { io:'IO', servo:'伺服', motor:'电机', alarm:'报警' };
+      const labels = { io:'IO', 'io-comment':'IO注释', servo:'伺服', motor:'电机', alarm:'报警' };
       document.querySelectorAll('#impTabs a').forEach(a => {
-        a.classList.toggle('active', a.textContent.includes(labels[cat]));
+        a.classList.toggle('active', a.dataset.cat === cat);
       });
+      if (cat === 'io-comment') {
+        document.getElementById('impBody').innerHTML = `
+          <textarea class="paste-input" id="ioCommentPaste" placeholder="I0.0&#9;铁芯插磁钢24V通断电&#10;I0.1&#9;铁芯插磁钢自动模式按钮"></textarea>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
+            <button class="btn bp" onclick="doIoCommentImport()">导入注释</button>
+            <span id="ioCommentImportStatus" style="font-size:12px;color:var(--m)"></span>
+          </div>`;
+        return;
+      }
       document.getElementById('impBody').innerHTML = `
         <div class="dz" id="dz" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="onDrop(event)" onclick="document.getElementById('fi').click()">
           <p>拖拽 ${labels[cat]}.csv 到此处，或点击选择文件</p>
@@ -773,6 +1199,21 @@
       } else {
         document.getElementById('impPrev').innerHTML += `<p class="badge ber" style="font-size:13px;padding:5px 10px;margin-top:6px">错误：${esc(r.error||'未知')}</p>`;
       }
+    }
+
+    async function doIoCommentImport() {
+      const text = document.getElementById('ioCommentPaste')?.value || '';
+      const status = document.getElementById('ioCommentImportStatus');
+      if (!text.trim()) { if (status) status.textContent = '请先粘贴 IO 地址和注释'; return; }
+      if (status) status.textContent = '正在导入...';
+      const r = await API.fetch(`/api/projects/${pid}/import/io-comment`, {
+        method: 'POST', body: text, headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+      });
+      if (!r.success) {
+        if (status) status.textContent = `导入失败：${r.error || '未知错误'}`;
+        return;
+      }
+      if (status) status.textContent = `已导入 ${r.imported} 条${(r.errors||[]).length ? `，${r.errors.length} 行未识别` : ''}`;
     }
 
     // ── 生成 ──
@@ -859,6 +1300,40 @@
         (r.plcHardware.warnings||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
         (r.plcHardware.attempts||[]).slice(0, 40).forEach(x => logArea.textContent += `  · ${x}\n`);
       }
+      if (r.unitFolders) {
+        logArea.textContent += `── 单元文件夹 ──\n`;
+        logArea.textContent += `  成功: ${r.unitFolders.success}  单元: ${r.unitFolders.requestedUnitCount}  新建: ${(r.unitFolders.createdFolders||[]).length}  已存在: ${(r.unitFolders.existingFolders||[]).length}\n`;
+        (r.unitFolders.createdFolders||[]).forEach(x => logArea.textContent += `  + ${x}\n`);
+        (r.unitFolders.existingFolders||[]).forEach(x => logArea.textContent += `  = ${x}\n`);
+        (r.unitFolders.warnings||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
+        (r.unitFolders.errors||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
+      }
+      if (r.unitServos) {
+        logArea.textContent += `── 单元伺服初始化 ──\n`;
+        logArea.textContent += `  成功: ${r.unitServos.success}  更新: ${(r.unitServos.updatedUnits||[]).length}  编译错误/警告: ${r.unitServos.compilationErrorCount||0}/${r.unitServos.compilationWarningCount||0}\n`;
+        (r.unitServos.updatedUnits||[]).forEach(x => logArea.textContent += `  + ${x.unitName} / ${x.blockName}: ${x.servoCount} 轴  ${(x.deviceNames||[]).join(', ')}\n`);
+        (r.unitServos.errors||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
+      }
+      if (r.unitStations) {
+        logArea.textContent += `── 单元工位数据类型 ──\n`;
+        logArea.textContent += `  成功: ${r.unitStations.success}  更新: ${(r.unitStations.updatedStations||[]).length}  编译错误/警告: ${r.unitStations.compilationErrorCount||0}/${r.unitStations.compilationWarningCount||0}\n`;
+        (r.unitStations.updatedStations||[]).forEach(x => logArea.textContent += `  + ${x.unitName} / ${x.stationName}: ${x.inputDataType} + ${x.outputDataType}  气缸 ${x.cylinderCount}  感应器 ${x.sensorCount}\n`);
+        (r.unitStations.errors||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
+      }
+      if (r.ioProcessing) {
+        logArea.textContent += `── IO处理 FC ──\n`;
+        logArea.textContent += `  成功: ${r.ioProcessing.success}  工位: ${(r.ioProcessing.updatedStations||[]).length}  映射: ${(r.ioProcessing.lines||[]).length}  编译错误/警告: ${r.ioProcessing.compilationErrorCount||0}/${r.ioProcessing.compilationWarningCount||0}\n`;
+        (r.ioProcessing.updatedStations||[]).forEach(x => logArea.textContent += `  + 工位${x.stationNumber} -> 工位I/Q[${x.arrayIndex}]  ${x.stationName}: Q ${x.outputs}, I ${x.inputs}, 感应 ${x.sensorInputs}, 共用阀 ${x.manualLinks}\n`);
+        (r.ioProcessing.warnings||[]).forEach(x => logArea.textContent += `  ? ${x}\n`);
+        (r.ioProcessing.errors||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
+      }
+      if (r.cylinderLogic) {
+        logArea.textContent += `── 气缸逻辑 FB ──\n`;
+        logArea.textContent += `  成功: ${r.cylinderLogic.success}  工位数量: ${r.cylinderLogic.stationCount}  安全字段: ${r.cylinderLogic.safetyMemberName || '-'}  编译错误/警告: ${r.cylinderLogic.compilationErrorCount||0}/${r.cylinderLogic.compilationWarningCount||0}\n`;
+        (r.cylinderLogic.updatedStations||[]).forEach(x => logArea.textContent += `  + 工位${x.stationNumber} ${x.stationName}: 气缸 ${x.cylinderCount}, 安全条件 ${x.safetyConditionCount}\n`);
+        (r.cylinderLogic.warnings||[]).forEach(x => logArea.textContent += `  ? ${x}\n`);
+        (r.cylinderLogic.errors||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
+      }
       // 硬件设备
       if (r.devices) {
         logArea.textContent += `── 硬件设备 ──\n`;
@@ -874,6 +1349,13 @@
       if (r.tags) {
         logArea.textContent += `── PLC 标签 ──\n`;
         logArea.textContent += `  成功: ${r.tags.success}  新建: ${(r.tags.createdTags||[]).length}  诊断: ${r.tags.diagnostic}\n`;
+      }
+      if (r.ioComments) {
+        logArea.textContent += `── IO 注释 ──\n`;
+        logArea.textContent += `  成功: ${r.ioComments.success}  修改: ${(r.ioComments.updatedTags||[]).length}  未找到: ${(r.ioComments.missingAddresses||[]).length}\n`;
+        (r.ioComments.updatedTags||[]).forEach(x => logArea.textContent += `  + ${x.address}  ${x.tagName || ''}  ${x.comment}\n`);
+        (r.ioComments.missingAddresses||[]).forEach(x => logArea.textContent += `  ? ${x}\n`);
+        (r.ioComments.errors||[]).forEach(x => logArea.textContent += `  ! ${x}\n`);
       }
       // DB
       if (r.db) {
@@ -893,6 +1375,9 @@
         <div class="res-grid">
           <div class="res-card"><div class="num" style="color:${r.success?'var(--ok)':'var(--err)'}">${r.success?'成功':'失败'}</div><div class="lab">项目文件</div></div>
           <div class="res-card"><div class="num" style="color:${r.plcHardware?.success?'var(--ok)':'var(--t)'}">${r.plcHardware ? (r.plcHardware.success ? '成功' : '未改') : '-'}</div><div class="lab">PLC 名称/IP</div></div>
+          <div class="res-card"><div class="num" style="color:${r.unitFolders?.success?'var(--ok)':'var(--t)'}">${r.unitFolders ? ((r.unitFolders.createdFolders?.length||0) + '/' + (r.unitFolders.existingFolders?.length||0)) : '-'}</div><div class="lab">单元文件夹 新建/已有</div></div>
+          <div class="res-card"><div class="num" style="color:${r.unitServos?.success?'var(--ok)':'var(--t)'}">${r.unitServos ? (r.unitServos.updatedUnits?.length||0) : '-'}</div><div class="lab">伺服初始化设备</div></div>
+          <div class="res-card"><div class="num" style="color:${r.ioComments?.success?'var(--ok)':'var(--t)'}">${r.ioComments ? (r.ioComments.updatedTags?.length||0) : '-'}</div><div class="lab">IO 注释修改</div></div>
           <div class="res-card"><div class="num" style="color:${r.devices?.success?'var(--ok)':'var(--t)'}">${r.devices ? ((r.devices.createdDevices?.length||0) + '/' + (r.devices.errors?.length||0)) : '-'}</div><div class="lab">硬件设备 新增/错误</div></div>
           <div class="res-card"><div class="num">${(r.mappingFc?.generatedFcs?.length||0)+(r.servoFc?.generatedFcs?.length||0)+(r.motorFc?.generatedFcs?.length||0)+(r.alarmFc?.generatedFcs?.length||0)}</div><div class="lab">生成 FC</div></div>
           <div class="res-card"><div class="num">${elapsed}s</div><div class="lab">耗时</div></div>

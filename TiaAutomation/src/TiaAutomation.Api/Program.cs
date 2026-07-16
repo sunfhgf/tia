@@ -174,7 +174,9 @@ namespace TiaAutomation.Api
                 var category = ctx.PathParams["category"];
                 var csvText = ctx.ReadBodyText();
                 if (string.IsNullOrWhiteSpace(csvText)) { await ctx.WriteJson(400, new { error = "empty body" }); return; }
-                var result = store.ImportCsv(id, category, csvText);
+                var result = string.Equals(category, "io-comment", StringComparison.OrdinalIgnoreCase)
+                    ? store.ImportIoComments(id, csvText)
+                    : store.ImportCsv(id, category, csvText);
                 await ctx.WriteJson(result.Success ? 200 : 400, result);
             });
 
@@ -236,8 +238,13 @@ namespace TiaAutomation.Api
                 WriteTagCsv(Path.Combine(outDir, "plc-tags.csv"), plan.TagsToCreate);
 
                 var hasPlcHardwareWork = !string.IsNullOrWhiteSpace(job.Project?.PlcName) || !string.IsNullOrWhiteSpace(job.Project?.PlcIpAddress);
+                var hasUnitFolderWork = (job.Project?.UnitCount ?? 1) > 1;
+                var hasUnitServoWork = (job.Project?.UnitServoCounts ?? new List<int?>()).Any(value => value.HasValue);
+                var hasUnitStationWork = (job.Project?.UnitStations ?? new List<List<UnitStationSettings>>())
+                    .Any(unit => (unit ?? new List<UnitStationSettings>()).Any(station => !string.IsNullOrWhiteSpace(station?.DataTypeName)));
+                var hasIoCommentWork = (job.IoComments?.Count ?? 0) > 0;
                 var hasDeviceWork = (plan.DevicesToCreate?.Count ?? 0) > 0;
-                var hasWriteWork = hasPlcHardwareWork || hasDeviceWork || (plan.TagsToCreate?.Count ?? 0) > 0
+                var hasWriteWork = hasPlcHardwareWork || hasUnitFolderWork || hasUnitServoWork || hasUnitStationWork || hasIoCommentWork || hasDeviceWork || (plan.TagsToCreate?.Count ?? 0) > 0
                     || (plan.StationCylinderPlans?.Count ?? 0) > 0
                     || (plan.ServoMappings?.Count ?? 0) > 0
                     || (plan.MotorMappings?.Count ?? 0) > 0
@@ -250,18 +257,42 @@ namespace TiaAutomation.Api
                     var tagTableName = body.TagTableName ?? "TIA_AUTO_IO";
                     var scratch = Path.Combine(outDir, "scratch");
                     var combined = new TiaProjectWriter().WriteAll(
-                        copiedProjectPath, job.Project, plan.DevicesToCreate, plan.TagsToCreate, tagTableName,
+                        copiedProjectPath, job.Project, plan.DevicesToCreate, job.IoComments, plan.TagsToCreate, tagTableName,
                         plan.StationCylinderPlans, plan.ServoMappings, plan.MotorMappings, plan.AlarmPlans,
                         scratch, opennessDll);
 
                     resultObj = new
                     {
-                        success = combined.Saved,
-                        diagnostic = combined.Diagnostic,
+                        success = combined.Saved
+                            && (combined.UnitFolderResult?.Success ?? true)
+                            && (combined.UnitServoResult?.Success ?? true)
+                            && (combined.UnitStationTypeResult?.Success ?? true)
+                            && (combined.IoProcessingResult?.Success ?? true)
+                            && (combined.CylinderLogicResult?.Success ?? true)
+                            && (combined.IoCommentResult?.Success ?? true),
+                        diagnostic = combined.IoCommentResult != null && !combined.IoCommentResult.Success
+                            ? combined.IoCommentResult.Diagnostic
+                            : combined.IoProcessingResult != null && !combined.IoProcessingResult.Success
+                            ? combined.IoProcessingResult.Diagnostic
+                            : combined.CylinderLogicResult != null && !combined.CylinderLogicResult.Success
+                            ? combined.CylinderLogicResult.Diagnostic
+                            : combined.UnitStationTypeResult != null && !combined.UnitStationTypeResult.Success
+                            ? combined.UnitStationTypeResult.Diagnostic
+                            : combined.UnitServoResult != null && !combined.UnitServoResult.Success
+                            ? combined.UnitServoResult.Diagnostic
+                            : combined.UnitFolderResult != null && !combined.UnitFolderResult.Success
+                            ? combined.UnitFolderResult.Diagnostic
+                            : combined.Diagnostic,
                         projectPath = copiedProjectPath,
                         copiedOnly = false,
                         tags = combined.TagWriteResult,
+                        ioComments = combined.IoCommentResult,
                         plcHardware = combined.PlcHardwareResult,
+                        unitFolders = combined.UnitFolderResult,
+                        unitServos = combined.UnitServoResult,
+                        unitStations = combined.UnitStationTypeResult,
+                        ioProcessing = combined.IoProcessingResult,
+                        cylinderLogic = combined.CylinderLogicResult,
                         devices = combined.DeviceWriteResult,
                         db = combined.DbWriteResult,
                         mappingFc = combined.MappingFcResult,
@@ -279,7 +310,13 @@ namespace TiaAutomation.Api
                         projectPath = copiedProjectPath,
                         copiedOnly = true,
                         tags = (object)null,
+                        ioComments = (object)null,
                         plcHardware = (object)null,
+                        unitFolders = (object)null,
+                        unitServos = (object)null,
+                        unitStations = (object)null,
+                        ioProcessing = (object)null,
+                        cylinderLogic = (object)null,
                         devices = (object)null,
                         db = (object)null,
                         mappingFc = (object)null,
